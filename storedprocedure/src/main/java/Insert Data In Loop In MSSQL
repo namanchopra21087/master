@@ -1,0 +1,11 @@
+SET IDENTITY_INSERT [mydb].[EDA_TENANT1].[APPLICATION] ON;
+
+
+declare @id int
+select @id = 4
+while @id >=4 and @id <= 100
+begin
+    insert into [mydb].[EDA_TENANT1].[APPLICATION] ([IDS_APPLICATION],[APPLICATION_DATE],[APPLICATION_NUMBER],[BUREAU],[DESCRIPTION],[LAST_MODIFIED_DATE],[NOTE],[REMARK],[SYS_CREATEDATE])
+       values(@id, CONVERT(VARCHAR, '12/30/2013', 103) , 12,null,'desc', CONVERT(VARCHAR, '12/30/2013', 103),null,null,CONVERT(VARCHAR, '12/30/2013', 103))
+    select @id = @id + 1
+end
