@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="batFiles" />
         <module name="storedprocedure" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="batFiles" target="1.5" />
       <module name="storedprocedure" target="1.5" />
     </bytecodeTargetLevel>
   </component>

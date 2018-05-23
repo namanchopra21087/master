@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/storedprocedure/pom.xml" />
+        <option value="$PROJECT_DIR$/bat-files/pom.xml" />
       </list>
     </option>
   </component>
