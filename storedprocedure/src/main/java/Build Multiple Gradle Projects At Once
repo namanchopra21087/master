@@ -1,0 +1,34 @@
+@echo off
+SET PROJECT_HOME=C:\Bema-Code\
+
+cd %PROJECT_HOME%\software-app-audit-consumer-service\
+call gradle clean build
+echo Building software-app-audit-consumer-service
+
+cd %PROJECT_HOME%\software-app-event-publisher-service\
+call gradle clean build
+echo Building software-app-event-publisher-service
+
+cd %PROJECT_HOME%\software-app-token-service\
+call gradle clean build
+echo Building software-app-token-service
+
+cd %PROJECT_HOME%\software-app-user-service\
+call gradle clean build
+echo Building software-app-user-service
+
+cd %PROJECT_HOME%\software-svc-client-info\
+call gradle clean build
+echo Building software-svc-client-info
+
+cd %PROJECT_HOME%\software-svc-client-mapping-initialiser\
+call gradle clean build
+echo Building software-svc-client-mapping-initialiser
+
+cd %PROJECT_HOME%\software-svc-originations-facade\
+call gradle clean build
+echo Building software-svc-originations-facade
+
+cd %PROJECT_HOME%\software-svc-saas-portal\
+call gradle clean build
+echo Building software-svc-saas-portal
