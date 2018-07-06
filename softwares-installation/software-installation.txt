@@ -1,3 +1,5 @@
 Softwares to be installed for dev utilities:-
 1) Q-Dir:- To open multiple windows explorer in one window.
 2) ConEmu:- To open multiple command promts in one window.
+3) Sonar-Lint:-IDE plugin to analyze sonar flaws.
+4) Veracode:- Product used to scan any security vulnerabilities.
