@@ -3,3 +3,5 @@ Softwares to be installed for dev utilities:-
 2) ConEmu:- To open multiple command promts in one window.
 3) Sonar-Lint:-IDE plugin to analyze sonar flaws.
 4) Veracode:- Product used to scan any security vulnerabilities.
+5) Visual Studio Code:- IDE for UI development including Angular,HTML,CSS.
+6) Intellij:- IDE for server side development.
