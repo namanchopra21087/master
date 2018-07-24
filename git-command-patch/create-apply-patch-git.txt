@@ -1,8 +1,0 @@
-Create a patch example branch against master:
-git checkout <branch to create patch>
-git format-patch master --stdout > example.patch
-Above command create a patch file which has all commits which is present on example branch but not on master.
-
-Apply patch on branch1:
-git checkout <branch1 to apply patch>
-git apply --reject --whitespace=fix example.patch
