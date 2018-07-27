@@ -6,3 +6,15 @@ Above command create a patch file which has all commits which is present on exam
 Apply patch on branch1:
 git checkout <branch1 to apply patch>
 git apply --reject --whitespace=fix example.patch
+
+*Branch deletion command:-
+git checkout <anybranch> 
+git branch -D bugfix/ANA-140963-eros-sonar-qube-critical-and-blockers
+git push origin --delete bugfix/ANA-140963-eros-sonar-qube-critical-and-blockers  
+
+*history:shows git commands hostory.
+*git log -l5:shows the recent commits logs on branch.
+*git checkout -b [new branch][old branch]:creates new branch from existing branch.
+
+Which process is using which port:-
+netstat -ano > output.txt
