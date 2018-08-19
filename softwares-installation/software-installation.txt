@@ -7,3 +7,4 @@ Softwares to be installed for dev utilities:-
 6) Intellij,Eclipse:- IDE for server side development.
 7) Rapid Application Development (RAD):- IDE for java developers for applications where we use Websphere as the app-server.
 8) Database:- Oracle 12c, MsSql 2012, PostGre, Derby.
+9) TIBCO JasperSoft Studio for preparing jasper .jrxml for PDF downloads.
