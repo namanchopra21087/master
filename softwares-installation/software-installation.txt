@@ -4,4 +4,6 @@ Softwares to be installed for dev utilities:-
 3) Sonar-Lint:-IDE plugin to analyze sonar flaws.
 4) Veracode:- Product used to scan any security vulnerabilities.
 5) Visual Studio Code:- IDE for UI development including Angular,HTML,CSS.
-6) Intellij:- IDE for server side development.
+6) Intellij,Eclipse:- IDE for server side development.
+7) Rapid Application Development (RAD):- IDE for java developers for applications where we use Websphere as the app-server.
+8) Database:- Oracle 12c, MsSql 2012, PostGre, Derby.
