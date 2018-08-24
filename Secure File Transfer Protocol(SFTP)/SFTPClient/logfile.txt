@@ -1,0 +1,147 @@
+Batch Started @ Fri Jul 20 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180720_121500.TXT Copied Successfully.
+Batch Ended.@ Fri Jul 20 12:30:07 SGT 2018
+
+===========================================================================================================
+Batch Started @ Fri Jul 20 15:44:39 SGT 2018
+Exception occured. java.net.UnknownHostException: corpsftp.ramco.com1
+===========================================================================================================
+Batch Started @ Sat Jul 21 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180721_121500.TXT Copied Successfully.
+Batch Ended.@ Sat Jul 21 12:30:06 SGT 2018
+===========================================================================================================
+Batch Started @ Sun Jul 22 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180722_121500.TXT Copied Successfully.
+Batch Ended.@ Sun Jul 22 12:30:06 SGT 2018
+===========================================================================================================
+Batch Started @ Mon Jul 23 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180723_121500.TXT Copied Successfully.
+Batch Ended.@ Mon Jul 23 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Tue Jul 24 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180724_121500.TXT Copied Successfully.
+Batch Ended.@ Tue Jul 24 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Wed Jul 25 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180725_121500.TXT Copied Successfully.
+Batch Ended.@ Wed Jul 25 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Thu Jul 26 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180726_121500.TXT Copied Successfully.
+Batch Ended.@ Thu Jul 26 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Fri Jul 27 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180727_121500.TXT Copied Successfully.
+Batch Ended.@ Fri Jul 27 12:30:06 SGT 2018
+===========================================================================================================
+Batch Started @ Sat Jul 28 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180728_121500.TXT Copied Successfully.
+Batch Ended.@ Sat Jul 28 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Sun Jul 29 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180729_121500.TXT Copied Successfully.
+Batch Ended.@ Sun Jul 29 12:30:06 SGT 2018
+===========================================================================================================
+Batch Started @ Mon Jul 30 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180730_121500.TXT Copied Successfully.
+Batch Ended.@ Mon Jul 30 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Tue Jul 31 12:30:03 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180731_121500.TXT Copied Successfully.
+Batch Ended.@ Tue Jul 31 12:30:15 SGT 2018
+===========================================================================================================
+Batch Started @ Wed Aug 01 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180801_121500.TXT Copied Successfully.
+Batch Ended.@ Wed Aug 01 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Thu Aug 02 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180802_121500.TXT Copied Successfully.
+Batch Ended.@ Thu Aug 02 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Fri Aug 03 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180803_121500.TXT Copied Successfully.
+Batch Ended.@ Fri Aug 03 12:30:05 SGT 2018
+===========================================================================================================
+Batch Started @ Sat Aug 04 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180804_121500.TXT Copied Successfully.
+Batch Ended.@ Sat Aug 04 12:30:05 SGT 2018
+===========================================================================================================
+Batch Started @ Sun Aug 05 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180805_121500.TXT Copied Successfully.
+Batch Ended.@ Sun Aug 05 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Mon Aug 06 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180806_121500.TXT Copied Successfully.
+Batch Ended.@ Mon Aug 06 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Tue Aug 07 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180807_121500.TXT Copied Successfully.
+Batch Ended.@ Tue Aug 07 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Wed Aug 08 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180808_121500.TXT Copied Successfully.
+Batch Ended.@ Wed Aug 08 12:30:07 SGT 2018
+===========================================================================================================
+Batch Started @ Thu Aug 09 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180809_121500.TXT Copied Successfully.
+Batch Ended.@ Thu Aug 09 12:30:05 SGT 2018
+===========================================================================================================
+Batch Started @ Fri Aug 10 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180810_121500.TXT Copied Successfully.
+Batch Ended.@ Fri Aug 10 12:30:05 SGT 2018
+===========================================================================================================
+Batch Started @ Sat Aug 11 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180811_121500.TXT Copied Successfully.
+Batch Ended.@ Sat Aug 11 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Sun Aug 12 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180812_121500.TXT Copied Successfully.
+Batch Ended.@ Sun Aug 12 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Mon Aug 13 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180813_121500.TXT Copied Successfully.
+Batch Ended.@ Mon Aug 13 12:30:05 SGT 2018
+===========================================================================================================
+Batch Started @ Tue Aug 14 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180814_121500.TXT Copied Successfully.
+Batch Ended.@ Tue Aug 14 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Wed Aug 15 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180815_121500.TXT Copied Successfully.
+Batch Ended.@ Wed Aug 15 12:30:05 SGT 2018
+===========================================================================================================
+Batch Started @ Thu Aug 16 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180816_121500.TXT Copied Successfully.
+Batch Ended.@ Thu Aug 16 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Fri Aug 17 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180817_121500.TXT Copied Successfully.
+Batch Ended.@ Fri Aug 17 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Sat Aug 18 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180818_121500.TXT Copied Successfully.
+Batch Ended.@ Sat Aug 18 12:30:05 SGT 2018
+===========================================================================================================
+Batch Started @ Sun Aug 19 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180819_121500.TXT Copied Successfully.
+Batch Ended.@ Sun Aug 19 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Mon Aug 20 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180820_121500.TXT Copied Successfully.
+Batch Ended.@ Mon Aug 20 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Tue Aug 21 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180821_121500.TXT Copied Successfully.
+Batch Ended.@ Tue Aug 21 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Wed Aug 22 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180822_121500.TXT Copied Successfully.
+Batch Ended.@ Wed Aug 22 12:30:04 SGT 2018
+===========================================================================================================
+Batch Started @ Thu Aug 23 12:18:21 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180823_121500.TXT Copied Successfully.
+Batch Ended.@ Thu Aug 23 12:18:25 SGT 2018
+===========================================================================================================
+Batch Started @ Thu Aug 23 12:30:00 SGT 2018
+File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180823_121500.TXT Copied Successfully.
+Batch Ended.@ Thu Aug 23 12:30:04 SGT 2018
