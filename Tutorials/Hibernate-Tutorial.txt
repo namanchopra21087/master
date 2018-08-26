@@ -1,0 +1,30 @@
+* hibernate.cfg.xml property show_sql=true gives all the sql used for ddl and dml by hibernate at console.
+* hibernate.cfg.xml property hbm2ddl.auto propeerty should be set to "update". When its set to "create" each time hibernate hits connects to database it 
+  re-creates the entire db, deleteing any previous existing records.
+* @Entity annotation is sufficient to make an java pojo map to database and if no table is created for that entity hibernate creates all
+  database schema on its on to persist the pojo values.
+* @Temporal is used to define whether for a date field we want to save date or time using "TemporalType.Date or TemporalType.timestamp or TemporalType.Time".
+* @Embedded is used ovefr an pojo that is embedded in another entity.
+Example:-
+@Entity
+public class UserDetails{
+
+ @Id
+ @generatedValue(strategy=GenerationType.Auto)
+ private int Number;
+ @Embedded
+ private Address add;
+ 
+ 
+ gettert and setters
+ 
+}
+
+@Embedable
+public class Address{
+	its member var and gettert and setters
+}
+
+* SessionFatory in hibernate is always singelton to avoid performance load on server.
+* Code to get SessionFactory=new Configuration().configure().buildSessionFactory().
+* Primary keys are of two types:- Serogate key(Key which has no business value) or natural key(which has business value).
