@@ -8,3 +8,4 @@ Softwares to be installed for dev utilities:-
 7) Rapid Application Development (RAD):- IDE for java developers for applications where we use Websphere as the app-server.
 8) Database:- Oracle 12c, MsSql 2012, PostGre, Derby.
 9) TIBCO JasperSoft Studio for preparing jasper .jrxml for PDF downloads.
+10) Use Google G-Suite to auto sync your gmail account to outlook. Download link:https://tools.google.com/dlpage/gappssync/
