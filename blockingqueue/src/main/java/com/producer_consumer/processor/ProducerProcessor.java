@@ -5,17 +5,23 @@ package com.producer_consumer.processor;
 
 import java.util.concurrent.BlockingQueue;
 
+import org.springframework.stereotype.Component;
+
 import com.producer_consumer.pojo.Person;
 
 /**
  * @author Naman
  *
  */
+@Component
 public class ProducerProcessor implements Runnable{
 	
 	BlockingQueue<Person> queue=null;
 	
-	public ProducerProcessor(BlockingQueue<Person> queue){
+	public ProducerProcessor(){
+	}
+	
+	public void setQueue(BlockingQueue<Person> queue){
 		this.queue=queue;
 	}
 

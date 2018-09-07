@@ -1,11 +1,7 @@
 package com.producer_consumer.blockingqueue;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-
-import com.producer_consumer.pojo.Person;
-import com.producer_consumer.processor.ConsumerProcessor;
-import com.producer_consumer.processor.ProducerProcessor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Producer-Consumer example.
@@ -20,12 +16,8 @@ public class Main
 {
     public static void main( String[] args )
     {
-        BlockingQueue<Person> queue=new ArrayBlockingQueue<>(3);
-        ProducerProcessor scheduleInterview=new ProducerProcessor(queue);
-        ConsumerProcessor takeInterview=new ConsumerProcessor(queue);
-        
-        new Thread(scheduleInterview).start();
-        new Thread(takeInterview).start();
-       
+    	ApplicationContext factory=new AnnotationConfigApplicationContext(AppConfig.class);
+    	InitializeProcessor initialize=factory.getBean(InitializeProcessor.class);
+    	initialize.init();
     }
 }

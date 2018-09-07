@@ -5,6 +5,8 @@ package com.producer_consumer.processor;
 
 import java.util.concurrent.BlockingQueue;
 
+import org.springframework.stereotype.Component;
+
 import com.producer_consumer.pojo.Person;
 
 /**
