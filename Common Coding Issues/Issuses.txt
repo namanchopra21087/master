@@ -1,0 +1,24 @@
+1) When we initialize one of the bean with new in spring than autowiring for IOC will not work.
+2) Never call a method that uses autowired reference variables from constructor of any bean. 
+Example:-
+@Component
+public class InitializeProcessor {
+	
+	@Autowired
+    ProducerProcessor scheduleInterview;
+	
+	InitializeProcessor(){
+	this.init();
+	}
+
+	public void init(){
+		BlockingQueue<Person> queue=new ArrayBlockingQueue<>(3);
+        scheduleInterview.setQueue(queue);
+        ConsumerProcessor takeInterview=new ConsumerProcessor(queue);
+        new Thread(scheduleInterview).start();
+        new Thread(takeInterview).start();
+	}
+	
+}
+
+Above code will throw BeanCreationException as till InitializeProcessor.java is not created by spring member variables that are autowired inside can not be used.
