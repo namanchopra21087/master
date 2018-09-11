@@ -36,9 +36,7 @@ public class Address{
 	  private int user_id;
 	  @OneToMany(mappedBy="user",cascade=CascadeType.All)
 	  Collection<Vehicle> vehList=new ArrayList<>();
-	  
-	  
-  }
+	  }
 
   @Entity
 	public class vehicle{
@@ -68,5 +66,43 @@ In above example even if there is a vehicle which has no user associated with it
   and @JoinColumn tells hibernate to create a new column inside vehicle to map tto userdetails. Without giving mappedBy, hibernate will create a new 
   table for this mapping which is not required.
 *For @ManyToMany there shall always be a new Table showing the relationship.
+Inheritance in hibernate:-
+* Hibernate by default uses "Single Table Strategy" for hibernate.
+Example:-
+	@Entity
+	@Inheritance(startegy=InheritanceType.Single_Table)
+	@DiscriminatprColumn(
+	name="VEHICLE_TYPE",
+	discriminatorType=DiscriminatorType.String
+	}
+	public class vehicle{
+	@Id @GeneratedValue
+	String vehicle_name;
+	Integer vehicle_id;
 
-----Watched videos till 16 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
+	}
+	
+	@Entity
+	@DiscriminatorValue("Bike")
+	public class twoWheeler extends vehicle{
+	String GearType;
+
+	}
+	
+	@Entity
+	@DiscriminatorValue("Car")
+	public class fourWheeler extends vehicle{
+	String SteeringType;
+
+	}
+*Above inheritance structure shall create one singlw table "Vehicle" with default "Single_Table" strategy in hibernate
+*If @DiscriminatorType is not given hibetrnate takes the DType as the default name of the column.
+*If @DiscriminatorValue is not given hibetrnate takes the class name as the default value.
+	VEHICLE_TYPE	VEHICLE_NAME	VEHICLE_ID	GEAR_TYPE	STEERING_TYPE
+		VEHICLE	         ABC	       1		
+         BIKE	      ThunderBolt	   2	       X	 
+		 CAR			Maruti	      3		                                 Y
+
+	
+
+----Watched videos till 18 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
