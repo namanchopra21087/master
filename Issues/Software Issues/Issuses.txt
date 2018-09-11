@@ -1,0 +1,3 @@
+1) When wifi gets auto disabled in windows 10 or starts to get hidden than root cause:-
+Cause:- Intel(R) dual band wireless adapter driver is corrupted.
+Fix:- Update or reinstall your wifi driver from intell to get the wifi working smoothly.
