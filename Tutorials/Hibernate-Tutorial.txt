@@ -171,6 +171,26 @@ Example:-
 		 Maruti	      		3	        Z
  Important point to pick up from above schema is for table_per_class strategy, all the child class have parent table columns as well in addition to there own columns.
 
-*Third and last type of Inheritance Strategy is Inheritance.JOINED. In this all teh vehicles will be dumped in vehicle class and only the the specific column pertaining to child class
+*Third and last type of Inheritance Strategy is Inheritance.JOINED. In this all the vehicles(vehicle,twoWheeler,fourWheeler) will be dumped in vehicle table and only the the specific column pertaining to child class
 is in child table in addition to join column which shows whats the vehicle you are mapping to from parent table.
+*Transient vs Persistence vs Detached Obj:-
+Example:-
+SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
+Session session=sessionFactory.openSession();
+
+UserDetails user=new UserDetails();
+user.setName("Test USer");//Line 1
+session.begintransaction();
+
+session.save(user);//Line 2
+user.setName("Test User1");//Line 3
+session.close();
+user.setName("Test User after session close");//Line 4
+*In above example user object at line 1 is in transient state as its never send to hibernate session for any CRUD operation.
+*user object at line @ and Line 3 is in persistance state. If we chaeck the database after line 3 user naem shall be updated to "Test User1"
+as user object is in persistance state. So hibernate shall first do a insert query to enter the values of user object and as the user object is in persistance state
+it will trigger a update query as well at Line 3.
+*user object at Line 4 is in detached state as hibernate session is closed and now whatever chanegs we do to the user object it shall not get saved to database.
+
+
 ----Watched videos till 21 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
