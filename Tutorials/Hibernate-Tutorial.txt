@@ -187,7 +187,7 @@ user.setName("Test User1");//Line 3
 session.close();
 user.setName("Test User after session close");//Line 4
 *In above example user object at line 1 is in transient state as its never send to hibernate session for any CRUD operation.
-*user object at line @ and Line 3 is in persistance state. If we chaeck the database after line 3 user naem shall be updated to "Test User1"
+*user object at line 2 and Line 3 is in persistance state. If we chaeck the database after line 3 user naem shall be updated to "Test User1"
 as user object is in persistance state. So hibernate shall first do a insert query to enter the values of user object and as the user object is in persistance state
 it will trigger a update query as well at Line 3.
 *user object at Line 4 is in detached state as hibernate session is closed and now whatever chanegs we do to the user object it shall not get saved to database.
