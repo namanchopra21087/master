@@ -191,6 +191,38 @@ user.setName("Test User after session close");//Line 4
 as user object is in persistance state. So hibernate shall first do a insert query to enter the values of user object and as the user object is in persistance state
 it will trigger a update query as well at Line 3.
 *user object at Line 4 is in detached state as hibernate session is closed and now whatever chanegs we do to the user object it shall not get saved to database.
+* When an entity is saved in persistence state and tried to update in the same state without closing the session than no update query shall be fired as 
+if there is no change made to the entity. As its same session. But when we close the current session and open a new sessionand try to update the same 
+entity without making any changes Hibernate will fire one update query as it doen't knwo in the time of changingteh state of entity from detached to 
+persistence whether it was chanegs or not. TO avoid this we can use @org.hibernate.annotations.Entity(selectBeforeUpdate=true)
+Example:-
+@Entity
+@org.hibernate.annotations.Entity(selectBeforeUpdate=true) //Line 1
+public class UserDetails {
 
+}
+UserDetails user=new UserDetails();
+    		user.setName("Naman");
+    		user.setAge(22);
+    		
+    		EuropeUsers eUser=new EuropeUsers();
+    		eUser.setCountry("Greece");
+    		
+    		AsiaUsers aUser=new AsiaUsers();
+    		aUser.setLanguage("Chinesse");
+    		session.save(user);
+    		session.save(eUser);
+    		session.save(aUser);
+    		session.update(user); //Line 2
+    		tx.commit();
+    		session.close();
+        	Session session1=factory.openSession();
+        	org.hibernate.Transaction tx1=session1.beginTransaction();
+        	session1.update(user);//Line 3
+        	tx1.commit();
+        	session1.close();
+Using line 1 there will be one select statement before update at line 3. Without line 1 there will be straight update query for line 3.
+At line 2 there will be never any update query fired if there is no change in the entity as the entity is in same persistance state
+(or associated with same session).
 
-----Watched videos till 21 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
+----Watched videos till 24 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
