@@ -225,4 +225,21 @@ Using line 1 there will be one select statement before update at line 3. Without
 At line 2 there will be never any update query fired if there is no change in the entity as the entity is in same persistance state
 (or associated with same session).
 
-----Watched videos till 24 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
+*While writing sql query either in a ORM or JDBC their are three ways:-
+	1)"select * from Employee where salary>"+salary;
+	2)"select * from Employee where salary>?";
+		query.setInteger(0,100000);
+	3)"select * from Employee where salary>:salary";
+		query.setInteger("salary",100000);
+Out of above ways method 1 has bug draw back as its appending the parameter, it becomes prone to hackers.
+2 and 3 way are the way to write the sql query.
+3 is the best way as putting wildcard characters like "?" will not be easy to maintain code in large queries.
+Putting logical names as placeholders is the more convinient way as it enhances query readability and same time coder dont need to bother about 
+position of the parameters.
+
+*Various ways of doing CRUD operations in Hibernate:-
+	1) session.save(Entity objects) or session.update(Entity objects).
+	2) session.createQuery("select * from Employee").
+	3) session.getNamedQuery("Employee.getId").
+	4) session.createCriteria(Employee.class,"e").
+----Watched videos till 30 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
