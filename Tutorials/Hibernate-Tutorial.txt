@@ -242,4 +242,6 @@ position of the parameters.
 	2) session.createQuery("select * from Employee").
 	3) session.getNamedQuery("Employee.getId").
 	4) session.createCriteria(Employee.class,"e").
-----Watched videos till 30 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
+
+*Projections in java are used for selecting specific columns from table or for aggreagations.
+----Watched videos till 32 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
