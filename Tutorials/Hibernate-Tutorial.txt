@@ -243,5 +243,18 @@ position of the parameters.
 	3) session.getNamedQuery("Employee.getId").
 	4) session.createCriteria(Employee.class,"e").
 
-*Projections in java are used for selecting specific columns from table or for aggreagations.
-----Watched videos till 32 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
+*Projections in java are used for selecting specific columns from table or for aggregations.
+*<property name="hbm2ddl.auto"><value></property>. Value=create or value =none.
+ when value=update hibernate still tries to update the schema and throws exception. So better to create once and then none.
+*Types of caching in hibernate:-
+	1) First level caching(enabled by default). Caching of data till the current session is not closed.
+	2) Second level caching. Data gets cached across sessions.
+	    Set below property for enabling this feature in hinernate.cfg.xml
+		 * <li>1) <property name="hibernate.cache.use_second_level_cache">true</property></li>
+		 * <li>2) <property name="hibernate.cache.use_query_cache">true</property></li>
+		 * <li>3) <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property></li>
+		 * <li>4) <property name="hibernate.javax.cache.provide">net.sf.ehcache.hibernate.EhCacheProvider</property></li>
+	3) Query level caching. This is requiredf as hibernate treates data fetched from session.createQuery("from Employee") different and 
+	   data fetched using session.get(Employee.class,1) different. Data fetched using session.get(Employee.class,1) is stored in second 
+	   level cache and data fetched from  session.get(Employee.class,1) inside query level cache.
+----Watched all videos till 36 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
