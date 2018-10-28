@@ -254,7 +254,7 @@ position of the parameters.
 		 * <li>2) <property name="hibernate.cache.use_query_cache">true</property></li>
 		 * <li>3) <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property></li>
 		 * <li>4) <property name="hibernate.javax.cache.provide">net.sf.ehcache.hibernate.EhCacheProvider</property></li>
-	3) Query level caching. This is requiredf as hibernate treates data fetched from session.createQuery("from Employee") different and 
+	3) Query level caching. This is required as hibernate treates data fetched from session.createQuery("from Employee") different and 
 	   data fetched using session.get(Employee.class,1) different. Data fetched using session.get(Employee.class,1) is stored in second 
 	   level cache and data fetched from  session.get(Employee.class,1) inside query level cache.
 ----Watched all videos till 36 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
