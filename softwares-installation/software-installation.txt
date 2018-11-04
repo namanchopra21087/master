@@ -12,3 +12,4 @@ Softwares to be installed for dev utilities:-
 11) To convert .zip files to .ear,.war use windows command prompt and command-ren filename.zip filename.ear.
 12) "Recuva" install the software to recover all the permanent deleted files from windows 10.
 13) Angular environment setup requires nodes js, angular cli to start the project. Refer:- angular tutorial for more at https://angular.io/
+	* C:\Users\NAMAN CHOPRA\AppData\Local\Programs\Microsoft VS Code\bin is the default path for installing visual studio code.
