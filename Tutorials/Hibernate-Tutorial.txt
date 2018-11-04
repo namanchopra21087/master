@@ -171,6 +171,90 @@ Example:-
 		 Maruti	      		3	        Z
  Important point to pick up from above schema is for table_per_class strategy, all the child class have parent table columns as well in addition to there own columns.
 
-*Third and last type of Inheritance Strategy is Inheritance.JOINED. In this all teh vehicles will be dumped in vehicle class and only the the specific column pertaining to child class
+*Third and last type of Inheritance Strategy is Inheritance.JOINED. In this all the vehicles(vehicle,twoWheeler,fourWheeler) will be dumped in vehicle table and only the the specific column pertaining to child class
 is in child table in addition to join column which shows whats the vehicle you are mapping to from parent table.
-----Watched videos till 21 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
+*Transient vs Persistence vs Detached Obj:-
+Example:-
+SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
+Session session=sessionFactory.openSession();
+
+UserDetails user=new UserDetails();
+user.setName("Test USer");//Line 1
+session.begintransaction();
+
+session.save(user);//Line 2
+user.setName("Test User1");//Line 3
+session.close();
+user.setName("Test User after session close");//Line 4
+*In above example user object at line 1 is in transient state as its never send to hibernate session for any CRUD operation.
+*user object at line 2 and Line 3 is in persistance state. If we chaeck the database after line 3 user naem shall be updated to "Test User1"
+as user object is in persistance state. So hibernate shall first do a insert query to enter the values of user object and as the user object is in persistance state
+it will trigger a update query as well at Line 3.
+*user object at Line 4 is in detached state as hibernate session is closed and now whatever chanegs we do to the user object it shall not get saved to database.
+* When an entity is saved in persistence state and tried to update in the same state without closing the session than no update query shall be fired as 
+if there is no change made to the entity. As its same session. But when we close the current session and open a new sessionand try to update the same 
+entity without making any changes Hibernate will fire one update query as it doen't knwo in the time of changingteh state of entity from detached to 
+persistence whether it was chanegs or not. TO avoid this we can use @org.hibernate.annotations.Entity(selectBeforeUpdate=true)
+Example:-
+@Entity
+@org.hibernate.annotations.Entity(selectBeforeUpdate=true) //Line 1
+public class UserDetails {
+
+}
+UserDetails user=new UserDetails();
+    		user.setName("Naman");
+    		user.setAge(22);
+    		
+    		EuropeUsers eUser=new EuropeUsers();
+    		eUser.setCountry("Greece");
+    		
+    		AsiaUsers aUser=new AsiaUsers();
+    		aUser.setLanguage("Chinesse");
+    		session.save(user);
+    		session.save(eUser);
+    		session.save(aUser);
+    		session.update(user); //Line 2
+    		tx.commit();
+    		session.close();
+        	Session session1=factory.openSession();
+        	org.hibernate.Transaction tx1=session1.beginTransaction();
+        	session1.update(user);//Line 3
+        	tx1.commit();
+        	session1.close();
+Using line 1 there will be one select statement before update at line 3. Without line 1 there will be straight update query for line 3.
+At line 2 there will be never any update query fired if there is no change in the entity as the entity is in same persistance state
+(or associated with same session).
+
+*While writing sql query either in a ORM or JDBC their are three ways:-
+	1)"select * from Employee where salary>"+salary;
+	2)"select * from Employee where salary>?";
+		query.setInteger(0,100000);
+	3)"select * from Employee where salary>:salary";
+		query.setInteger("salary",100000);
+Out of above ways method 1 has bug draw back as its appending the parameter, it becomes prone to hackers.
+2 and 3 way are the way to write the sql query.
+3 is the best way as putting wildcard characters like "?" will not be easy to maintain code in large queries.
+Putting logical names as placeholders is the more convinient way as it enhances query readability and same time coder dont need to bother about 
+position of the parameters.
+
+*Various ways of doing CRUD operations in Hibernate:-
+	1) session.save(Entity objects) or session.update(Entity objects).
+	2) session.createQuery("select * from Employee").
+	3) session.getNamedQuery("Employee.getId").
+	4) session.createCriteria(Employee.class,"e").
+
+*Projections in java are used for selecting specific columns from table or for aggregations.
+*<property name="hbm2ddl.auto"><value></property>. Value=create or value =none.
+ when value=update hibernate still tries to update the schema and throws exception. So better to create once and then none.
+*Types of caching in hibernate:-
+	1) First level caching(enabled by default). Caching of data till the current session is not closed.
+	2) Second level caching. Data gets cached across sessions.
+	    Set below property for enabling this feature in hinernate.cfg.xml
+		 * <li>1) <property name="hibernate.cache.use_second_level_cache">true</property></li>
+		 * <li>2) <property name="hibernate.cache.use_query_cache">true</property></li>
+		 * <li>3) <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property></li>
+		 * <li>4) <property name="hibernate.javax.cache.provide">net.sf.ehcache.hibernate.EhCacheProvider</property></li>
+	3) Query level caching. This is required as hibernate treates data fetched from session.createQuery("from Employee") different and 
+	   data fetched using session.get(Employee.class,1) different. Data fetched using session.get(Employee.class,1) is stored in second 
+	   level cache and data fetched from  session.get(Employee.class,1) inside query level cache.
+----Watched all videos till 36 from youtube.url:=https://www.youtube.com/watch?v=Zj1mRWfhx_Y&index=19&list=PL4AFF701184976B25--------
