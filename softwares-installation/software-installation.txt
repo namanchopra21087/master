@@ -12,4 +12,13 @@ Softwares to be installed for dev utilities:-
 11) To convert .zip files to .ear,.war use windows command prompt and command-ren filename.zip filename.ear.
 12) "Recuva" install the software to recover all the permanent deleted files from windows 10.
 13) Angular environment setup requires nodes js, angular cli to start the project. Refer:- angular tutorial for more at https://angular.io/
+	Steps to set up angular:-
+	* Install visual studio code as IDE for angular development.
 	* C:\Users\NAMAN CHOPRA\AppData\Local\Programs\Microsoft VS Code\bin is the default path for installing visual studio code.
+	* Setup the installation ditrectory of visual studio code inside Path variable of environment variables.
+	* Install latest version of node.js for building angular and using angular specific syntax.
+	* Visual studio code can be opened from git bash using command "code ..". Only need to make sure that its installation directory is set in path.
+	* Now open the angular project in Visual studio code.
+	* now to isntall angular cli use command "npm install -g @angular/cli".
+	* now you are all set to use angular sytax. 
+	* For building the angular project and launching the project inside angular live development server use command "ng serve --open".
