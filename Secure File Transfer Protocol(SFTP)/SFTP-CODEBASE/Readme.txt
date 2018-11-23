@@ -6,4 +6,4 @@ SFTP(Secure file transfer protocol) code base:-
 * Even spring batch can also be used.
 
 Note:-
-For reference we can use files inside "Secure File Transfer Protocol(SFTP)/SFTPClient/" folder.
+For reference we can use files inside "Secure File Transfer Protocol(SFTP)/SFTPClient/" folder for setting up the project.
