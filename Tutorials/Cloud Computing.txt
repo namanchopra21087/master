@@ -1,0 +1,12 @@
+*Cloud computing is nothing but an architecture design where you want to seperate the physical server hardware, operating system,applications from each other.
+*Using cloud computing when one of the instance of the application is down you can seamlessly tranfer the entire OS from one server to another.
+*Some of the major components of cloud computing are:-
+	*Virtualization.
+*Virtualization is nothing but the technique of seperatig the OS from the hardware. SO thi smeans that if our OS is installed on server1 and for some reasons
+their is a power failure or server crashes one can copu and paste the OS from server1 to server2.
+*To achieve virtualization we use Hypervisors.
+*Hypervisors are softwares that are installed on hardware and than one can install multiple OS on it using a "Management software".
+	*Best example for that is VMWare. VMware hypervisour free of cost is ESXI.
+	*Once we install ESXI on an physical hardware it gives us a plain blank screen with ip and computer name.
+	*Now using VMware management software called "VSphere" we manage all the servers that are having ESXI installed 
+	 on them and can manage my servers.

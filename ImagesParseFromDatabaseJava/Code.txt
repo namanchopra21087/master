@@ -1,0 +1,6 @@
+/**Code to read images from database using Base64Encoder and save it at a server location*/
+if(obj[41]!=null){
+					byte[] bytearray = new Base64().decode(obj[41].toString().getBytes());
+					BufferedImage imag=ImageIO.read(new ByteArrayInputStream(bytearray));
+					ImageIO.write(imag, "jpg", new File("D:/Temp/TMS/DELIVERY_ORDER/"+obj[0].toString()+".JPG"));
+					}

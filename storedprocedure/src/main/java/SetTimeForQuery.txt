@@ -1,0 +1,3 @@
+SET STATISTICS TIME on
+<sql query>
+SET STATISTICS TIME off
