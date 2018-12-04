@@ -1,0 +1,25 @@
+*Rest stands for "Representational Stateless Transfer".
+*There are two types of webServices:-Rest and Soap.
+*Here we mainly talk about REST Webservices.
+*Resource URL for RestWebservices can be single level or resource level.
+*Example:- a)Http://ip:port/messages  (Collections resource url)
+		   b)Http://ip:port/messages/{messageId}/comments/{commentId} (Single resource Url)
+*There are four main methods for rest webservices:-
+	1)Get
+	2)Post
+	3)Put
+	4)Delete
+*GET is used to read the data from applciation.
+*PUT is used to update any record in application.
+*DELETE is used to delete a record in application..
+*POST is used to insert a new record in application.
+*Get,Put and Delete are "IDEMPOTENT" as their repeated calls will not mke any change.
+*Post is not "IDEMPOTENT".
+*Definition of IDENPOTENT:- Its the property of certain operations in computer science that can be applied multiple times without changing the
+ initial state of the record or application.
+*In GET,PUT and DELETE operatiosn after the first call when multiple repeated calls are made for same resource URL, it will end up in changing 
+nothing in teh application. So they fit the IDEMPOTENT definitions.
+*POST is non-idempotant as repeated calls of it will result into duplicate records in system.
+*Restful webservices can be built using JAX-RX(java api for restful webservices).
+*One of the common implementation for JAX-RX is Jersey.
+(Its like JAX-RX is the guidelines or interfaces and jersey is the implementation or concrete classes)
