@@ -1,0 +1,1064 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<si>
+
+	
+      <!--                  TMS Claim START                           -->
+	<send_tmsclaim_confirmation>
+
+		<to></to>
+		<cc></cc>
+		<to/>
+		<cc/>
+		<subject>OFS [Claim No#$_$_CLAIMNO_$_$] : Send for Confirmation –$_$_REMARKS_$_$</subject>
+		<content>
+			The following Claim has been Created:
+			<![CDATA[</br>]]>Claim No<![CDATA[&nbsp;]]>: $_$_CLAIMNO_$_$<![CDATA[</br>]]>
+			Claimant<![CDATA[&nbsp;]]>: $_$_CLAIMANT_$_$<![CDATA[</br>]]>
+			Remarks<![CDATA[&nbsp;]]>:  $_$_REMARKS_$_$<![CDATA[</br>]]>
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</send_tmsclaim_confirmation>
+
+	<confirm_tmsclaim>
+		<to></to> <!-- customer_mail_id -->
+		<cc></cc>
+		<to/>
+		<!-- customer_mail_id -->
+		<cc/>
+		<subject>OFS [Claim No#$_$_CLAIMNO_$_$] :  Approval –  $_$_REMARKS_$_$</subject>
+		<content>
+			The Claim is created as per your request :
+			<![CDATA[</br>]]>
+			Claim No<![CDATA[&nbsp;]]>: $_$_CLAIMNO_$_$<![CDATA[</br>]]>
+			Claimant<![CDATA[&nbsp;]]>: $_$_CLAIMANT_$_$<![CDATA[</br>]]>
+			Remarks<![CDATA[&nbsp;]]>:  $_$_REMARKS_$_$<![CDATA[</br>]]>
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</confirm_tmsclaim>
+	<referBack_tmsclaim>
+		<to></to> <!-- Author Email-ID -->
+		<cc></cc>
+		<to/>
+		<!-- Author Email-ID -->
+		<cc/>
+		<subject>OFS [Claim No# $_$_CLAIMNO_$_$] : Refer Back – $_$_REMARKS_$_$</subject>
+		<content>
+			The following Claim has been referred back :<![CDATA[</br>]]>
+			Claim No<![CDATA[&nbsp;]]>: $_$_CLAIMNO_$_$<![CDATA[</br>]]>
+			Claimant<![CDATA[&nbsp;]]>: $_$_CLAIMANT_$_$<![CDATA[</br>]]>
+			Remarks<![CDATA[&nbsp;]]>:  $_$_REMARKS_$_$<![CDATA[</br>]]>
+			Please amend the required changes and process back for approval.
+			<![CDATA[</br>]]>
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</referBack_tmsclaim>
+	
+	<!--        TMS Claim END               -->
+	
+	
+	
+	<!--       Incident Log Starts here     -->
+
+	<incident_sentForConfirmation>
+		<to/>
+		<!-- customer_mail_id -->
+		<cc/>
+		<subject>TMS [ Incident No# $_$_INCIDENT_$_$] :  Sent for confirmation</subject> 	
+		<content>
+			The following Incident log has been Sent for confirmation:<![CDATA[</br>]]>
+			Incident No <![CDATA[&nbsp;]]> : $_$_INCIDENT_$_$ <![CDATA[</br>]]>
+			Comments <![CDATA[&nbsp;]]> :  $_$_REMARKS_$_$ <![CDATA[</br>]]>
+			This is A system generated email notification, please do not reply to this email account.
+	</content>
+	</incident_sentForConfirmation>
+	<incident_referBack>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>TMS [ Incident No# $_$_INCIDENT_$_$] : is referred back</subject>
+		<content>
+			The following Incident log has been referred back: <![CDATA[</br>]]>
+			Incident No<![CDATA[&nbsp;]]> : $_$_INCIDENT_$_$<![CDATA[</br>]]>
+			Comments <![CDATA[&nbsp;]]> :  $_$_REMARKS_$_$ <![CDATA[</br>]]>
+			
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</incident_referBack>
+	<incident_confirmed>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [ Incident No# $_$_INCIDENT_$_$] :  confirmed</subject>
+		<content>
+			The following Incident log has been confirmed:
+			<![CDATA[</br>]]>
+			Incident No <![CDATA[&nbsp;]]> : $_$_INCIDENT_$_$<![CDATA[</br>]]>
+			Comments <![CDATA[&nbsp;]]> :  $_$_REMARKS_$_$ <![CDATA[</br>]]>
+			
+			This is a system-generated email notification.  Please do not reply to this email account.
+			</content>
+	</incident_confirmed>
+	<incident_cancelled>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [Incident No# $_$_INCIDENT_$_$] :  Cancelled</subject>
+		<content>
+			The following Incident log has been Cancelled: <![CDATA[</br>]]>
+			Incident No <![CDATA[&nbsp;]]> : $_$_INCIDENT_$_$ <![CDATA[</br>]]>
+			Comments <![CDATA[&nbsp;]]> :  $_$_REMARKS_$_$ <![CDATA[</br>]]>
+			Incident log Request has been cancelled as per request.	
+			</content>
+	</incident_cancelled>
+	<incident_completed>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [ Incident No# $_$_INCIDENT_$_$] :  Completed</subject>
+		<content>
+			The following Incident log has been Completed: <![CDATA[</br>]]>
+			Incident No <![CDATA[&nbsp;]]> : $_$_INCIDENT_$_$ <![CDATA[</br>]]>
+				
+			This is A system generated email notification, please do not reply to this email account.
+			</content>
+	</incident_completed>
+	<incident_claim_created>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [ Incident No# $_$_INCIDENT_$_$] :  Rejected</subject>
+		<content>
+			The following Incident log's Claim has been Created:<![CDATA[</br>]]>
+			Incident No<![CDATA[&nbsp;]]>: $_$_INCIDENT_$_$<![CDATA[</br>]]>
+			Comments<![CDATA[&nbsp;]]>:  $_$_REMARKS_$_$<![CDATA[</br>]]>
+			This is A system generated email notification, please do not reply to this email account.
+		</content>
+	</incident_claim_created>
+	
+	<incident_driverRecovery>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [ Incident No# $_$_INCIDENT_$_$] :  Auto Driver Recovery Created</subject>
+		<content>
+			Damages Recovery for incident <![CDATA[&nbsp;]]>: $_$_INCIDENT_$_$ <![CDATA[&nbsp;]]>$_$_DONUMBER_$_$  has been created.
+			Incident No<![CDATA[&nbsp;]]>: $_$_INCIDENT_$_$<![CDATA[</br>]]>
+			Delivery Order No<![CDATA[&nbsp;]]>: $_$_DONUMBER_$_$<![CDATA[</br>]]>
+			Comments<![CDATA[&nbsp;]]>:  $_$_REMARKS_$_$<![CDATA[</br>]]>
+			
+			This is A system generated email notification, please do not reply to this email account.
+		</content>
+	</incident_driverRecovery>
+	<!-- Incident Log Ends here-->
+	
+	<!-- Work Request Start here-->
+
+	<workRequest_sentForConfirmation>
+		<to/>
+		<!-- customer_mail_id -->
+		<cc/>
+		<subject>TMS [ Work Request No# $_$_WORKREQUEST_$_$] :  Send for confirmation</subject> 	
+		<content>
+			The following Work Request has been Send for confirmation:
+			<![CDATA[</br>]]>
+			Work Request No
+			<![CDATA[&nbsp;]]>
+			: $_$_WORKREQUEST_$_$
+			<![CDATA[</br>]]>
+			Comments
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			Please login to the TMS System http://xxxxxxxxx to view the Woedetails.	
+			This is A system generated email notification, please do not reply to this email account.
+	</content>
+	</workRequest_sentForConfirmation>
+	<workRequest_referBack>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>TMS [ Work Request No# $_$_WORKREQUEST_$_$] : is referred back</subject>
+		<content>
+			The following Work Request has been referred back:
+			<![CDATA[</br>]]>
+			Work Request No
+			<![CDATA[&nbsp;]]>
+			: $_$_WORKREQUEST_$_$
+			<![CDATA[</br>]]>
+			Comments
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			Please login to the TMS System http://xxxxxxxxx to view the Woedetails.	
+			This is A system generated email notification, please do not reply to this email account.
+			</content>
+	</workRequest_referBack>
+	<workRequest_confirmed>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [ Work Request No# $_$_WORKREQUEST_$_$] :  confirmed</subject>
+		<content>
+			The following Work Request has been confirmed:
+			<![CDATA[</br>]]>
+			Work Request No
+			<![CDATA[&nbsp;]]>
+			: $_$_WORKREQUEST_$_$
+			<![CDATA[</br>]]>
+			Comments
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			Please login to the TMS System http://xxxxxxxxx to view the Woedetails.	
+			This is A system generated email notification, please do not reply to this email account.
+			</content>
+	</workRequest_confirmed>
+	<workRequest_cancelled>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [ Work Request No# $_$_WORKREQUEST_$_$] :  Cancelled</subject>
+		<content>
+			The following Work Request has been Cancelled:
+			<![CDATA[</br>]]>
+			Work Request No
+			<![CDATA[&nbsp;]]>
+			: $_$_WORKREQUEST_$_$
+			<![CDATA[</br>]]>
+			Comments
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			Work Request has been cancelled as per request0.	
+			Please login to the TMS System http://xxxxxxxxx to view the Woedetails.	
+			This is A system generated email notification, please do not reply to this email account.
+			</content>
+	</workRequest_cancelled>
+	<workRequest_completeWO>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [ Work Request No# $_$_WORKREQUEST_$_$] :  Completed</subject>
+		<content>
+			The following Work Request has been Completed:
+			<![CDATA[</br>]]>
+			Work Request No
+			<![CDATA[&nbsp;]]>
+			: $_$_WORKREQUEST_$_$
+			<![CDATA[</br>]]>
+					
+			Please login to the TMS System http://xxxxxxxxx to view the Woedetails.	
+			This is A system generated email notification, please do not reply to this email account.
+			</content>
+	</workRequest_completeWO>
+	<workRequest_reject>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [ Work Request No# $_$_WORKREQUEST_$_$] :  Rejected</subject>
+		<content>
+			The following Work Request has been Rejected:
+			<![CDATA[</br>]]>
+			Work Request No
+			<![CDATA[&nbsp;]]>
+			: $_$_WORKREQUEST_$_$
+			<![CDATA[</br>]]>
+			Comments
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			
+			Please login to the TMS System http://xxxxxxxxx to view the Woedetails.	
+			This is A system generated email notification, please do not reply to this email account.
+			</content>
+	</workRequest_reject>
+	<!-- Work request End here-->
+	
+	<!-- TMSQUOTATION START -->
+	<quotation_sentForConfirmation>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [CUSTOMER NAME:  $_$_CUSTOMERNAME_$_$] - for Pending Approval
+		</subject>
+		<content>
+
+		The below Quotation has been submitted for approval.<![CDATA[</br>]]>
+		Quotation No<![CDATA[&nbsp;]]>: $_$_QUOTATIONNO_$_$<![CDATA[</br>]]>
+		Customer<![CDATA[&nbsp;]]>: $_$_CUSTOMERNAME_$_$<![CDATA[</br>]]>
+		
+		Please login to the TMS System  to view the Quotation details.
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</quotation_sentForConfirmation>
+	
+	<quotation_referback>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [CUSTOMER NAME: $_$_CUSTOMERNAME_$_$] - Referred back
+		</subject>
+		<content>
+
+		The following Quotation had been referred back. <![CDATA[</br>]]>		
+		Quotation No<![CDATA[&nbsp;]]>: $_$_QUOTATIONNO_$_$<![CDATA[</br>]]>
+		Customer<![CDATA[&nbsp;]]>: $_$_CUSTOMERNAME_$_$<![CDATA[</br>]]>
+		
+		Please make the required changes and process back.
+		Please login to the TMS System  to view the Quotation details.
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</quotation_referback>
+	<quotation_confirm>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [CUSTOMER NAME:  $_$_CUSTOMERNAME_$_$] - confirmed
+		</subject>
+		<content>
+
+		The following Quotation had been confirmed. <![CDATA[</br>]]>		
+		Quotation No<![CDATA[&nbsp;]]>: $_$_QUOTATIONNO_$_$<![CDATA[</br>]]>
+		Customer<![CDATA[&nbsp;]]>: $_$_CUSTOMERNAME_$_$<![CDATA[</br>]]>
+		
+		Please make the required changes and process back.
+		Please login to the TMS System  to view the Quotation details.
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</quotation_confirm>
+	<quotation_customer_cancel>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [CUSTOMER NAME : $_$_CUSTOMERNAME_$_$] - Customer is not created in Customer Master
+		</subject>
+		<content>
+
+		The following Customer is not created in Customer Master. <![CDATA[</br>]]>		
+		Quotation No<![CDATA[&nbsp;]]>: $_$_QUOTATIONNO_$_$<![CDATA[</br>]]>
+		Customer<![CDATA[&nbsp;]]>: $_$_CUSTOMERNAME_$_$<![CDATA[</br>]]>
+		
+		Please make the required changes and process back.
+		Please login to the TMS System to view the Quotation details.
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</quotation_customer_cancel>
+	<quotation_approved>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [CUSTOMER NAME : $_$_CUSTOMERNAME_$_$] - Approved
+		</subject>
+		<content>
+
+		The following Quotation Approved. <![CDATA[</br>]]>		
+		Quotation No<![CDATA[&nbsp;]]>: $_$_QUOTATIONNO_$_$<![CDATA[</br>]]>
+		Customer<![CDATA[&nbsp;]]>: $_$_CUSTOMERNAME_$_$<![CDATA[</br>]]>
+		
+		Please make the required changes and process back.
+		Please login to the TMS System to view the Quotation details.
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</quotation_approved>
+	<quotation_cancel>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [CUSTOMER NAME: $_$_CUSTOMERNAME_$_$] - Referred back
+		</subject>
+		<content>
+
+		The following Quotation had been canceled. <![CDATA[</br>]]>		
+		Quotation No<![CDATA[&nbsp;]]>: $_$_QUOTATIONNO_$_$<![CDATA[</br>]]>
+		Customer<![CDATA[&nbsp;]]>: $_$_CUSTOMERNAME_$_$<![CDATA[</br>]]>
+		
+		Please make the required changes and process back.
+		Please login to the TMS System to view the Quotation details.
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</quotation_cancel>
+	
+	
+	<quotation_validityEnds>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [Quotation No#  $_$_QUOTATIONNO_$_$] -  [Date Valid to :  $_$_QUOTATIONVALIDTODATE_$_$]
+		</subject>
+		<content>
+
+		The following Quotation date validity <![CDATA[</br>]]>		
+		Quotation No<![CDATA[&nbsp;]]>: $_$_QUOTATIONNO_$_$<![CDATA[</br>]]>
+		Customer<![CDATA[&nbsp;]]>: $_$_CUSTOMERNAME_$_$<![CDATA[</br>]]>
+		Quotation Date<![CDATA[&nbsp;]]>: $_$_QUOTATIONDATE_$_$<![CDATA[</br>]]>
+		Date Valid to<![CDATA[&nbsp;]]>: $_$_QUOTATIONVALIDTODATE_$_$<![CDATA[</br>]]>
+		
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</quotation_validityEnds>
+	
+	<quotation_expiryDateEnds>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [Quotation No#  $_$_QUOTATIONNO_$_$] -[Expiry date:  $_$_QUOTATIONEXPDATE_$_$]
+		</subject>
+		<content>
+
+		The following Quotation date expiry <![CDATA[</br>]]>		
+		Quotation No<![CDATA[&nbsp;]]>: $_$_QUOTATIONNO_$_$<![CDATA[</br>]]>
+		Customer<![CDATA[&nbsp;]]>: $_$_CUSTOMERNAME_$_$<![CDATA[</br>]]>
+		Quotation Date<![CDATA[&nbsp;]]>: $_$_QUOTATIONDATE_$_$<![CDATA[</br>]]>
+		Expiry Date<![CDATA[&nbsp;]]>: $_$_QUOTATIONEXPDATE_$_$<![CDATA[</br>]]>
+		
+		
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</quotation_expiryDateEnds>
+	
+	<!-- QUOTATION END -->
+	<trailerRoadTaxExpiryEnds>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [$_$_OBJECTTYPE_$_$ Registration No#  $_$_TRAILERREGNO_$_$] 
+		</subject>
+		<content>
+
+		The following $_$_OBJECTTYPE_$_$'s Road Tax Due Date is going to be expired within $_$_PERIOD_$_$ <![CDATA[</br>]]>		
+		Registration No <![CDATA[&nbsp;]]>: $_$_TRAILERREGNO_$_$<![CDATA[</br>]]>
+		Expiry Date<![CDATA[&nbsp;]]>: $_$_ROADTAXDUEDATE_$_$<![CDATA[</br>]]>
+		
+		
+		This is a system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</trailerRoadTaxExpiryEnds>
+	
+	
+	<trailerNxtInspecEnds>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [$_$_OBJECTTYPE_$_$ Registration No#  $_$_TRAILERREGNO_$_$] 
+		</subject>
+		<content>
+
+		The following $_$_OBJECTTYPE_$_$'s Next Inspection Due Date is going to be expired within $_$_PERIOD_$_$ <![CDATA[</br>]]>		
+		Registration No <![CDATA[&nbsp;]]>: $_$_TRAILERREGNO_$_$<![CDATA[</br>]]>
+		Expiry Date<![CDATA[&nbsp;]]>: $_$_NEXTINCEPTIONDUEDATE_$_$<![CDATA[</br>]]>
+		
+		
+		This is A system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</trailerNxtInspecEnds>
+	
+	<trailerInsuranceExpiryEnds>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>
+			TMS [$_$_OBJECTTYPE_$_$ Registration No#  $_$_TRAILERREGNO_$_$]
+		</subject>
+		<content>
+
+		The following $_$_OBJECTTYPE_$_$'s Insurance Expiry Date is going to be expired within $_$_PERIOD_$_$ <![CDATA[</br>]]>		
+		Registration No <![CDATA[&nbsp;]]>: $_$_TRAILERREGNO_$_$<![CDATA[</br>]]>
+		Expiry Date<![CDATA[&nbsp;]]>: $_$_INSURANCEEXPIRYDATE_$_$<![CDATA[</br>]]>
+		
+		
+		This is A system generated email notification, please do not reply to this email account.
+		</content>	
+
+	</trailerInsuranceExpiryEnds>
+	
+	
+	<!--*********************************** Credit Note Start********************************** -->
+	
+	<creditNote_sentForConfirmation>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>TMS [Credit Note No# $_$_CREDITNOTENO_$_$] - Sent for confirmation</subject>
+		<content>
+			The following Credit Note has been sent for confirmation:
+			<![CDATA[</br>]]>
+			Credit Note No
+			<![CDATA[&nbsp;]]>
+			: $_$_CREDITNOTENO_$_$
+			<![CDATA[</br>]]>
+			Customer
+			<![CDATA[&nbsp;]]>
+			: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			This is A system generated email notification. Please do not reply to this email account.
+		</content>
+	</creditNote_sentForConfirmation>
+	<creditNote_referBack>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>TMS [Credit Note No#$_$_CREDITNOTENO_$_$] - is referred back</subject>
+		<content>
+			The following Credit Note has been referred back:
+			<![CDATA[</br>]]>
+			Credit Note No
+			<![CDATA[&nbsp;]]>
+			: $_$_CREDITNOTENO_$_$
+			<![CDATA[</br>]]>
+			Customer
+			<![CDATA[&nbsp;]]>
+			: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			Please amend the required changes and process back for approval			This is A system generated email notification, please do not reply to this email account.
+		</content>
+	</creditNote_referBack>
+	
+	<creditNote_confirmed>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [Credit Note No#$_$_CREDITNOTENO_$_$] - confirmed</subject>
+		<content>
+			Credit Note No
+			<![CDATA[&nbsp;]]>
+			: $_$_CREDITNOTENO_$_$
+			<![CDATA[</br>]]>
+			Customer
+			<![CDATA[&nbsp;]]>
+			: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			The format of the Email and the Credit Note PDF should be attached.		Credit note has been confirmed as per request.		This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</creditNote_confirmed>
+	<creditNote_canceled>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [Credit Note No#$_$_CREDITNOTENO_$_$] - cancelled</subject>
+		<content>
+			Credit Note No
+			<![CDATA[&nbsp;]]>
+			: $_$_CREDITNOTENO_$_$
+			<![CDATA[</br>]]>
+			Customer
+			<![CDATA[&nbsp;]]>
+			: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			The format of the Email and the Credit Note PDF should be attached.		Credit note has been cancelled as per request.		This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</creditNote_canceled>
+	
+	<!--******************************************Credit Note END********************************************** -->
+	
+	<!--******************************************Debit Note Start********************************************** -->
+	<debitNote_sentForConfirmation>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>TMS [Debit Note No# $_$_DEBITNOTENO_$_$] - Sent for confirmation</subject>
+		<content>
+			The following Debit Note has been sent for confirmation:
+			<![CDATA[</br>]]>
+			Debit Note No
+			<![CDATA[&nbsp;]]>
+			: $_$_DEBITNOTENO_$_$
+			<![CDATA[</br>]]>
+			Customer
+			<![CDATA[&nbsp;]]>
+			: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			This is A system generated email notification. Please do not reply to this email account.
+		</content>
+	</debitNote_sentForConfirmation>
+	
+	<debitNote_confirmed>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [Debit Note No#$_$_DEBITNOTENO_$_$] - confirmed</subject>
+		<content>
+			Debit Note No
+			<![CDATA[&nbsp;]]>
+			: $_$_DEBITNOTENO_$_$
+			<![CDATA[</br>]]>
+			Customer
+			<![CDATA[&nbsp;]]>
+			: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			Please find the attached documents to view the DebitNote Details.	
+			Debit note has been confirmed as per request.		This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</debitNote_confirmed>
+
+	<debitNote_referBack>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>TMS [Debit Note No#$_$_DEBITNOTENO_$_$] - Referred Back</subject>
+		<content>
+			The following Debit Note has been referred back:
+			<![CDATA[</br>]]>
+			Debit Note No
+			<![CDATA[&nbsp;]]>
+			: $_$_DEBITNOTENO_$_$
+			<![CDATA[</br>]]>
+			Customer
+			<![CDATA[&nbsp;]]>
+			: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			Please amend the required changes and process back for approval		This is A system generated email notification, please do not reply to this email account.
+		</content>
+	</debitNote_referBack>
+
+	<debitNote_canceled>
+		<to/>
+		<!-- CUSTOMER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR, APPROVER -->
+		<subject>TMS [Debit Note No#$_$_DEBITNOTENO_$_$] - Cancelled</subject>
+		<content>
+			Debit Note No
+			<![CDATA[&nbsp;]]>
+			: $_$_DEBITNOTENO_$_$
+			<![CDATA[</br>]]>
+			Customer
+			<![CDATA[&nbsp;]]>
+			: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			The format of the Email and the Debit Note PDF should be attached.		Debit note has been cancelled as per request.		This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</debitNote_canceled>
+
+	<!-- Purchase Order Start -->
+	<po_sentForConfirmation>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>TMS [Purchase Order No# $_$_PONO_$_$ - $_$_VENDORNAME_$_$] - Your Approval is Required</subject>
+		<content>
+			The Purchase Order below has been submitted for your approval			
+			<![CDATA[</br>]]>
+			<![CDATA[</br>]]>
+			PO No
+			<![CDATA[&nbsp;]]>
+			: $_$_PONO_$_$
+			<![CDATA[</br>]]>
+			Vendor
+			<![CDATA[&nbsp;]]>
+			: $_$_VENDORNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			<![CDATA[</br>]]>
+			Please login to the TMS System to view the Purchase Order details.	
+			<![CDATA[</br>]]>
+			This is a system generated email notification<![CDATA[&#44;]]> please do not reply to this email account.
+		</content>
+	</po_sentForConfirmation>
+	<po_referBack>
+		<to/>
+		<!-- APPROVER MAIL ID -->
+		<cc/>
+		<!-- AUTHOR -->
+		<subject>TMS [Purchase Order No# $_$_PONO_$_$ - $_$_VENDORNAME_$_$]  - is referred back</subject>
+		<content>
+			The following Purchase Order has been referred back $_$_REASON_$_$
+			<![CDATA[</br>]]>
+			<![CDATA[</br>]]>
+			PO No
+			<![CDATA[&nbsp;]]>
+			: $_$_PONO_$_$
+			<![CDATA[</br>]]>
+			Vendor
+			<![CDATA[&nbsp;]]>
+			: $_$_VENDORNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			<![CDATA[</br>]]>
+			Please login to the TMS System to view the Purchase Order details.	
+			<![CDATA[</br>]]>
+			This is a system generated email notification<![CDATA[&#44;]]> please do not reply to this email account.
+		</content>
+	</po_referBack>
+	<po_confirmed>
+		<to/>
+		<!-- AUTHOR MAIL ID -->
+		<cc/>
+		<!--APPROVER -->
+		<subject>NEXUS - [Purchase Order No# $_$_PONO_$_$ - $_$_VENDORNAME_$_$]  - Confirmed</subject>
+		<content>
+			This Purchase Order has been prepared and it has been validated.
+			<![CDATA[</br>]]>
+			<![CDATA[</br>]]>
+			PO No
+			<![CDATA[&nbsp;]]>
+			: $_$_PONO_$_$
+			<![CDATA[</br>]]>
+			Vendor
+			<![CDATA[&nbsp;]]>
+			: $_$_VENDORNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			<![CDATA[</br>]]>
+			Attachment: PDF Format
+			<![CDATA[</br>]]>
+			Please find the attachment of Purchase Order details.
+			<![CDATA[</br>]]>
+			In case of an enquiry<![CDATA[&#44;]]> please contact the person responsible in preparing the purchase order.
+			<![CDATA[<br/>]]>
+			This is a system generated email notification<![CDATA[&#44;]]> please do not reply to this email account.
+		</content>
+	</po_confirmed>
+	<po_canceled>
+		<to/>
+		<!-- AUTHOR MAIL ID -->
+		<cc/>
+		<!--  APPROVER -->
+		<subject>$_$_TMSORNEXUS_$_$ [Purchase Order No# $_$_PONO_$_$ - $_$_VENDORNAME_$_$]  - Cancelled</subject>
+		<content>
+			The following Purchase Order has been Cancelled $_$_REASON_$_$
+			<![CDATA[</br>]]>
+			<![CDATA[</br>]]>
+			PO No
+			<![CDATA[&nbsp;]]>
+			: $_$_PONO_$_$
+			<![CDATA[</br>]]>
+			Vendor
+			<![CDATA[&nbsp;]]>
+			: $_$_VENDORNAME_$_$
+			<![CDATA[</br>]]>
+			Business Line
+			<![CDATA[&nbsp;]]>
+			: $_$_BUSINESSLINE_$_$
+			<![CDATA[</br>]]>
+			Remarks
+			<![CDATA[&nbsp;]]>
+			:  $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			<![CDATA[</br>]]>
+			Please login to the TMS System to view the Purchase Order details.
+			<![CDATA[</br>]]>
+			This is a system generated email notification<![CDATA[&#44;]]> please do not reply to this email account.
+		</content>
+	</po_canceled>
+	<!-- Purchase Order End -->
+	
+	
+	<!-- Customer Invoice Mail Configuration-begin -->
+	<!-- Invoice Send for Confirmation -->
+	<invoice_send_confirmation>
+		<to><!-- Approver Mail Id --></to>
+		<cc><!-- Author Mail Id --></cc>
+		<subject>TMS [Invoice No# $_$_INVOICENO_$_$] - sent for confirmation</subject>
+		<content>
+			The following Invoice has been sent for confirmation.<![CDATA[<br/>]]>
+			Invoice No<![CDATA[&nbsp;]]> : $_$_INVOICENO_$_$<![CDATA[<br/>]]>
+			Customer<![CDATA[&nbsp;]]> : $_$_CUSTOMERNAME_$_$<![CDATA[<br/>]]>
+			Business Line<![CDATA[&nbsp;]]> : $_$_BUSINESSLINE_$_$<![CDATA[<br/>]]>
+			Remarks<![CDATA[&nbsp;]]> : $_$_REMARKS_$_$<![CDATA[<br/>]]>
+			Please login to the TMS System http://xxxxxxxx to view the Invoice details.<![CDATA[<br/>]]>
+			This is an auto-generated mail<![CDATA[&#44;]]> please do not reply to this email account.
+		</content>
+	</invoice_send_confirmation>
+	
+	<!-- Invoice Refer back -->
+	<invoice_refer_back>
+		<to><!-- Author Mail Id --></to>
+		<cc><!-- Approver Mail Id--></cc>
+		<subject>TMS [Invoice No# $_$_INVOICENO_$_$] - referred back</subject>
+		<content>
+			The following Invoice has been referred back to you.<![CDATA[<br/>]]>
+			Invoice No<![CDATA[&nbsp;]]> : $_$_INVOICENO_$_$<![CDATA[<br/>]]>
+			Customer<![CDATA[&nbsp;]]> : $_$_CUSTOMERNAME_$_$<![CDATA[<br/>]]>
+			Business Line<![CDATA[&nbsp;]]> : $_$_BUSINESSLINE_$_$<![CDATA[<br/>]]>
+			Remarks<![CDATA[&nbsp;]]> : $_$_REMARKS_$_$<![CDATA[<br/>]]>
+			Please login to the TMS System http://xxxxxxxx to view the Invoice details.<![CDATA[<br/>]]>
+			This is an auto-generated mail<![CDATA[&#44;]]> please do not reply to this email account.
+		</content>
+	</invoice_refer_back>
+	
+	<!-- Invoice Cancel -->
+	<invoice_cancel>
+		<to><!-- Customer's mail Id --></to>
+		<cc><!-- Approver Mail Id--><!-- Author Mail Id --></cc>
+		<subject>TMS [Invoice No# $_$_INVOICENO_$_$] - cancelled</subject>
+		<content>
+			The following Invoice has been cancelled as per your request.<![CDATA[<br/>]]>
+			Invoice No<![CDATA[&nbsp;]]> : $_$_INVOICENO_$_$<![CDATA[<br/>]]>
+			Customer<![CDATA[&nbsp;]]> : $_$_CUSTOMERNAME_$_$<![CDATA[<br/>]]>
+			Business Line<![CDATA[&nbsp;]]> : $_$_BUSINESSLINE_$_$<![CDATA[<br/>]]>
+			Remarks<![CDATA[&nbsp;]]> : $_$_REMARKS_$_$<![CDATA[<br/>]]>			
+			This is an auto-generated mail<![CDATA[&#44;]]> please do not reply to this email account.
+		</content>
+	</invoice_cancel>
+	
+
+	<!-- Invoice Confirm -->
+	<invoice_confirm>
+		<to><!-- Customer's mail Id --></to>
+		<cc><!-- Approver Mail Id--><!-- Author Mail Id --></cc>
+		<subject>TMS [Invoice No# $_$_INVOICENO_$_$] - created</subject>
+		<content>
+			New Invoice created.<![CDATA[<br/>]]>
+			Invoice No<![CDATA[&nbsp;]]> : $_$_INVOICENO_$_$<![CDATA[<br/>]]>
+			Customer<![CDATA[&nbsp;]]> : $_$_CUSTOMERNAME_$_$<![CDATA[<br/>]]>
+			Business Line<![CDATA[&nbsp;]]> : $_$_BUSINESSLINE_$_$<![CDATA[<br/>]]>
+			Remarks<![CDATA[&nbsp;]]> : $_$_REMARKS_$_$<![CDATA[<br/>]]>
+			Please find the attached documents to view the Invoice details.<![CDATA[<br/>]]>
+			This is an auto-generated mail<![CDATA[&#44;]]> please do not reply to this email account.
+		</content>
+	</invoice_confirm>
+	
+	<!-- Customer Invoice Mail Configuration-end -->
+	
+	
+	<!-- ############################# TMS BOOKING ENTRIES - START #############################-->
+	
+	<!-- TMSBooking - SEND FOR CONFIRMATION -->
+	
+	<tmsbooking_send_for_confirmation>
+		<to/>
+		<cc/>
+		<subject>TMS [Booking No# $_$_BOOKINGNO_$_$] : Pending Approval</subject>
+		<content>
+			The Booking is submitted for your approval, Kindly approve asap
+			<![CDATA[</br>]]>
+			Booking No	<![CDATA[&nbsp;]]>	: $_$_BOOKINGNO_$_$
+			<![CDATA[</br>]]>
+			Shipment No	<![CDATA[&nbsp;]]>	: $_$_SHIPMENTNO_$_$
+			<![CDATA[</br>]]>
+			Booking Customer <![CDATA[&nbsp;]]>	: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			This is a system-generated email notification. Please do not reply to this email account.
+		</content>
+	</tmsbooking_send_for_confirmation>
+	
+	<!-- TMSBooking - REFER BACK -->
+	<tmsbooking_refer_back>
+		<to/>
+		<cc/>
+		<subject>TMS [Booking No# $_$_BOOKINGNO_$_$] : Referred Back</subject>
+		<content>
+			The following booking has been referred back :
+			<![CDATA[</br>]]>
+			Booking No <![CDATA[&nbsp;]]> : $_$_BOOKINGNO_$_$ 
+			<![CDATA[</br>]]>
+			Shipment No	<![CDATA[&nbsp;]]> : $_$_SHIPMENTNO_$_$
+			<![CDATA[</br>]]>
+			Booking Customer <![CDATA[&nbsp;]]>	: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			Remarks	<![CDATA[&nbsp;]]> : $_$_REMARKS_$_$
+			<![CDATA[</br>]]>
+			Please amend the required changes and process back for approval.
+			<![CDATA[</br>]]>
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</tmsbooking_refer_back>
+	
+	<!-- TMSBooking - CONFIRM BOOKING -->
+	<tmsbooking_confirm>
+		<to/>
+		<!-- customer_mail_id -->
+		<cc/>
+		<subject>TMS [Booking No#$_$_BOOKINGNO_$_$] :  Confirmed</subject>
+		<content>
+			The following booking has been confirmed as per your request :
+			<![CDATA[</br>]]>
+			Booking No	<![CDATA[&nbsp;]]> : $_$_BOOKINGNO_$_$
+			<![CDATA[</br>]]>
+			Shipment No	<![CDATA[&nbsp;]]> : $_$_SHIPMENTNO_$_$
+			<![CDATA[</br>]]>
+			Booking Customer <![CDATA[&nbsp;]]>	: $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</tmsbooking_confirm>
+	
+	<!-- TMSBooking - CANCEL -->
+	<tmsbooking_cancel>
+		<to/>
+		<!-- customer_mail_id -->
+		<cc/>
+		<subject>TMS [Booking No#$_$_BOOKINGNO_$_$] :  Canceled</subject>
+		<content>
+			The following booking has been cancelled :
+			<![CDATA[</br>]]>
+			Booking No <![CDATA[&nbsp;]]> : $_$_BOOKINGNO_$_$
+			<![CDATA[</br>]]>
+			Shipment No	<![CDATA[&nbsp;]]> : $_$_SHIPMENTNO_$_$
+			<![CDATA[</br>]]>
+			Booking Customer <![CDATA[&nbsp;]]> : $_$_CUSTOMERNAME_$_$
+			<![CDATA[</br>]]>
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</tmsbooking_cancel>
+	
+	
+	<tmsdriver_expiry>
+		<to/>
+		<!-- customer_mail_id -->
+		<cc/>
+		<subject> TMS Driver License expiry detials </subject>
+		<content>
+				Please find the attachement driver License expiry List(pdf). The pdf contains the list of driver where their license  
+			  will expire in a month duration.
+			<![CDATA[</br>]]>
+			 $_$_DATA_$_$
+			<![CDATA[</br>]]>
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</tmsdriver_expiry>
+	
+	
+	<delivery_order>
+		<to/>
+		<!-- customer_mail_id -->
+		<cc/>
+		<subject>TMS Delivery Order</subject>
+		<content>
+			Please find the attachement Delivery Order(pdf). The pdf contains the list of Chassis.
+			<![CDATA[</br>]]>
+			Delivery Order No <![CDATA[&nbsp;]]> : $_$_DELIVERYORDERNO_$_$
+			<![CDATA[</br>]]>
+	
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</delivery_order>
+	<!-- ############################# TMS BOOKING ENTRIES - END #############################-->
+	
+
+</si>
