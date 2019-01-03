@@ -1,0 +1,2 @@
+CONVERT(datetime,'04-01-2015') AND CONVERT(datetime,'04-02-2015')).
+Note:- Default date format is MM/DD/YYYY in mssql.
