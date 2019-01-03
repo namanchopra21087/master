@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DOSummaryExcelReport" language="groovy" pageWidth="1300" pageHeight="595" orientation="Landscape" columnWidth="1260" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74d2ead1-0818-43b4-8ee1-2cf4c4d09c08">
+	<property name="ireport.zoom" value="1.5026296018031553"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="doNo" class="java.lang.String"/>
+	<field name="loadNo" class="java.lang.String"/>
+	<field name="doDate" class="java.lang.String"/>
+	<field name="docopyRecived" class="java.lang.String"/>
+	<field name="pickupDate" class="java.lang.String"/>
+	<field name="pickupLocation" class="java.lang.String"/>
+	<field name="deliveryDate" class="java.lang.String"/>
+	<field name="deliveryLocation" class="java.lang.String"/>
+	<field name="customerName" class="java.lang.String"/>
+	<field name="addtionalDrop" class="java.lang.String"/>
+	<field name="totalUnits" class="java.lang.String"/>
+	<field name="billingCustomer" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a4c15c6c-c851-436e-9f61-751967b7c6df" x="0" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DO No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3ea21c6b-a3de-4434-acc2-d9aaa8145c91" x="100" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Load No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8b991cf1-eea3-4859-bc00-9f661f14a415" x="200" y="0" width="77" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DO Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a831d1b9-f97e-4326-aad5-29c7c67eeb35" x="277" y="0" width="69" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Received Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cfe1ea4e-94aa-48b1-bcef-f8efc9b1fdca" x="346" y="0" width="66" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pickup Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="375bba7a-8697-47f6-b330-a3955694be09" x="412" y="0" width="132" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pickup Location]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77ac570f-5f9e-4676-b6d3-608661e7f4d5" x="544" y="0" width="68" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Delivery Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="201b65c9-7109-416b-9c02-36417a7bd610" x="612" y="0" width="135" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Delivery Location]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c85086ef-ac90-4914-87a8-56949c77b2a7" x="960" y="0" width="92" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Additional Drops]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b558f0c4-f99b-4ebc-a85b-ebaf45de55df" x="1052" y="0" width="48" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Units]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f1be6761-c7e4-4811-bc65-0c0f5342c009" x="1100" y="0" width="160" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Billing Customer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2f5a0029-9e20-47f2-a487-a4c42ca2ae5f" x="747" y="0" width="213" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Booking Customer]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6f94bca1-44d8-4534-adc9-8d9128c2a487" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{doNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="80a58124-8bb0-482b-b0b2-9f134aec1935" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{loadNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="26f12159-a080-45eb-b317-2788d075a395" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="200" y="0" width="77" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{doDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="75493770-795c-4478-8855-3dc4d2965c0a" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="277" y="0" width="69" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{docopyRecived}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2398a76b-96b6-4d1a-bd99-08244af7995d" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="346" y="0" width="66" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pickupDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8bef8454-b3db-4102-871e-728ba4bf5276" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="412" y="0" width="132" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pickupLocation}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9e68f14c-bddb-4f40-a065-080b40ef01b4" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="544" y="0" width="68" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deliveryDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="ae1b19f8-650e-4308-8d7e-756619465c81" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="612" y="0" width="135" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deliveryLocation}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9fb591bf-f7e0-4d38-8c10-3db576c7d43c" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="960" y="0" width="92" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{addtionalDrop}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="cb16cc7b-4e0c-4b4e-ba4c-14c187572eec" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="1052" y="0" width="48" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{totalUnits}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6d39f183-0531-4559-9b69-377d416647ea" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="1100" y="0" width="160" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{billingCustomer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bce3eae0-e390-4659-83a1-2183f7142837" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="747" y="0" width="213" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{customerName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
