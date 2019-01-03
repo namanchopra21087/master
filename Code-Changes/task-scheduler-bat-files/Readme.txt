@@ -1,0 +1,1 @@
+*This bat files is used for configuring windows task scheduler.
