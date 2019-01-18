@@ -1,0 +1,207 @@
+<style type="text/css">
+
+#siSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching Shipment Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>Claim To Date always greater than or equal to Shipment From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> Claim To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> Claim From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> Claim From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching Shipment Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : Claim No, Delivery Order number, Driver ID, Claim Date From, Claim Date --> 
+<div id="siNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="siErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('claimSearchFielderrorMsgCLTMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="siErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%">Booking Customer : </td>
+						<td width="20">
+								<input type="text" value="" id="bkCustomerTxt_si" name="bkCustomerTxt_si"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%">Booking Number :</td>
+						<td width="20">
+							    <input type="text" value="" id="bkNoTxt_si" name="bkNoTxt_si" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="25%">Port of discharge : </td>
+						<td width="20%" style='padding-right:5px;'>
+									<input type="text" value="" id="podTxt_si" name="podTxt_si" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">SI Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="siFromDate_si">
+    					 <input type="text" value="" name="siFromDate_si" id="siFromDate_si" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="siToDate_si">
+    					 <input type="text" value="" name="siToDate_si" id="siToDate_si" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="siSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="siClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="siSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="siSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'siNo',width:15,align:'left'">SI No</th>
+						<th width="100" data-options="field:'bookingNo',width:15,align:'left'">Booking No</th>
+						<th width="150" data-options="field:'bookingCustomer',width:15,align:'left'">Booking Customer</th>
+						<th width="100" data-options="field:'siDateTo',width:15,align:'left'">SI Date</th>
+						<th width="100" data-options="field:'portOfDischarge',width:15,align:'left'">Port Of Discharge</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSSI" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+$('#siSearchDMSBtn').click(function(e){
+  console.log("siSearchDMSBtn :............ ");
+   	  if(validateSiSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsSI();
+		   console.log(" urlParam :: "+urlParam);
+	
+			$.ajax({
+                    beforeSend: function () { 
+				   },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_SI" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_JOB :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#siSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSSI','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#siSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSSI').css('display','none');
+             				reloadResultDataOnGrid('siSearchDMSdg',results);
+						}
+					   
+                   }
+                }); 
+		}
+}); 
+
+function validateSiSearch(loginModuelType){
+ var validFlag=true;
+	 if(loginModuelType=='OFS'){
+	 //siFromDate_si,siToDate_si
+			var fromDateSI= $('#siFromDate_si').datebox('getValue');
+			var toDateSI=$('#siToDate_si').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDateSI),stringParseToDate(toDateSI),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSSI','atLeastOneFieldrequired');
+					 $.messager.alert('Message','SI Date range interval should be within six month','info');
+				  }
+	  }else{
+	   validFlag=false;
+	   $.messager.alert('Message','Only OFS user can able to search','info');
+	  }
+ return validFlag;
+
+}
+	//-------Code for clear the Shipment Number Popups Fiels---------------------------
+ function urlParameterDetailsSI(){
+//bkCustomerTxt_si,bkNoTxt_si,podTxt_si,siFromDate_si,siToDate_si
+		  return {
+					P_BK_CUSTOMER : $('#bkCustomerTxt_si').val(),
+					P_BK_NUMBER : $('#bkNoTxt_si').val(),
+					P_POD : $('#podTxt_si').val(),
+					P_SI_DATE_FROM : $('#siFromDate_si').datebox('getValue'),
+					P_SI_DATE_TO : $('#siToDate_si').datebox('getValue'),
+				 };
+	  
+}	
+
+
+//searchSIOrBldg
+$('#siSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid si search..");
+		  var si_No=rowdata.siNo;
+		   $('#siNoTxt').val(si_No); 
+		   closeSiDMSSearchPopup(); 
+		
+		}
+	});
+
+$('#siClearDMSBtn').click(function(e){
+console.log("siClearDMSBtn :............ ");
+	siSearchClearDMS();
+});
+
+
+function closeSiDMSSearchPopup(){
+ $('#siNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+</script>

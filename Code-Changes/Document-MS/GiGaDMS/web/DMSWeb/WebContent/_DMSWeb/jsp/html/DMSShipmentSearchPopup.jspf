@@ -1,0 +1,216 @@
+<style type="text/css">
+
+#shipmentSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching Shipment Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>shipment To Date always greater than or equal to Shipment From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> shipment To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> shipment From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> shipment From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching Shipment Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : shipment No, Delivery Order number, Driver ID, shipment Date From, shipment Date --> 
+<div id="shipmentNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="shipmentErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('shipmentSearchFielderrorMsgCLTMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="shipmentErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%">Vessel Name : </td>
+						<td width="20">
+								<input type="text" value="" id="vesselNameTxt_shipment" name="vesselNameTxt_shipment"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%">Voyage Number :</td>
+						<td width="20">
+							    <input type="text" value="" id="voyageNoTxt_shipment" name="voyageNoTxt_shipment" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="25%">ETA Date : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<span class="etaDateTxt_Shipment">
+							 <input type="text" value="" name="etaDateTxt_Shipment" id="etaDateTxt_Shipment" 
+									class="easyui-datebox"
+									data-options="formatter:myformatter,parser:myparser"
+									validType="validDate " style="width:120px;" />
+							</span>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Shipment Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="shipmentFromDate_shipment">
+    					 <input type="text" value="" name="shipmentFromDate_shipment" id="shipmentFromDate_shipment" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="shipmentToDate_shipment">
+    					 <input type="text" value="" name="shipmentToDate_shipment" id="shipmentToDate_shipment" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="shipmentSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="shipmentClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="shipmentSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="shipmentSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'shipmentNo',width:15,align:'left'">Shipment No</th>
+						<th width="100" data-options="field:'vesselName',width:15,align:'left'">Vessel Name</th>
+						<th width="150" data-options="field:'voyageNo',width:15,align:'left'">Voyage No</th>
+						<th width="100" data-options="field:'etaDate',width:15,align:'left'">ETA Date</th>
+						<th width="100" data-options="field:'shipmentDateTo',width:15,align:'left'">Shipment Date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSshipment" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+$('#shipmentSearchDMSBtn').click(function(e){
+  console.log("shipmentSearchDMSBtn :............ ");
+    if(validateShipmentSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsShipment(loginModuelType); 
+	   console.log("P_SHIPMNT_DATE_TO : "+urlParam.P_SHIPMNT_DATE_TO + "P_ETA_DATE : "+P_ETA_DATE );
+		   console.log(" urlParam :: "+urlParam);
+	
+			$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_SHIPMENT" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_SHIPMENT :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#shipmentSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSshipment','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#shipmentSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSshipment').css('display','none');
+             				reloadResultDataOnGrid('shipmentSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+
+function validateShipmentSearch(loginModuelType){ 
+ var validFlag=true; 
+  if(loginModuelType=='OFS'||loginModuelType=='YMS'){
+	 //siFromDate_si,siToDate_si
+			var fromDateShipmnt= $('#shipmentFromDate_shipment').datebox('getValue');
+			var toDateShipmnt=$('#shipmentToDate_shipment').datebox('getValue');
+			console.log("fromDateShipmnt :"+fromDateShipmnt+"--toDateShipmnt : "+toDateShipmnt);
+		 if(!dateRangeCheckOneYear(stringParseToDate(fromDateShipmnt),stringParseToDate(toDateShipmnt))){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSSI','atLeastOneFieldrequired');
+					 $.messager.alert('Message','Shipment Date range interval should be within one year','info');
+		    }
+	  }else{
+	   validFlag=false;
+	   $.messager.alert('Message','Only OFS user can able to search','info');
+	  }
+ return validFlag;
+}
+
+function urlParameterDetailsShipment(moduleType){
+ 
+console.log("urlParameterDetailsClaim : mduleType :: "+moduleType);
+//P_SHIPMNT_DATE_FROM,P_SHIPMNT_DATE_TO, P_VOYAGENO, P_VESSELNAME, P_ETA_DATE
+///vesselNameTxt_shipment,voyageNoTxt_shipment,etaDateTxt_Shipment,shipmentFromDate_shipment,shipmentToDate_shipment
+			return {
+					P_VESSELNAME : $('#vesselNameTxt_shipment').val(),
+					P_VOYAGENO : $('#voyageNoTxt_shipment').val(),
+					P_ETA_DATE : $('#etaDateTxt_Shipment').datebox('getValue'),
+					P_SHIPMNT_DATE_FROM : $('#shipmentFromDate_shipment').datebox('getValue'),
+					P_SHIPMNT_DATE_TO : $('#shipmentToDate_shipment').datebox('getValue'),
+				 };
+	  
+}
+//searchshipmentOrBldg
+$('#shipmentSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid shipment search..");
+		   var shipment_No=rowdata.shipmentNo;
+		   $('#shipmentNoTxt').val(shipment_No); 
+		closeShipmentDMSSearchPopup();
+		}
+	});
+	//-------Code for clear the Shipment Number Popups Fiels---------------------------
+$('#shipmentClearDMSBtn').click(function(e){
+console.log("shipmentClearDMSBtn :............ ");
+shipmentSearchClearDMS();
+}); 
+
+	
+function closeShipmentDMSSearchPopup(){
+ $('#shipmentNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+
+//shipmentNoTxt
+</script>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema targetNamespace="http://services.dms.giga.com/" version="1.0" xmlns:tns="http://services.dms.giga.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="IOException" type="tns:IOException"/>
+
+  <xs:element name="ServiceException" type="tns:ServiceException"/>
+
+  <xs:element name="deleteDocument" type="tns:deleteDocument"/>
+
+  <xs:element name="deleteDocumentResponse" type="tns:deleteDocumentResponse"/>
+
+  <xs:element name="downloadDocuments" type="tns:downloadDocuments"/>
+
+  <xs:element name="downloadDocumentsResponse" type="tns:downloadDocumentsResponse"/>
+
+  <xs:element name="mergeDocuments" type="tns:mergeDocuments"/>
+
+  <xs:element name="mergeDocumentsResponse" type="tns:mergeDocumentsResponse"/>
+
+  <xs:element name="searchDocuments" type="tns:searchDocuments"/>
+
+  <xs:element name="searchDocumentsResponse" type="tns:searchDocumentsResponse"/>
+
+  <xs:element name="uploadDocuments" type="tns:uploadDocuments"/>
+
+  <xs:element name="uploadDocumentsResponse" type="tns:uploadDocumentsResponse"/>
+
+  <xs:element name="viewDocument" type="tns:viewDocument"/>
+
+  <xs:element name="viewDocumentResponse" type="tns:viewDocumentResponse"/>
+
+  <xs:complexType name="mergeDocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="document" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentVO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="metadata" type="tns:Metadata"/>
+      <xs:element minOccurs="0" name="content" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Metadata">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="key" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="mergeDocumentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" nillable="true" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ServiceException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorCd" type="xs:string"/>
+      <xs:element minOccurs="0" name="errorMsg" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="downloadDocuments">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="documentCollection" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="downloadDocumentsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="viewDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="document" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="viewDocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IOException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="searchDocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="document" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="searchDocumentsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="uploadDocuments">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="documentCollection" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="uploadDocumentsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="deleteDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="document" type="tns:DocumentVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="deleteDocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

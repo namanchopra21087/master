@@ -1,0 +1,64 @@
+<?xml version="1.0" ?> 
+<project name="${master.project.name}" default="all">
+
+	<property file="../GiGaCore/build.properties" />
+	<property file="../GiGaMaster/build.properties" />
+	<property file="build.properties" />
+	<property name="javac.debug" value="on"/>
+
+	<property name="dms_classes.dir" location="../${dms.module.name}/classes" />
+	
+	<property name="lib.dir" location="${lib.dir.location}" />
+	
+	<property name="dms_src.dir" location="../${dms.module.name}/src" />
+	
+	<property name="dms.jar.location" location="${dms.jar.name}" />
+	
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+  
+	<target name="copy.resources" depends="prepare">
+		<copy todir="${dms_classes.dir}">
+		  <fileset dir="${dms_src.dir}" excludes="**/*.java" />			
+		</copy>
+	</target>
+  
+	<target name="prepare">
+		<mkdir dir="${dms_classes.dir}" />
+	</target>
+  
+	<target name="compile" depends="prepare">
+		<echo message="${dms_src.dir}" />
+		<javac classpathref="compile.classpath"
+			srcdir="${dms_src.dir}"
+			   destdir="${dms_classes.dir}"
+			   debug="true"
+			   debuglevel="lines,source" />		
+	</target>
+  
+	<target name="build-deps">
+		<echo message="Start calling GIGA Core" />
+        <ant antfile="${core.build.location}/build.xml" target="all"/>
+		<ant antfile="${master.build.location}/build.xml" target="all"/>
+		<echo message="End calling GIGA Core" />
+    </target>
+  
+	<target name="jar" depends="compile, copy.resources" >
+		<jar destfile="${lib.dir.location}/${dms.module.name}.jar"
+			 update="false"
+			 basedir="${dms_classes.dir}" />
+		<copy file="${lib.dir.location}/${dms.module.name}.jar" todir="../${jar.location}"></copy>
+	</target>
+	
+	<target name="clean.classes" >
+		<delete dir="${dms_classes.dir}" />
+	</target>
+  
+	<target name="clean" depends="clean.classes" >
+		<delete file="${dms.jar.location}" />
+	</target>
+  
+	<target name="all" depends="build-deps, clean, jar" />
+	
+</project>

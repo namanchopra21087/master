@@ -1,0 +1,212 @@
+<style type="text/css">
+
+#deliveryNoteNoSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching deliveryNoteNo Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>DeliveryNoteNo To Date always greater than or equal to deliveryNoteNo From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> DeliveryNoteNo To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> DeliveryNoteNo From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> DeliveryNoteNo From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching deliveryNoteNo Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : deliveryNoteNo No, Delivery Order number, Driver ID, deliveryNoteNo Date From, deliveryNoteNo Date --> 
+<div id="deliveryNoteNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="deliveryNoteNoErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('deliveryNoteNoErrorBoxDMS');" src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="deliveryNoteNoErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="30%">Delivery Note No. : </td>
+						<td width="20">
+								<input type="text" value="" id="deliveryNoteNoTxt_DNOTE" name="deliveryNoteNoTxt_DNOTE" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="18%">Shipment No. :</td>
+						<td width="20">
+							<input type="text" value="" id="shipmentNoTxt_DNOTE" name="shipmentNoTxt_DNOTE"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"/>
+						</td>
+						<td align="right" width="30%">Delivery Note Type : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<input type="text" value="" id="deliveryNoteTypeTxt_DNOTE" name="deliveryNoteTypeTxt_DNOTE"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Delivery Note Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="fromDate_deliveryNoteNo">
+    					 <input type="text" value="" name="fromDate_deliveryNoteNo" id="fromDate_deliveryNoteNo" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="toDate_deliveryNoteNo">
+    					 <input type="text" value="" name="toDate_deliveryNoteNo" id="toDate_deliveryNoteNo" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;"/>
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="deliveryNoteNoSearchDMSBtn" href="#" class="button blue bigrounded deliveryNoteNoSearchDMSBtn">Search</a> 
+								<a id="deliveryNoteNoClearDMSBtn"href="#" class="button blue bigrounded deliveryNoteNoClearDMSBtn">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="deliveryNoteNoSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="deliveryNoteNoSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="80" data-options="field:'deliveryNoteNo',width:15,align:'left'">Delivery Note No</th>
+						<th width="80" data-options="field:'shipmentNo',width:15,align:'left'">Shipment No</th>
+						<th width="180" data-options="field:'deliveryNoteType',width:15,align:'left'">Delivery Note Type</th>
+						<th width="60" data-options="field:'deliveryNoteDateTo',width:15,align:'left'">Delivery Note Date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSdeliveryNoteNo" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+//deliveryNoteNoDMSSearchPopup,deliveryNoteNoTxt,deliveryNoteNoSarchIconDMS,deliveryNoteNoEreaser
+console.log("deliveryNoteNo Search DMS  script...................................");
+$('.deliveryNoteNoSearchDMSBtn').click(function(e){
+  console.log("deliveryNoteNoSearchDMSBtn :............ ");
+  if(validateDeliveryNoteNoSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsDELNOTE(loginModuelType); //P_DELIVERYNOTE_NO,P_SHIPMENT_NO,P_DELIVERYNOTE_TYPE,P_DELIVERYNOTE_FROM_DATE,P_DELIVERYNOTE_TO_DATE,SEARCH_DELIVERYNOTE
+	   console.log("urlParam ::>>>>P_DELIVERYNOTE_NO : "+urlParam.P_DELIVERYNOTE_NO+"--P_SHIPMENT_NO : "+urlParam.P_SHIPMENT_NO+"--P_DELIVERYNOTE_TYPE : "+urlParam.P_DELIVERYNOTE_TYPE
+	   +"---P_DELIVERYNOTE_FROM_DATE :"+urlParam.P_DELIVERYNOTE_FROM_DATE+"--P_DELIVERYNOTE_TO_DATE : "+urlParam.P_DELIVERYNOTE_TO_DATE);
+	   	$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_DELIVERYNOTE" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_DELIVERYNOTE :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   enablingGridAndFilter('deliveryNoteNoSearchDMSdg');
+						   $('#deliveryNoteNoSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSdeliveryNoteNo','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#deliveryNoteNoSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSdeliveryNoteNo').css('display','none');
+             				reloadResultDataOnGrid('deliveryNoteNoSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+
+
+function validateDeliveryNoteNoSearch(loginModuelType){
+console.log("validateDOSearch ..................");
+ var validFlag=true;
+   if(loginModuelType=='YMS'){
+			var fromDatedeliveryNoteNo= $('#fromDate_deliveryNoteNo').datebox('getValue');
+			var toDatedeliveryNoteNo=$('#toDate_deliveryNoteNo').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDatedeliveryNoteNo),stringParseToDate(toDatedeliveryNoteNo),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','atLeastOneFieldrequired');
+					 $.messager.alert('Message','DeliveryNote Date range interval should be within six month','info');
+		    }
+	  }else{
+	   validFlag=false;
+	  }
+ return validFlag;
+}
+
+
+
+function urlParameterDetailsDELNOTE(moduleType){
+	console.log("---urlParameterDetailsCN : process");
+	 if(moduleType=='YMS'){
+		  return {
+					P_DELIVERYNOTE_NO : $('#deliveryNoteNoTxt_DNOTE').val(),
+					P_SHIPMENT_NO : $('#shipmentNoTxt_DNOTE').val(),
+					P_DELIVERYNOTE_TYPE : $('#deliveryNoteTypeTxt_DNOTE').val(),
+					P_DELIVERYNOTE_FROM_DATE : $('#fromDate_deliveryNoteNo').datebox('getValue'),
+					P_DELIVERYNOTE_TO_DATE : $('#toDate_deliveryNoteNo').datebox('getValue'),
+				 };
+	  }
+}	
+
+//searchdeliveryNoteNoOrBldg
+$('#deliveryNoteNoSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid deliveryNoteNo search..");
+				 var deliveryNoteNo_No=rowdata.deliveryNoteNo;
+				console.log("OnDBL ::DNNote::::: deliveryNoteNo_No "+deliveryNoteNo_No);
+				 $('#deliveryNoteTxt').val(deliveryNoteNo_No); 
+				 closedeliveryNoteNoDMSSearchPopup();
+		}
+	});
+	
+function closedeliveryNoteNoDMSSearchPopup(){
+ $('#deliveryNoteNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+
+	//-------Code for clear the deliveryNoteNo Number Popups Fiels---------------------------//
+$('.deliveryNoteNoClearDMSBtn').click(function(e){
+	console.log("deliveryNoteNoClearDMSBtn :............ ");
+	deliveryNoteSearchClearDMS();
+}); 
+
+	
+</script>

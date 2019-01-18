@@ -1,0 +1,19 @@
+List<InvoiceSummaryVO> invoiceSummaryVOList = new ArrayList<InvoiceSummaryVO>();
+		InvoiceSummaryVO invoiceSummaryVO = null;
+		Session session = null;
+		//DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+		List<Object[]> rptLinerList = new ArrayList<Object[]>();
+		//String queryString = "";
+		try {
+			//System.out.println("MAZAR NEW CHAGES>>>>");
+			session = HibernateUtil.getSession();
+			logger.debug("getLinerTypeReport - voyNo:" + voyNo);
+			logger.debug("getLinerTypeReport - voyNo:" + voyNo);
+			session = HibernateUtil.getSession();
+			Query query =session.createSQLQuery("{call Txn.Proc_Details(:voyageNo,:bl,:vesselId)}");
+	        query.setParameter("voyageNo", voyNo);
+	        //query.setLong("vesselId", vesselId);
+	        query.setParameter("bl", docType);
+	         query.setParameter("vesselId", vesselId);
+	       
+	        rptLinerList=(List<Object[]>)query.list();

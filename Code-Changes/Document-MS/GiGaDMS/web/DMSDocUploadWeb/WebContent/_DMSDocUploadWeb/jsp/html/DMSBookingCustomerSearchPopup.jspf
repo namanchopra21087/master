@@ -1,0 +1,178 @@
+<style type="text/css">
+
+#bkCustomerSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching bkCustomer Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>bkCustomer To Date always greater than or equal to bkCustomer From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> bkCustomer To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> bkCustomer From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> bkCustomer From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching bkCustomer Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : bkCustomer No, Delivery Order number, Driver ID, bkCustomer Date From, invoice Date --> 
+<div id="bookingCustomerDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="bkCustomerErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('bkCustomerErrorBoxDMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="bkCustomerErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%">Customer Name: </td>
+						<td width="20">
+								<input type="text" value="" id="customerNameTxt_bkCustomer" name="customerNameTxt_bkCustomer"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="16"></input>
+						</td>
+						<td align="right" width="25%">Customer Code</td>
+						<td width="20">
+						<input type="text" value="" id="customerCode_bkCustomer" name="customerCode_bkCustomer"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="16"></input>
+					</tr>
+					
+					<tr>
+					    <td colspan="4">
+						<div class="button-emil">
+								<a id="bkCustomerSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="bkCustomerClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="bkCustomerSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="bkCustomerSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'customerName',width:15,align:'left'">bkCustomer Name</th>
+						<th width="100" data-options="field:'customerCode',width:15,align:'left'">Booking Customer</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSbkCustomer" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+$('#bkCustomerSearchDMSBtn').click(function(e){
+  console.log("bkCustomerSearchDMSBtn :............ ");
+  if(validateBkCustomerSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsBkCustomer(loginModuelType); 
+	//customerNameTxt_bkCustomer,customerCode_bkCustomer--bkCustomerSearchDMSDiv,bkCustomerSearchDMSdg,noResultsMessagesDMSbkCustomer
+			$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_BOOKING_CUSTOMER" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   console.log("SEARCH_BOOKING_CUSTOMER :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#bkCustomerSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSbkCustomer','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#bkCustomerSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSbkCustomer').css('display','none');
+             				reloadResultDataOnGrid('bkCustomerSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+function validateBkCustomerSearch(loginModuelType){
+console.log("validateDOSearch ..................");
+ var validFlag=true;
+ 
+ return validFlag;
+
+}
+function urlParameterDetailsBkCustomer(moduleType){
+	console.log("---urlParameterDetailsBkCustomer : process");
+	//customerNameTxt_bkCustomer,customerCode_bkCustomer--bkCustomerSearchDMSDiv,bkCustomerSearchDMSdg,noResultsMessagesDMSbkCustomer
+	//P_CUSTOMER_NAME,P_CUSTOMER_CODE
+		  return {
+					P_CUSTOMER_NAME : $('#customerNameTxt_bkCustomer').val(),
+					P_CUSTOMER_CODE : $('#customerCode_bkCustomer').val(),
+				 };
+}	
+
+
+//searchbkCustomerOrBldg
+$('#bkCustomerSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid bkCustomer search..");
+		 var bkCustomer_Name=rowdata.customerName;
+		 $('#bookingCustTxt').val(bkCustomer_Name);
+		 
+		$('#bkCustomerTxt_BK').val(bkCustomer_Name);
+		
+		console.log(" bkCustomerTxt_BK :"+$('#bkCustomerTxt_BK').val());
+		
+		$('#bkCustomerTxt_BK').val(bkCustomer_Name);
+		$('#bkCustomerTxt_claim').val(bkCustomer_Name);
+		$('#bkCustomerTxt_JOB').val(bkCustomer_Name);
+		$('#bkCustomerTxt_si').val(bkCustomer_Name);
+		 
+		 closeBkCustomerDMSSearchPopup();
+		}
+	});
+	
+function closeBkCustomerDMSSearchPopup(){
+ $('#bookingCustomerDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+	//-------Code for clear the bkCustomer Number Popups Fiels---------------------------
+$('#bkCustomerClearDMSBtn').click(function(e){
+console.log("bkCustomerClearDMSBtn :............ ");
+	//bookingCustomerSearchClearDMS();
+	$('#bkCustomerSearchDMSDiv').css('display' ,'none');
+    $('#noResultsMessagesDMSbkCustomer').css('display','none');
+	
+	$('#customerNameTxt_bkCustomer').val('');
+	$('#customerCode_bkCustomer').val('');
+}); 
+
+
+</script>

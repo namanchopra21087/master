@@ -1,0 +1,256 @@
+<style type="text/css">
+
+#doSearchDMSDiv {
+	display : none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching do Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>do To Date always greater than or equal to do From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> do To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> do From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> do From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching do Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : do No, Delivery Order number, Driver ID, do Date From, do Date --> 
+<div id="doNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="doErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('doErrorBoxDMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="doErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%">Billing Customer : </td>
+						<td width="20">
+								<input type="text" value="" id="billingCusTxt_do" name="billingCusTxt_do"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%">Booking Number : </td>
+						<td width="20">
+							    <input type="text" value="" id="bkNoTxt_do" name="bkNoTxt_do"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="25%">Load Number : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<input type="text" value="" id="loadNoTxt_do" name="loadNoTxt_do"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+					</tr>
+					<tr>
+						<td align="right" width="25%">Pickup Location : </td>
+						<td width="20">
+							    <input type="text" value="" id="pickLocTxt_do" name="pickLocTxt_do"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%">Delivery Location : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<input type="text" value="" id="delyLocTxt_do" name="delyLocTxt_do"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%"></td>
+						<td width="20%" style='padding-right:5px;'>
+							
+						</td>
+					</tr>
+					<tr>
+						<td align="right" width="25%">Pickup Date : </td>
+						<td width="20">
+								<span class="picDateDate_do">
+								 <input type="text" value="" name="picDateDate_do" id="picDateDate_do" 
+										class="easyui-datebox LoadTodaysDate"
+										data-options="formatter:myformatter,parser:myparser"
+										validType="validDate " style="width:150px;" />
+								</span>
+						</td>
+						<td align="right" width="25%">Delivery Date : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<span class="delyDateDate_do">
+								 <input type="text" value="" name="delyDateDate_do" id="delyDateDate_do" 
+										class="easyui-datebox LoadTodaysDate"
+										data-options="formatter:myformatter,parser:myparser"
+										validType="validDate " style="width:150px;" />
+								</span>
+						</td>
+						<td align="right" width="25%"></td>
+						<td width="20%" style='padding-right:5px;'>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">DO Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="doFromDate_do">
+    					 <input type="text" value="" name="doFromDate_do" id="doFromDate_do" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="doToDate_do">
+    					 <input type="text" value="" name="doToDate_do" id="doToDate_do" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="doSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="doClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="doSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="doSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'doNo',width:15,align:'left'">DO No</th>
+						<th width="100" data-options="field:'billingCustomer',width:15,align:'left'">Billing Customer</th>
+						<th width="150" data-options="field:'bookingNo',width:15,align:'left'">Booking No</th>
+						<th width="100" data-options="field:'loadNo',width:15,align:'left'">Load No</th>
+						<th width="100" data-options="field:'pickupDate',width:15,align:'left'">Pickup Date</th>
+						<th width="100" data-options="field:'deliveryDate',width:15,align:'left'">Delivery Date</th>
+						<th width="100" data-options="field:'doDateTo',width:15,align:'left'">DO Date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSdo" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+$('#doSearchDMSBtn').click(function(e){
+  console.log("doSearchDMSBtn :............ ");
+   if(validateDOSearch(loginModuelType)){
+     console.log(">>>>DO : loginModuelType : "+loginModuelType); 
+	   var urlParam=urlParameterDetailsDOD(loginModuelType); 
+	 		$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_DO" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_INVOICE :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#doSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSdo','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#doSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSdo').css('display','none');
+             				reloadResultDataOnGrid('doSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+
+function validateDOSearch(loginModuelType){
+console.log("validateDOSearch ..................");
+ var validFlag=true;
+   if(loginModuelType=='TMS'){
+	
+			var fromDateDO= $('#doFromDate_do').datebox('getValue');
+			var toDateDO=$('#doToDate_do').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDateDO),stringParseToDate(toDateDO),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','atLeastOneFieldrequired');
+					 $.messager.alert('Message','DO Date range interval should be within six month','info');
+		    }
+	  }else{
+	   validFlag=false;
+	   $.messager.alert('Message','Only TMS user can able to search','info');
+	  }
+ return validFlag;
+
+}
+ 
+function urlParameterDetailsDOD(moduleType){ 
+	console.log("**********urlParameterDetailsDOD : process :: moduleType :"+moduleType);
+	//P_TRUCK_TYPE,P_DELIVERY_LOC,P_DELIVERY_DATE,P_DO_DATE_FROM,P_DO_DATE_TO,P_PICKUP_DATE,P_PICKUPLOCATION
+	 //billingCusTxt_do,bkNoTxt_do,loadNoTxt_do,pickLocTxt_do,delyLocTxt_do,picDateDate_do,delyDateDate_do,doFromDate_do,doToDate_do
+	 //P_BILL_CUSTOMER,P_BK_NUMBER,P_LOAD_NO,P_DELIVERY_LOC,P_PICKUPLOCATION,P_PICKUP_DATE,P_DELIVERY_DATE,P_DO_DATE_FROM,P_DO_DATE_TO
+      if(moduleType=="TMS"){
+		  return {
+					P_BILL_CUSTOMER : $('#billingCusTxt_do').val(),
+					P_BK_NUMBER : $('#bkNoTxt_do').val(),
+					P_LOAD_NO : $('#loadNoTxt_do').val(),
+					P_DELIVERY_LOC : $('#delyLocTxt_do').val(),
+					P_PICKUPLOCATION : $('#pickLocTxt_do').val(),
+					P_PICKUP_DATE : $('#picDateDate_do').datebox('getValue'),
+					P_DELIVERY_DATE : $('#delyDateDate_do').datebox('getValue'),
+					P_DO_DATE_FROM : $('#doFromDate_do').datebox('getValue'),
+					P_DO_DATE_TO : $('#doToDate_do').datebox('getValue'),
+				 };
+	  }
+	  if(moduleType=="YMS"){
+	    return {};
+	  }
+}	
+
+
+//searchdoOrBldg
+$('#doSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid do search..");
+		 var do_No=rowdata.doNo;
+		 $('#doNoTxt').val(do_No); 
+		 closeDODMSSearchPopup();
+		}
+	});
+	
+function closeDODMSSearchPopup(){
+ $('#doNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+	//-------Code for clear the do Number dopups Fiels---------------------------
+$('#doClearDMSBtn').click(function(e){
+console.log("doClearDMSBtn :............ ");
+	doSearchClearDMS();
+}); 
+
+</script>

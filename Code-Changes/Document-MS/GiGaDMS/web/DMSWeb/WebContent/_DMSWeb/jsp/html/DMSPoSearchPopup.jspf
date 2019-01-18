@@ -1,0 +1,200 @@
+<style type="text/css">
+
+#poSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching po Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>po To Date always greater than or equal to po From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> po To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> po From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> po From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching po Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : po No, Delivery Order number, Driver ID, po Date From, po Date --> 
+<div id="poNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="poErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('poErrorBoxDMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="poErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%">Vendor Name : </td>
+						<td width="20">
+								<input type="text" value="" id="vendorNameTxt_po" name="vendorNameTxt_po"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%"></td>
+						<td width="20">
+							    
+						</td>
+						<td align="right" width="25%"></td>
+						<td width="10%" style='padding-right:5px;'>
+							
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">PO Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="poFromDate_po">
+    					 <input type="text" value="" name="poFromDate_po" id="poFromDate_po" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="poToDate_po">
+    					 <input type="text" value="" name="poToDate_po" id="poToDate_po" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="poSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="poClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="poSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="poSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'poNo',width:15,align:'left'">PO No</th>
+						<th width="100" data-options="field:'vendorName',width:15,align:'left'">Vendor Name</th>
+						<th width="100" data-options="field:'poDateTo',width:15,align:'left'">PO Date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSpo" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+$('#poSearchDMSBtn').click(function(e){
+  console.log("poSearchDMSBtn :............ ");
+   if(validatePOSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsPO(loginModuelType); 
+	 		$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_PO" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_INVOICE :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#poSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSpo','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#poSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSpo').css('display','none');
+             				reloadResultDataOnGrid('poSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+
+function validatePOSearch(loginModuelType){
+console.log("validatePOSearch ..................");
+ var validFlag=true;
+ 	 //vendorNameTxt_po,poFromDate_po,poToDate_po
+			var fromDatePo= $('#poFromDate_po').datebox('getValue');
+			var toDatePo=$('#poToDate_po').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDatePo),stringParseToDate(toDatePo),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','atLeastOneFieldrequired');
+					 $.messager.alert('Message','PO Date range interval should be within six month','info');
+		    }
+return validFlag;
+
+}
+
+
+
+function urlParameterDetailsPO(moduleType){
+	console.log("---urlParameterDetailsPO : process");
+	//P_PO_DATE_FROM,P_PO_DATE_TO,P_VENDOR_NAME      
+		  return {
+					P_VENDOR_NAME : $('#vendorNameTxt_po').val(),
+					P_PO_DATE_FROM : $('#poFromDate_po').datebox('getValue'),
+					P_PO_DATE_TO : $('#poToDate_po').datebox('getValue'),
+				 };
+}	
+
+//searchpoOrBldg
+$('#poSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid po search..");
+		 var po_No=rowdata.poNo;
+		   $('#poNoTxt').val(po_No); 
+		closePODMSSearchPopup();
+		}
+	});
+	
+function closePODMSSearchPopup(){
+ $('#poNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+	
+	//-------Code for clear the po Number Popups Fiels---------------------------
+$('#poClearDMSBtn').click(function(e){
+console.log("poClearDMSBtn :............ ");
+	
+}); 
+
+
+</script>

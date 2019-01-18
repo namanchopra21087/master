@@ -1,0 +1,52 @@
+<?xml version="1.0" ?> 
+<project name="${project.name}" default="all">
+	
+	
+	<property file="build.properties" />
+	<property name="javac.debug" value="on"/>
+
+	<property name="classes.dir" location="../${module.name}/classes" />
+	
+	<property name="lib.dir" location="${lib.dir.location}" />
+	
+	<property name="src.dir" location="../${module.name}/src" />
+	
+	<property name="war.location" location="${war.name}" />
+	
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />		
+	</path>
+  
+	<target name="copy.resources" depends="prepare">
+		<copy todir="../${module.name}/WebContent/WEB-INF/classes">
+		  <fileset dir="${src.dir}" excludes="**/*.java" />			
+		</copy>
+	</target>
+  
+	<target name="prepare">
+		<mkdir dir="../${module.name}/WebContent/WEB-INF/classes" />
+	</target>
+  
+	<target name="compile" depends="prepare">
+		<echo message="${src.dir}" />
+		<javac classpathref="compile.classpath" srcdir="../${module.name}/src" destdir="../${module.name}/WebContent/WEB-INF/classes" debug="true" debuglevel="lines,source" />
+	</target>
+	
+	<target name="clean.classes" >
+		<delete dir="../${module.name}/WebContent/WEB-INF/classes" />
+	</target>
+  
+	<target name="clean" depends="clean.classes" >
+		<delete file="${war.location}" />
+	</target>
+  
+	<target name="all" depends="clean, compile, copy.resources" >	
+		<war warfile="${war.name}" webxml="../${module.name}/WebContent/WEB-INF/web.xml"> 
+			
+			<fileset dir="../${module.name}/WebContent">
+				<exclude name="../${module.name}/WebContent"/>				
+			</fileset>			
+		</war>
+		
+	</target>
+</project>

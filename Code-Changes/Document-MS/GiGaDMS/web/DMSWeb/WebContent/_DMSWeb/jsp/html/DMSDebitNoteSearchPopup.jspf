@@ -1,0 +1,248 @@
+<style type="text/css">
+
+#debitNoteSearchDMSDiv{
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching CreditNote Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>debitNote To Date always greater than or equal to debitNote From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> debitNote To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> debitNote From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> debitNote From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching CreditNote Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : debitNote No, Delivery Order number, Driver ID, debitNote Date From, debitNote Date --> 
+<div id="debitNoteDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="debitNoteErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('debitNoteErrorBoxDMS');" src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="debitNoteErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="30%">Debit Note No. : </td>
+						<td width="20">
+								<input type="text" value="" id="debitNoteNoTxt_DN" name="debitNoteNoTxt_DN"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="25%"><span class="ofs_show">Shipment No. :</span><span class="tms_show">Invoice No. :</span> </td>
+						<td width="20">
+						<span class="ofs_show">	<input type="text" value="" id="shipmentNoTxt_DN" name="shipmentNoTxt_DN"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input></span>
+						<span class="tms_show"><input type="text" value="" id="invoiceNoTxt_DN" name="invoiceNoTxt_DN"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input></span>
+						</td>
+						<td align="right" width="25%">Billing Customer : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<input type="text" value="" id="billingCustomerTxt_DN" name="billingCustomerTxt_DN"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Debit Note Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="fromDate_DN">
+    					 <input type="text" value="" name="fromDate_DN" id="fromDate_DN" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="toDate_DN">
+    					 <input type="text" value="" name="toDate_DN" id="toDate_DN" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;"/>
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="debitNoteSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="debitNoteClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="debitNoteSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="debitNoteSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="80" data-options="field:'debitNoteNo',width:15,align:'left'">Debit Note No</th>
+						<th width="80" data-options="field:'shipmentNo',width:15,align:'left'">Shipment No</th>
+						<th width="80" data-options="field:'invoiceNo',width:15,align:'left'">Invoice No</th>
+						<th width="180" data-options="field:'billingCustomer',width:15,align:'left'">Billing Customer</th>
+						<th width="60" data-options="field:'dnDateTo',width:15,align:'left'">Debit Note Date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSdebitNote" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+
+console.log("debitNote Search DMS  script...................................");
+$('#debitNoteSearchDMSBtn').click(function(e){
+  console.log("debitNoteSearchDMSBtn :............ ");
+   if(validateDebitNoteSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsDN(loginModuelType); 
+	   //creditNoteNoTxt_DN,shipmentNoTxt_DN,billingCustomerTxt_DN,fromDate_DN,toDate_DN,noResultsMessagesDMSdebitNote,debitNoteSearchDMSdg,debitNoteSearchDMSDiv,debitNoteDMSSearchPopup
+	      console.log("urlParam ::>>>>P_DN_NO : "+urlParam.P_DN_NO+"--P_SHIPMENT_NO : "+urlParam.P_SHIPMENT_NO+"--P_BILLING_CUSTOMER : "+P_BILLING_CUSTOMER
+	   +"---P_DN_FROM_DATE :"+urlParam.P_DN_FROM_DATE+"--P_DN_FROM_DATE : "+urlParam.P_DN_FROM_DATE+"--P_DN_TO_DATE : "+urlParam.P_DN_TO_DATE);
+			$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_DEBITNOTE" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_DEBITNOTE :: result :length :  "+results.length+"\n results::::"+results);
+				   console.log("Resutl :: Stringify :: "+JSON.stringify(results));
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+						   enablingGridAndFilter('debitNoteSearchDMSdg');
+                		   $('#debitNoteSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSdebitNote','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+						   $('#debitNoteSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSdebitNote').css('display','none');
+             				reloadResultDataOnGrid('debitNoteSearchDMSdg',results);
+							if(loginModuelType == 'TMS'){
+								$("#debitNoteSearchDMSdg").datagrid("hideColumn","shipmentNo" );
+							}else
+							if(loginModuelType == 'OFS'){
+								$("#debitNoteSearchDMSdg").datagrid("hideColumn","invoiceNo" );
+							}
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+
+
+function validateDebitNoteSearch(loginModuelType){
+console.log("validateDOSearch ..................");
+ 
+ var validFlag=true;
+   if(loginModuelType=='TMS' || loginModuelType=='OFS'|| loginModuelType=='YMS'){
+			var fromDateDebitNote= $('#fromDate_DN').datebox('getValue');
+			var toDateDebitNote=$('#toDate_DN').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDateDebitNote),stringParseToDate(toDateDebitNote),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','atLeastOneFieldrequired');
+					 $.messager.alert('Message','Debit Note Date range interval should be within six month','info');
+		    }
+	  }else{
+	   validFlag=false;
+	   //$.messager.alert('Message','Only TMS user can able to search','info');
+	  }
+ return validFlag;
+}
+
+
+function urlParameterDetailsDN(moduleType){
+	console.log("---urlParameterDetailsDN : process");
+      if(moduleType=='OFS'||moduleType=='YMS'){
+	  console.log("---urlParameterDetailsDN : OFS... in ");
+		  return {
+					P_DN_NO : $('#debitNoteNoTxt_DN').val(),
+					P_SHIPMENT_NO : $('#shipmentNoTxt_DN').val(),
+					P_BILLING_CUSTOMER : $('#billingCustomerTxt_DN').val(),
+					P_DN_FROM_DATE : $('#fromDate_DN').datebox('getValue'),
+					P_DN_TO_DATE : $('#toDate_DN').datebox('getValue'),
+				 };
+	  }else
+	  if(moduleType=='TMS'){
+	  console.log("---urlParameterDetailsDN : TMS... in ");
+	    return {
+					P_DN_NO : $('#creditNoteNoTxt_DN').val(),
+					P_INVOICE_NO : $('#invoiceNoTxt_DN').val(),
+					P_BILLING_CUSTOMER : $('#billingCustomerTxt_DN').val(),
+					P_DN_FROM_DATE : $('#fromDate_DN').datebox('getValue'),
+					P_DN_TO_DATE : $('#toDate_DN').datebox('getValue'),
+				 };
+	  }
+}	
+
+//searchdebitNoteOrBldg
+$('#debitNoteSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid debitNote search..");
+				var deditNote_No=rowdata.debitNoteNo;
+				
+				console.log("OnDBL :: DN ::::: deditNote_No "+deditNote_No);
+				 $('#debitNoteTxt').val(deditNote_No); 
+				 /*if(loginModuelType == 'OFS'){
+				  var shipment_No=rowdata.shipmentNo;
+				  if($('#shipmentNoTxt').val().trim() == ''){
+						$('#shipmentNoTxt').val(shipment_No); 
+					}
+				 }else
+					 if(loginModuelType == 'TMS'){
+						var inv_No=rowdata.invoiceNo;
+						 if($('#invoiceNoTxt').val().trim() == ''){
+							  $('#invoiceNoTxt').val(inv_No); 
+						 }
+					}*/
+				
+		 closeDebitNoteDMSSearchPopup();
+		}
+	});
+	
+function closeDebitNoteDMSSearchPopup(){
+ $('#debitNoteDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+
+	//-------Code for clear the debitNote Number Popups Fiels---------------------------
+$('#debitNoteClearDMSBtn').click(function(e){
+console.log("debitNoteClearDMSBtn :............ ");
+	debitNoteSearchClearDMS();
+}); 
+
+	
+</script>

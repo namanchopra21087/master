@@ -1,0 +1,247 @@
+<style type="text/css">
+
+#claimSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching Shipment Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>Claim To Date always greater than or equal to Shipment From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> Claim To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> Claim From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> Claim From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching Shipment Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : Claim No, Delivery Order number, Driver ID, Claim Date From, Claim Date --> 
+<div id="claimNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="claimErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('claimSearchFielderrorMsgCLTMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="claimErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div> 
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%"><span class="bkCus_CL">Booking Customer :</span><span class="clCus_CL">Claimant :</span></td>
+						<td width="20">
+								<input type="text" value="" id="bkCustomerTxt_claim" name="bkCustomerTxt_claim"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%"><span class="bkNo_CL">Booking Number :</span><span class="clType_CL">Claim Type :</span></td>
+						<td width="20">
+							    <input type="text" value="" id="bkNoTxt_claim" name="bkNoTxt_claim" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+								
+						</td>
+						<td align="right" width="25%"><span class="incNoCss_CL">Incident Number :</span> </td>
+						<td width="20%" style='padding-right:5px;'>
+								<span class="incNoCss_CL">	<input type="text" value="" id="incNoTxt_claim" name="incNoTxt_claim" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input></span>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Claim Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="claimFromDate_claim">
+    					 <input type="text" value="" name="claimFromDate_claim" id="claimFromDate_claim" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="claimToDate_claim">
+    					 <input type="text" value="" name="claimToDate_claim" id="claimToDate_claim" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="claimSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="claimClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="claimSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="claimSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true, 
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10"> 
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'claimNo',width:15,align:'left'">Claim No</th>
+						<th width="100" data-options="field:'bookingNo',width:15,align:'left'">Booking No</th>
+						<th width="150" data-options="field:'bookingCustomer',width:15,align:'left'">Booking Customer</th>
+						<th width="100" data-options="field:'claimDateTo',width:15,align:'left'">Claim Date</th>
+						<th width="100" data-options="field:'incidentNo',width:15,align:'left'">Incident No</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSclaim" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+$('#claimSearchDMSBtn').click(function(e){
+  console.log("claimSearchDMSBtn :............ loginModuelType :"+loginModuelType);
+     if(validateClaimSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsClaim(loginModuelType);  
+		   console.log(" urlParam :: "+urlParam);
+	
+			$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_CLAIM" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_CLAIM :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#claimSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSclaim','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							   if(loginModuelType=='OFS'||loginModuelType=='TMS'){							  
+									$('#claimSearchDMSdg').datagrid({
+									columns:[[
+										{field:'claimNo',title:'Claim No',width:15},
+										{field:'bookingNo',title:'Booking No',width:15},
+										{field:'bookingCustomer',title:'Booking Customer',width:15},
+										{field:'claimDateTo',title:'Claim Date',width:15},
+										{field:'incidentNo',title:'Incident No',width:15},
+									]]
+								});
+							   }else{
+									$('#claimSearchDMSdg').datagrid({
+									columns:[[
+										{field:'claimNo',title:'Claim No',width:15},
+										{field:'bookingNo',title:'Claim Type',width:15},
+										{field:'bookingCustomer',title:'Claimant',width:20},
+										{field:'claimDateTo',title:'Claim Date',width:15},
+										{field:'incidentNo',title:'Incident No',width:15},
+									]]
+								});
+							   }
+						    $('#claimSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSclaim').css('display','none');
+             				reloadResultDataOnGrid('claimSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+
+function validateClaimSearch(loginModuelType){
+ var validFlag=true;
+  if(loginModuelType=='OFS'||loginModuelType=='TMS' || loginModuelType=='YMS'){
+	 //siFromDate_si,siToDate_si
+			var fromDateClaim= $('#claimFromDate_claim').datebox('getValue');
+			var toDateClaim=$('#claimToDate_claim').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDateClaim),stringParseToDate(toDateClaim),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSSI','atLeastOneFieldrequired');
+					 $.messager.alert('Message','Claim Date range interval should be within six month','info');
+		    }
+	  }else{
+	   validFlag=false;
+	   $.messager.alert('Message','Only OFS and TMS user can able to search','info');
+	  }
+ return validFlag;
+
+}
+function urlParameterDetailsClaim(moduleType){
+//P_INCIDENT_NO,P_CLAIM_DATE_FROM,P_CLAIM_DATE_TO
+//bkCustomerTxt_claim,bkNoTxt_claim,incNoTxt_claim,claimFromDate_claim claimToDate_claim
+console.log("urlParameterDetailsClaim : mduleType :: "+moduleType);
+      if(moduleType=="OFS"){
+		  return {
+		  
+					P_BK_CUSTOMER : $('#bkCustomerTxt_claim').val(),
+					P_BK_NUMBER : $('#bkNoTxt_claim').val(),
+					P_CLAIM_DATE_FROM : $('#claimFromDate_claim').datebox('getValue'),
+					P_CLAIM_DATE_TO : $('#claimToDate_claim').datebox('getValue'),
+				 };
+	  }else
+	  if(moduleType=="TMS"){
+			  return {
+					P_BK_CUSTOMER : $('#bkCustomerTxt_claim').val(),
+					P_BK_NUMBER : $('#bkNoTxt_claim').val(),
+					P_INCIDENT_NO : $('#incNoTxt_claim').val(),
+					P_CLAIM_DATE_FROM : $('#claimFromDate_claim').datebox('getValue'),
+					P_CLAIM_DATE_TO : $('#claimToDate_claim').datebox('getValue'),
+				 };
+	  }else
+	  if(moduleType=="YMS"){
+	     return {
+					P_BK_CUSTOMER : $('#bkCustomerTxt_claim').val(),
+					P_BK_NUMBER : $('#bkNoTxt_claim').val(),
+					P_INCIDENT_NO : $('#incNoTxt_claim').val(),
+					P_CLAIM_DATE_FROM : $('#claimFromDate_claim').datebox('getValue'),
+					P_CLAIM_DATE_TO : $('#claimToDate_claim').datebox('getValue'),
+				 };
+	  }
+}
+//searchclaimOrBldg
+$('#claimSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		   var claim_No=rowdata.claimNo;
+		   $('#claimNoTxt').val(claim_No); 
+		  console.log("on dbl click on grid claim search..");  
+		closeClaimDMSSearchPopup();
+		}
+	});
+	//-------Code for clear the Shipment Number Popups Fiels---------------------------
+$('#claimClearDMSBtn').click(function(e){
+console.log("claimClearDMSBtn :............ ");
+	claimSearchClearDMS();
+}); 
+
+	
+function closeClaimDMSSearchPopup(){
+ $('#claimNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+</script>

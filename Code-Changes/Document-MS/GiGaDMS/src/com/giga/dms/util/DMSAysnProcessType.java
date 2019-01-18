@@ -1,0 +1,5 @@
+package com.giga.dms.util;
+
+public enum DMSAysnProcessType {
+	SINGEL_UPLOAD,MULTIPLE_UPLOAD,SEARCH_DOCUMENTS,DELETE_DOCUMENTS,VIEW_DOCUMENTS;
+}

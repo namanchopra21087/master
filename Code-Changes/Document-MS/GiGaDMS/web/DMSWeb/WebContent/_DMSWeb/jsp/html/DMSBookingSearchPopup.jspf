@@ -1,0 +1,291 @@
+<style type="text/css">
+
+#bookingSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching Shipment Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>Claim To Date always greater than or equal to Shipment From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> Claim To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> Claim From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> Claim From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching Shipment Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : Claim No, Delivery Order number, Driver ID, Claim Date From, Claim Date --> 
+<div id="bookingNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="claimSearchFielderrorMsgCLTMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onClick="errorhideBox('claimSearchFielderrorMsgCLTMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="claimSearchFieldErrorConentCLTMS" style="color: red"></div>
+</div>
+<!-- ----------------------------- END---shows the Error Messages ---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 790px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+			  <div style="margin: 0px 0;"></div>
+				<table width="780" border="0" style="margin-top:5px;">
+					<tr class="">
+						<td width="115" class="both_show"><div align="right">Booking Customer: </div></td>
+						<td width="154" class="both_show" >
+								<input type="text" value="" id="bkCustomerTxt_BK" name="bkCustomerTxt_BK" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256" />
+						</td>
+						
+						
+						<td align="right" width="89" class="ofs_show"><span class="blineCssLbl_BK">Business Line : </span>
+						<td width="150" class="ofs_show">
+							<span class="blineCssLbl_BK"> <select
+									style="width: 150px;" class="easyui-combobox requiredGMG"
+									name="businessLineOpt" id="businessLineOpt"> 
+										<option value="">--Select a value--</option>
+										<c:forEach var="businessLine" items="${businessLineList}">
+											<option value="${businessLine.key}">${businessLine.value}</option>
+										</c:forEach>
+
+								</select> 
+							</span>
+						</td>
+						<td align="right" width="100" class="ofs_show"><span class="pikLocCssLbl_BK">Pickup Location : </span></td>
+						<td width="154" style='padding-right:5px;' class="ofs_show"><span class="pikLocTxt_BK">
+						  <input type="text" value="" id="pikLocTxt_BK" name="pikLocTxt_BK" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256">
+						</span></td>
+						
+					</tr>
+					
+					<tr> 
+					  <td width="115" align="right"><span class="veslNameCssLbl_BK">Vessel Name :</span></td>
+					  <td style='padding-right:5px;'><span class="vesselNameTxt_BK">
+					    <input type="text" value="" id="vesselNameTxt_BK" name="vesselNameTxt_BK" class="alphaNumSpaceOnly" style="width: 150px; "maxlength="256" />
+					    </span></td>
+						<td align="right"><span class="etaDateCssLbl_BK">ETA Date : </span></td>
+						<td><span class="etaDateTxt_BK">
+						  <input type="text" value="" name="etaDateTxt_BK" id="etaDateTxt_BK" 
+										class="easyui-datebox"
+										data-options="formatter:myformatter,parser:myparser"
+										validType="validDate " style="width:150px;" />
+						  </span></td>
+						<td align="right"><span class="voyageNoCss_BK">Voyage No : </span></td>
+						<td><span class="VoyageNoTxt_BK">
+						  <input type="text" value="" id="VoyageNoTxt_BK" name="VoyageNoTxt_BK" class="alphaNumSpaceOnly" style="width: 150px;"maxlength="65">
+						  </input>
+						  </span></td>
+					</tr>
+					
+					<tr> 
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Booking Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="bookingFromDateTxt_BK">
+    					 <input type="text" value="" name="bookingFromDateTxt_BK" id="bookingFromDateTxt_BK" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="bookingToDateTxt_BK">
+    					 <input type="text" value="" name="bookingToDateTxt_BK" id="bookingToDateTxt_BK" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+							   <a id="bookingSearchDMSBtn" href="#" class="button blue bigrounded .btn">Search</a> 
+								<a id="bookingClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+                 
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div> 
+		<div id="bookingSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="bookingSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'bookingNo',width:15,align:'left'">Booking No</th>
+						<th width="150" data-options="field:'bookingCustomer',width:15,align:'left'">Booking Customer</th>
+						<th width="100" data-options="field:'bookingDate',width:15,align:'left'">Booking Date</th>
+						<th width="100" data-options="field:'businessLine',width:15,align:'left'">Business Line</th>
+						<th width="100" data-options="field:'vesselName',width:15,align:'left'">Vessel Name</th>
+						<th width="100" data-options="field:'etaDate',width:10,align:'left'">ETA Date</th>
+						<th width="100" data-options="field:'voyageNo',width:15,align:'left'">Voyage No</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessages_bk" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+ 
+$('#bookingSearchDMSBtn').click(function(e){
+   console.log("bookingSearchDMSBtn Booking search..");
+     
+	       var urlParam=urlParameterDetailsBk(loginModuelType);
+		   console.log(" urlParam :SEARCH_BOOKING: "+urlParam);
+		   if(validateBookingSearch()){
+			$.ajax({
+                    beforeSend: function () { 
+				   },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_BOOKING" />',
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#bookingSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessages_bk','noResultReturned');                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#bookingSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessages_bk').css('display','none');
+             				reloadResultDataOnGrid('bookingSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+});
+//---------------- url parameter -----------------------------
+function urlParameterDetailsBk(moduleType){
+	console.log(">> urlParameter type of :: "+moduleType)
+	  if(moduleType=="OFS"){
+		  return {
+					P_BK_CUSTOMER : $('#bkCustomerTxt_BK').val(),
+					P_BUSINESSLINE : $('#businessLineOpt').combobox('getText')=='--Select a value--'?"":$('#businessLineOpt').combobox('getText'),
+					P_VESSELNAME : $('#vesselNameTxt_BK').val(),
+					P_ETA_DATE : $('#etaDateTxt_BK').val(),
+					P_VOYAGENO : $('#VoyageNoTxt_BK').val(),
+					P_BK_DATE_FROM : $('#bookingFromDateTxt_BK').datebox('getValue'),
+					P_BK_DATE_TO : $('#bookingToDateTxt_BK').datebox('getValue'),
+				 };
+	  }else
+	  if(moduleType=="TMS"){
+			  return {
+					P_BK_CUSTOMER : $('#bkCustomerTxt_BK').val(),
+					P_PICKUPLOCATION : $('#pikLocTxt_BK').val(),
+					P_BK_DATE_FROM : $('#bookingFromDateTxt_BK').datebox('getValue'),
+					P_BK_DATE_TO : $('#bookingToDateTxt_BK').datebox('getValue'),
+				 };
+	  }
+}	
+//------------------- validate booking --------------------------
+function validateBookingSearch(){
+ var validFlag=true;
+     var bkCust_bk=$('#bkCustomerTxt_BK').val();
+	 var bline_Val_bk=$('#businessLineOpt').combobox('getValue');
+	 var bline_Txt_bk=$('#businessLineOpt').combobox('getText');
+	 var pikLoc_bk=$('#pikLocTxt_BK').val();
+	 var vname_bk=$('#vesselNameTxt_BK').val();
+	 var eta_bk=$('#etaDateTxt_BK').datebox('getValue');
+	 var bkFromDate_bk=$('#bookingFromDateTxt_BK').datebox('getValue');
+	 var bkToDate_bk=$('#bookingToDateTxt_BK').datebox('getValue');
+	 if(loginModuelType=='OFS'){
+	     if(bkCust_bk=='' && bline_Val_bk=='' && bline_Txt_bk=='' && vname_bk=='' && eta_bk=='' && bkFromDate_bk=='' && bkToDate_bk==''){
+			validFlag=false;
+		   $.messager.alert('Message','Please provice atleast one search criteria','info');
+		   autoGeneratedSpanErrorMessages('noResultsMessages_bk','atLeastOneFieldrequired');
+		 }
+	 }else
+	 if(loginModuelType=='TMS'){
+			 if(bkCust_bk=='' && pikLoc_bk=='' && bkFromDate_bk=='' && bkToDate_bk==''){
+				validFlag=false;
+				$.messager.alert('Message','Please provice atleast one search criteria','info');
+				// autoGeneratedSpanErrorMessages('noResultsMessages_bk','atLeastOneFieldrequired');
+			  }else
+			  if(!dateRangeCheck(stringParseToDate(bkFromDate_bk),stringParseToDate(bkToDate_bk),6)){
+				 validFlag=false;
+				 //autoGeneratedSpanErrorMessages('noResultsMessages_bk','atLeastOneFieldrequired');
+				 $.messager.alert('Message','Booking from date and to date range should be in between six month','info');
+			  }
+	 }else
+	 if(loginModuelType=='YMS'){
+		return false;
+	 }
+	 
+	 if(validFlag){
+	    clearMessagesAndGridOfSearch('bookingSearchDMSDiv','noResultsMessages_bk','bookingSearchDMSdg');
+	 }
+ return validFlag;
+} 
+ 
+//---------------------- onDouble click populate --------------------------------------------
+
+$('#bookingSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid Booking search..");
+			var bookingNo_Bk= rowdata.bookingNo.toString();
+		    var bkcustomer_bk= rowdata.bookingCustomer.toString(); 
+			var bkCustomerName=$('#bookingCustTxt').val();
+			$('#bookingNoTxt').val(bookingNo_Bk);
+			console.log("::bookingNo_Bk :"+bookingNo_Bk+"::bkcustomer_bk :"+bkcustomer_bk+"::bkCustomerName :"+bkCustomerName);
+			if(bkCustomerName==''||bkCustomerName==null){
+			  if(bkcustomer_bk!='' && bkcustomer_bk!=null){
+			        $('.bkCustomerCssDMS').css('disabled','disabled');
+					$('.customerSarchIconDMS').css('display','none');
+					//$('.bkCustomerCssDMS').css('size', '115px'); 
+					 $('#bookingCustTxt').width(115); 
+					$('#bookingCustTxt').val(bkcustomer_bk);
+			  }else{
+					$('.bkCustomerCssDMS').css('enabled','enabled');
+					$('.customerSarchIconDMS').css('display','inline');
+					//$('.bookingCustomerDMSSearchPopup').css('display','inline');
+					$('#bookingCustTxt').val('');
+			  }
+			}
+			closeBookingNoDMSSearchPopup();
+		}
+});
+
+//-------------------------------- Clear booking fields --------------------------------------------------	
+$('#bookingClearDMSBtn').click(function(e){
+console.log("bookingSearchDMSBtn Booking clear fields  search..");
+    //$.messager.alert('Message','Please select at least one chassis to Export Barcode Printing','info');
+	//bkCustomerTxt_BK,businessLineOpt, pikLocTxt_BK, vesselNameTxt_BK, etaDateTxt_BK, VoyageNoTxt_BK, bookingFromDateTxt_BK, bookingToDateTxt_BK
+	//clear the contents
+	bookingSearchClearDMS(); 
+}); 
+
+function closeBookingNoDMSSearchPopup(){
+    $('#bookingNoDMSSearchPopup').css("display","none");
+    $("#backgroundPopup").fadeOut("normal");
+  }
+</script>

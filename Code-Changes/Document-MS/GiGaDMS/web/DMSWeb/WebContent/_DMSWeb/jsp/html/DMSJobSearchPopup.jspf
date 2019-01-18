@@ -1,0 +1,211 @@
+<style type="text/css">
+
+#jobSearchDMSDiv {
+	display: none;
+}
+ 
+</style>
+
+<!-- -----------------------------------Searching Shipment Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>Claim To Date always greater than or equal to Shipment From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> Claim To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> Claim From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> Claim From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching Shipment Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : Claim No, Delivery Order number, Driver ID, Claim Date From, Claim Date --> 
+<div id="jobNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="errorBoxDMSJOB" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('claimSearchFielderrorMsgCLTMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="errorContentDMSJOB" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%">Booking Customer : </td>
+						<td width="20">
+								<input type="text" value="" id="bkCustomerTxt_JOB" name="bkCustomerTxt_JOB"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%">Booking Number :</td>
+						<td width="20">
+							    <input type="text" value="" id="bkNoTxt_JOB" name="bkNoTxt_JOB" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="25%">Port of discharge : </td>
+						<td width="20%" style='padding-right:5px;'>
+									<input type="text" value="" id="podTxt_JOB" name="podTxt_JOB" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Job Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="jobFromDate_JOB">
+    					 <input type="text" value="" name="jobFromDate_JOB" id="jobFromDate_JOB" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser" 
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="jobToDate_JOB">
+    					 <input type="text" value="" name="jobToDate_JOB" id="jobToDate_JOB" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="jobSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="jobClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="jobSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="jobSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'jobNo',width:15,align:'left'">Job No</th>
+						<th width="100" data-options="field:'bookingNo',width:15,align:'left'">Booking No</th>
+						<th width="150" data-options="field:'bookingCustomer',width:15,align:'left'">Booking Customer</th>
+						<th width="100" data-options="field:'jobDateTo',width:15,align:'left'">Job Date</th>
+						<th width="100" data-options="field:'portOfDischarge',width:15,align:'left'">Port Of Discharger</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSJOB" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+
+
+$(function(){
+//	clearMessagesAndGridOfSearch('vendorSearchFieldDivCLTMS','noVendorSearchFoundContentCLTMS','claimSearchCLTMSdg');
+});
+
+$('#jobSearchDMSBtn').click(function(e){
+  console.log("jobSearchDMSBtn :............ ");
+        
+		   console.log(" urlParam :: "+urlParam);
+		   if(validateJobSearch(loginModuelType)){
+		    var urlParam=urlParameterDetailsJob();
+			$.ajax({
+                    beforeSend: function () { 
+				   },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_JOB" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_JOB :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#jobSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSJOB','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#jobSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSJOB').css('display','none');
+             				reloadResultDataOnGrid('jobSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+function validateJobSearch(loginModuelType){
+  var validFlag=true;
+  if(loginModuelType=='OFS'){
+        var fromDateJob= $('#jobFromDate_JOB').datebox('getValue');
+		var toDateJob=$('#jobToDate_JOB').datebox('getValue');
+     if(!dateRangeCheck(stringParseToDate(fromDateJob),stringParseToDate(toDateJob),6)){
+				 validFlag=false;
+				 //autoGeneratedSpanErrorMessages('noResultsMessages_bk','atLeastOneFieldrequired');
+				 $.messager.alert('Message','Job Date range interval should be within six month','info');
+			  }
+  }else{
+   validFlag=false;
+   $.messager.alert('Message','Only OFS user can able to search','info');
+  } 
+ return validFlag;
+}
+
+function urlParameterDetailsJob(){
+//P_BK_CUSTOMER,P_BK_NUMBER,P_POD,P_JOB_DATE_FROM,P_JOB_DATE_TO
+		  return {
+					P_BK_CUSTOMER : $('#bkCustomerTxt_JOB').val(),
+					P_BK_NUMBER : $('#bkNoTxt_JOB').val(),
+					P_POD : $('#podTxt_JOB').val(), 
+					P_JOB_DATE_FROM : $('#jobFromDate_JOB').datebox('getValue'),
+					P_JOB_DATE_TO : $('#jobToDate_JOB').datebox('getValue'),
+				 };	
+}	
+
+//searchSIOrBldg
+$('#jobSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid job search..");
+		   var jobNo=rowdata.jobNo;
+		   $('#jobNoTxt').val(jobNo); 
+		   closeJobDMSSearchPopup();
+	}
+});	
+	//-------Code for clear the Shipment Number Popups Fiels---------------------------
+$('#jobClearDMSBtn').click(function(e){
+console.log("jobClearDMSBtn :............ ");
+	//bkCustomerTxt_JOB,bkNoTxt_JOB,podTxt_JOB,jobFromDate_JOB,jobToDate_JOB
+	//bkCustomerTxt_JOB,bkNoTxt_JOB,podTxt_JOB,jobFromDate_JOB,
+	 jobSearchClearDMS();
+}); 
+
+
+	
+
+function closeJobDMSSearchPopup(){
+    $('#jobNoDMSSearchPopup').css("display","none");
+    $("#backgroundPopup").fadeOut("normal");
+  }
+</script>

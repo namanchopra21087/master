@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions name="GMGDMSServices" targetNamespace="http://services.dms.giga.com/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://services.dms.giga.com/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://services.dms.giga.com/" schemaLocation="GMGDMSServices_schema1.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="ServiceException">
+    <part element="tns:ServiceException" name="fault">
+    </part>
+  </message>
+  <message name="uploadDocumentsResponse">
+    <part element="tns:uploadDocumentsResponse" name="parameters">
+    </part>
+  </message>
+  <message name="uploadDocuments">
+    <part element="tns:uploadDocuments" name="parameters">
+    </part>
+  </message>
+  <message name="searchDocuments">
+    <part element="tns:searchDocuments" name="parameters">
+    </part>
+  </message>
+  <message name="downloadDocuments">
+    <part element="tns:downloadDocuments" name="parameters">
+    </part>
+  </message>
+  <message name="searchDocumentsResponse">
+    <part element="tns:searchDocumentsResponse" name="parameters">
+    </part>
+  </message>
+  <message name="downloadDocumentsResponse">
+    <part element="tns:downloadDocumentsResponse" name="parameters">
+    </part>
+  </message>
+  <message name="IOException">
+    <part element="tns:IOException" name="fault">
+    </part>
+  </message>
+  <message name="deleteDocument">
+    <part element="tns:deleteDocument" name="parameters">
+    </part>
+  </message>
+  <message name="deleteDocumentResponse">
+    <part element="tns:deleteDocumentResponse" name="parameters">
+    </part>
+  </message>
+  <message name="viewDocument">
+    <part element="tns:viewDocument" name="parameters">
+    </part>
+  </message>
+  <message name="mergeDocuments">
+    <part element="tns:mergeDocuments" name="parameters">
+    </part>
+  </message>
+  <message name="mergeDocumentsResponse">
+    <part element="tns:mergeDocumentsResponse" name="parameters">
+    </part>
+  </message>
+  <message name="viewDocumentResponse">
+    <part element="tns:viewDocumentResponse" name="parameters">
+    </part>
+  </message>
+  <portType name="DMSServices">
+    <operation name="searchDocuments">
+      <input message="tns:searchDocuments" wsam:Action="http://services.dms.giga.com/DMSServices/searchDocumentsRequest">
+    </input>
+      <output message="tns:searchDocumentsResponse" wsam:Action="http://services.dms.giga.com/DMSServices/searchDocumentsResponse">
+    </output>
+      <fault message="tns:ServiceException" name="ServiceException" wsam:Action="http://services.dms.giga.com/DMSServices/searchDocuments/Fault/ServiceException">
+    </fault>
+    </operation>
+    <operation name="uploadDocuments">
+      <input message="tns:uploadDocuments" wsam:Action="http://services.dms.giga.com/DMSServices/uploadDocumentsRequest">
+    </input>
+      <output message="tns:uploadDocumentsResponse" wsam:Action="http://services.dms.giga.com/DMSServices/uploadDocumentsResponse">
+    </output>
+      <fault message="tns:ServiceException" name="ServiceException" wsam:Action="http://services.dms.giga.com/DMSServices/uploadDocuments/Fault/ServiceException">
+    </fault>
+    </operation>
+    <operation name="viewDocument">
+      <input message="tns:viewDocument" wsam:Action="http://services.dms.giga.com/DMSServices/viewDocumentRequest">
+    </input>
+      <output message="tns:viewDocumentResponse" wsam:Action="http://services.dms.giga.com/DMSServices/viewDocumentResponse">
+    </output>
+      <fault message="tns:IOException" name="IOException" wsam:Action="http://services.dms.giga.com/DMSServices/viewDocument/Fault/IOException">
+    </fault>
+      <fault message="tns:ServiceException" name="ServiceException" wsam:Action="http://services.dms.giga.com/DMSServices/viewDocument/Fault/ServiceException">
+    </fault>
+    </operation>
+    <operation name="deleteDocument">
+      <input message="tns:deleteDocument" wsam:Action="http://services.dms.giga.com/DMSServices/deleteDocumentRequest">
+    </input>
+      <output message="tns:deleteDocumentResponse" wsam:Action="http://services.dms.giga.com/DMSServices/deleteDocumentResponse">
+    </output>
+      <fault message="tns:ServiceException" name="ServiceException" wsam:Action="http://services.dms.giga.com/DMSServices/deleteDocument/Fault/ServiceException">
+    </fault>
+    </operation>
+    <operation name="downloadDocuments">
+      <input message="tns:downloadDocuments" wsam:Action="http://services.dms.giga.com/DMSServices/downloadDocumentsRequest">
+    </input>
+      <output message="tns:downloadDocumentsResponse" wsam:Action="http://services.dms.giga.com/DMSServices/downloadDocumentsResponse">
+    </output>
+      <fault message="tns:ServiceException" name="ServiceException" wsam:Action="http://services.dms.giga.com/DMSServices/downloadDocuments/Fault/ServiceException">
+    </fault>
+    </operation>
+    <operation name="mergeDocuments">
+      <input message="tns:mergeDocuments" wsam:Action="http://services.dms.giga.com/DMSServices/mergeDocumentsRequest">
+    </input>
+      <output message="tns:mergeDocumentsResponse" wsam:Action="http://services.dms.giga.com/DMSServices/mergeDocumentsResponse">
+    </output>
+      <fault message="tns:ServiceException" name="ServiceException" wsam:Action="http://services.dms.giga.com/DMSServices/mergeDocuments/Fault/ServiceException">
+    </fault>
+    </operation>
+  </portType>
+  <binding name="DMSServicesImplPortBinding" type="tns:DMSServices">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="searchDocuments">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="uploadDocuments">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="viewDocument">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </fault>
+      <fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="deleteDocument">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="downloadDocuments">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="mergeDocuments">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="GMGDMSServices">
+    <port binding="tns:DMSServicesImplPortBinding" name="DMSServicesImplPort">
+      <soap:address location="http://10.60.105.216:9080/DMSServices/GMGDMSServices"/>
+    </port>
+  </service>
+</definitions>

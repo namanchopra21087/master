@@ -1,0 +1,229 @@
+<style type="text/css">
+
+#invoiceSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching invoice Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>invoice To Date always greater than or equal to invoice From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> invoice To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> invoice From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> invoice From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching invoice Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : invoice No, Delivery Order number, Driver ID, invoice Date From, invoice Date --> 
+<div id="invoiceNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="invoiceErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('invoiceSearchFielderrorMsgCLTMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="invoiceErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%">Booking Customer : </td>
+						<td width="20">
+								<input type="text" value="" id="bkCustomerTxt_invoice" name="bkCustomerTxt_invoice"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%"></td>
+						<td width="20">
+						</td>
+						<td align="right" width="25%"></td>
+						<td width="10%" style='padding-right:5px;'>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Invoice Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="invoiceFromDate_invoice">
+    					 <input type="text" value="" name="invoiceFromDate_invoice" id="invoiceFromDate_invoice" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="invoiceToDate_invoice">
+    					 <input type="text" value="" name="invoiceToDate_invoice" id="invoiceToDate_invoice" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="invoiceSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="invoiceClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="invoiceSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="invoiceSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'invoiceNo',width:15,align:'left'">Invoice No</th>
+						<th width="160" data-options="field:'bookingCustomer',width:15,align:'left'">Booking Customer</th>
+						<th width="100" data-options="field:'invoiceDateTo',width:15,align:'left'">Invoice Date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSinvoice" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+$('#invoiceSearchDMSBtn').click(function(e){
+  console.log("invoiceSearchDMSBtn :............ ");
+   if(validateInvoiceSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsInvoice(loginModuelType); 
+	   	$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_INVOICE" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_INVOICE :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#invoiceSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+									   if(loginModuelType=='YMS'){	
+								 console.log("YMS >>>>>");
+												$('#claimSearchDMSdg').datagrid({
+													columns:[[
+														{field:'invoiceNo',title:'Invoice No',width:15},
+														{field:'bookingCustomer',title:'Billing Customer',width:20},
+														{field:'invoiceDateTo',title:'Invoice Date',width:15},
+													]]
+												});			
+								}else{
+								 console.log("OFS and TMS >>>>>");
+								$('#claimSearchDMSdg').datagrid({
+													columns:[[
+														{field:'invoiceNo',title:'Invoice No',width:15},
+														{field:'bookingCustomer',title:'Booking Customer',width:20},
+														{field:'invoiceDateTo',title:'Invoice Date',width:15},
+													]]
+												});		
+								}
+							$('#invoiceSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSinvoice').css('display','none');
+             				reloadResultDataOnGrid('invoiceSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+function validateInvoiceSearch(loginModuelType){
+ var validFlag=true;
+   if(loginModuelType=='OFS'||loginModuelType=='TMS'||loginModuelType=='YMS'){
+	 //siFromDate_si,siToDate_si
+			var fromDateInvoice= $('#invoiceFromDate_invoice').datebox('getValue');
+			var toDateInvoice=$('#invoiceToDate_invoice').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDateInvoice),stringParseToDate(toDateInvoice),6)){ 
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','atLeastOneFieldrequired');
+					 $.messager.alert('Message','Invoice Date range interval should be within six month','info');
+		    }
+	  }else{
+	   validFlag=false;
+	   $.messager.alert('Message','Only OFS and TMS user can able to search','info');
+	  }
+ return validFlag;
+
+}
+
+
+
+function urlParameterDetailsInvoice(moduleType){
+
+	console.log("urlParameter type of :: "+moduleType)
+	console.log("---urlParameterDetailsInvoice : process");
+	//P_INVOICE_DATE_FROM,P_INVOICE_DATE_TO,P_BK_CUSTOMER
+	//bkCustomerTxt_invoice,invoiceFromDate_invoice,invoiceToDate_invoice
+      if(moduleType=="OFS"||moduleType=="TMS"){
+		  return {
+					P_BK_CUSTOMER : $('#bkCustomerTxt_invoice').val(),
+					P_INVOICE_DATE_FROM : $('#invoiceFromDate_invoice').datebox('getValue'),
+					P_INVOICE_DATE_TO : $('#invoiceToDate_invoice').datebox('getValue'),
+				 };
+	  }
+	  if(moduleType=="YMS"){
+	    return {};
+	  }
+}	
+
+//searchinvoiceOrBldg
+$('#invoiceSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid invoice search..");
+		 var invoice_No=rowdata.invoiceNo;
+		   $('#invoiceNoTxt').val(invoice_No); 
+		closeInvoiceDMSSearchPopup();
+		}
+	});
+	
+function closeInvoiceDMSSearchPopup(){
+ $('#invoiceNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+	
+	
+	
+	//-------Code for clear the invoice Number Popups Fiels---------------------------
+$('#invoiceClearDMSBtn').click(function(e){
+console.log("invoiceClearDMSBtn :............ ");
+	invoiceSearchClearDMS();
+}); 
+
+</script>

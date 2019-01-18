@@ -1,0 +1,209 @@
+<style type="text/css">
+
+#pullingOrderNoSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching pullingOrderNo Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>PullingOrderNo To Date always greater than or equal to pullingOrderNo From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> PullingOrderNo To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> PullingOrderNo From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> PullingOrderNo From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching pullingOrderNo Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : pullingOrderNo No, Delivery Order number, Driver ID, pullingOrderNo Date From, pullingOrderNo Date --> 
+<div id="pullingOrderNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="pullingOrderNoErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('pullingOrderNoErrorBoxDMS');" src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="pullingOrderNoErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="30%">Pulling Order No. : </td>
+						<td width="20">
+								<input type="text" value="" id="pullingOrderNoNoTxt_PLO" name="pullingOrderNoNoTxt_PLO"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="25%">Customer Name :</td>
+						<td width="20">
+							<input type="text" value="" id="customerNameTxt_PLO" name="customerNameTxt_PLO"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="25%">Booking No : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<input type="text" value="" id="bookingNoTxt_PLO" name="bookingNoTxt_PLO" class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Pulling Order Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="fromDate_pullingOrderNo">
+    					 <input type="text" value="" name="fromDate_pullingOrderNo" id="fromDate_pullingOrderNo" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="toDate_pullingOrderNo">
+    					 <input type="text" value="" name="toDate_pullingOrderNo" id="toDate_pullingOrderNo" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;"/>
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="pullingOrderNoSearchDMSBtn" href="#" class="button blue bigrounded pullingOrderNoSearchDMSBtn">Search</a> 
+								<a id="pullingOrderNoClearDMSBtn"href="#" class="button blue bigrounded pullingOrderNoClearDMSBtn">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="pullingOrderNoSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="pullingOrderNoSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="80" data-options="field:'pullingOrderNo',width:15,align:'left'">Pulling Order No</th>
+						<th width="80" data-options="field:'customerName',width:15,align:'left'">Customer Name</th>
+						<th width="80" data-options="field:'bookingNo',width:15,align:'left'">Booking No</th>
+						<th width="60" data-options="field:'ploDateTo',width:15,align:'left'">Pulling Order Date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSpullingOrderNo" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+console.log("pullingOrderNo Search DMS  script...................................");
+$('.pullingOrderNoSearchDMSBtn').click(function(e){
+  console.log("pullingOrderNoSearchDMSBtn :............ ");
+  if(validatepullingOrderNoSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsCN(loginModuelType);// P_PLO_NO,P_CUSTOMER_NAME,P_BK_NUMBER,P_PLO_FROM_DATE,P_PLO_TO_DATE
+	   console.log("urlParam ::>>>>P_PLO_NO : "+urlParam.P_PLO_NO+"--P_CUSTOMER_NAME : "+urlParam.P_CUSTOMER_NAME+"--P_BK_NUMBER : "+urlParam.P_BK_NUMBER
+	   +"---P_PLO_FROM_DATE :"+urlParam.P_PLO_FROM_DATE+"--P_PLO_TO_DATE : "+urlParam.P_PLO_TO_DATE);
+	   	$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_PULLINGORDER"/>', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+					validateSession(results);  
+					console.log("SEARCH_pullingOrderNo :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   enablingGridAndFilter('pullingOrderNoSearchDMSdg');
+						   $('#pullingOrderNoSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSpullingOrderNo','noResultReturned');                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#pullingOrderNoSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSpullingOrderNo').css('display','none');
+             				reloadResultDataOnGrid('pullingOrderNoSearchDMSdg',results);							
+						}					    
+                   }
+                }); 
+		}
+}); 
+
+
+
+function validatepullingOrderNoSearch(loginModuelType){
+console.log("validateDOSearch ..................");
+ var validFlag=true;
+   if(loginModuelType=='YMS'){
+			var fromDatepullingOrderNo= $('#fromDate_pullingOrderNo').datebox('getValue');
+			var toDatepullingOrderNo=$('#toDate_pullingOrderNo').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDatepullingOrderNo),stringParseToDate(toDatepullingOrderNo),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','atLeastOneFieldrequired');
+					 $.messager.alert('Message','Pulling Order Date range interval should be within six month','info');
+		    }
+	  }else{
+	   validFlag=false;
+	  }
+ return validFlag;
+}
+
+
+
+function urlParameterDetailsCN(moduleType){
+	console.log("---urlParameterDetailsCN : process");
+	 if(moduleType=='YMS'){
+		  return {
+					P_PLO_NO : $('#pullingOrderNoNoTxt_PLO').val(),
+					P_CUSTOMER_NAME : $('#customerNameTxt_PLO').val(),
+					P_BK_NUMBER : $('#bookingNoTxt_PLO').val(),
+					P_PLO_FROM_DATE : $('#fromDate_pullingOrderNo').datebox('getValue'),
+					P_PLO_TO_DATE : $('#toDate_pullingOrderNo').datebox('getValue'),
+				 };
+	  }
+}	
+
+//searchpullingOrderNoOrBldg
+$('#pullingOrderNoSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid pullingOrderNo search..");
+				 var pullingOrderNo_No=rowdata.pullingOrderNo;
+				console.log("OnDBL :: CN ::::: pullingOrderNo_No "+pullingOrderNo_No);
+				 $('#pullingOrderNoTxt').val(pullingOrderNo_No); 
+				 closepullingOrderNoDMSSearchPopup();
+		}
+	});
+	
+function closepullingOrderNoDMSSearchPopup(){
+ $('#pullingOrderNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+
+	//-------Code for clear the pullingOrderNo Number Popups Fiels---------------------------
+$('.pullingOrderNoClearDMSBtn').click(function(e){
+	console.log("pullingOrderNoClearDMSBtn :............ ");
+	pullingOrderNoSearchClearDMS();
+}); 
+
+	
+</script>

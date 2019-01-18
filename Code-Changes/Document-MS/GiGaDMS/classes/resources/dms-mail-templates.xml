@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dms>
+	<send_upload_dms_mail>
+		<to></to>
+		<cc></cc>
+		<to/>
+		<cc/>
+		<subject>DMS [Document Name#$_$_DOCUMENTNAME_$_$] : failed to upload into DMS –$_$_REMARKS_$_$</subject>
+		<content>
+			The following document is failed to upload:
+			<![CDATA[</br>]]>Document Name<![CDATA[&nbsp;]]>: $_$_DOCUMENTNAME_$_$<![CDATA[</br>]]>
+			Document Type <![CDATA[&nbsp;]]>: $_$_DOCUMENTTYPE_$_$<![CDATA[</br>]]>
+			$_$_DOCUMENTTYPE_$_$ No <![CDATA[&nbsp;]]> :  $_$_DOCUMENTTYPENO_$_$<![CDATA[</br>]]>
+			Remarks<![CDATA[&nbsp;]]>:  $_$_REMARKS_$_$<![CDATA[</br>]]>
+			This is a system-generated email notification.  Please do not reply to this email account.
+		</content>
+	</send_upload_dms_mail>
+</dms>

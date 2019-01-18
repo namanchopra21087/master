@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" id="com.giga.dms.controller.DMSDocUploadWebPortlet.8cfb36e8d4">
+	<portlet>
+		<portlet-name>DMSDocUploadWeb</portlet-name>
+		<display-name xml:lang="en">DMSDocUploadWeb</display-name>
+		<display-name>DMSDocUploadWeb</display-name>
+		<portlet-class>com.giga.dms.controller.DMSDocUploadWebPortlet</portlet-class>
+		<init-param>
+			<name>wps.markup</name>
+			<value>html</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale>
+		<resource-bundle>com.giga.dms.controller.nl.DMSDocUploadWebPortletResource</resource-bundle>
+		<portlet-info>
+			<title>DMSDocUploadWeb</title>
+			<short-title>DMSDocUploadWeb</short-title>
+			<keywords>DMSDocUploadWeb</keywords>
+		</portlet-info>
+		<supported-processing-event>
+			<qname xmlns:customns="http://giga.Event/">customns:uploadDoc</qname>
+   			</supported-processing-event>
+		<supported-processing-event>
+			<qname xmlns:x="TMSBookingDocUploadToDMS">x:DocUpload</qname>
+   			</supported-processing-event>		
+	</portlet>
+	<default-namespace>http://DMSDocUploadWeb/</default-namespace>
+	<event-definition>
+		<qname xmlns:customns="http://giga.Event/">customns:uploadDoc</qname>
+		<value-type>java.lang.String</value-type>
+	</event-definition>
+	<event-definition>
+		<qname xmlns:x="TMSBookingDocUploadToDMS">x:DocUpload</qname>
+	    <value-type>java.lang.String</value-type>
+	</event-definition>		
+</portlet-app>

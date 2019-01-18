@@ -1,0 +1,234 @@
+<style type="text/css">
+
+#loadSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching load Number Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>load To Date always greater than or equal to load From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> load To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> load From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> load From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching load Number Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : load No, Delivery Order number, Driver ID, load Date From, load Date --> 
+<div id="loadNoDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="loadErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('loadErrorBoxDMS');"src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="loadErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="26%">Booking Customer: </td>
+						<td width="20">
+								<input type="text" value="" id="bkCustomerTxt_load" name="bkCustomerTxt_load"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%"></td>
+						<td width="20">
+						</td>
+						<td align="right" width="25%"></td>
+						<td width="20%" style='padding-right:5px;'>
+						</td>
+					</tr>
+					<tr>
+						<td align="right" width="26%">Truck Type : </td>
+						<td width="20">
+								<input type="text" value="" id="truckTypeTxt_load" name="truckTypeTxt_load"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%">Pickup Location : </td>
+						<td width="20">
+							<input type="text" value="" id="picLocTxt_load" name="picLocTxt_load"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+						<td align="right" width="25%">Delivery Location : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<input type="text" value="" id="delyLocTxt_load" name="delyLocTxt_load"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Booking Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="bkFromDate_load">
+    					 <input type="text" value="" name="bkFromDate_load" id="bkFromDate_load" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="bkToDate_load">
+    					 <input type="text" value="" name="bkToDate_load" id="bkToDate_load" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;" />
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="loadSearchDMSBtn" href="#" class="button blue bigrounded">Search</a> 
+								<a id="loadClearDMSBtn"href="#" class="button blue bigrounded">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="loadSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="loadSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="100" data-options="field:'loadNo',width:15,align:'left'">Load No</th>
+						<th width="100" data-options="field:'bookingNo',width:15,align:'left'">Booking No</th>
+						<th width="100" data-options="field:'bookingCustomer',width:15,align:'left'">Booking Customer</th>
+						<th width="100" data-options="field:'truckType',width:15,align:'left'">Truck Type</th>
+						<th width="100" data-options="field:'pickupLocation',width:15,align:'left'">Pickup Location</th>
+						<th width="100" data-options="field:'deliveryLocation',width:15,align:'left'">Delivery Location</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMSload" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+
+console.log("load Search DMS  script...................................");
+$('#loadSearchDMSBtn').click(function(e){
+  console.log("loadSearchDMSBtn :............ ");
+   if(validateLoadSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsDO(loginModuelType); 
+	   //bkCustomerTxt_load,truckTypeTxt_load,picLocTxt_load,delyLocTxt_load,bkFromDate_load,bkToDate_load, -- loadSearchDMSDiv,loadSearchDMSdg,noResultsMessagesDMSload
+			$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_LOAD" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_LOAD :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   $('#loadSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMSload','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#loadSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMSload').css('display','none');
+             				reloadResultDataOnGrid('loadSearchDMSdg',results);
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+
+
+function validateLoadSearch(loginModuelType){
+console.log("validateDOSearch ..................");
+ var validFlag=true;
+   if(loginModuelType=='TMS'){
+	//bkCustomerTxt_load,truckTypeTxt_load,picLocTxt_load,delyLocTxt_load,bkFromDate_load,bkToDate_load, -- loadSearchDMSDiv,loadSearchDMSdg,noResultsMessagesDMSload
+			var fromDateLoad= $('#bkFromDate_load').datebox('getValue');
+			var toDateLoad=$('#bkToDate_load').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDateLoad),stringParseToDate(toDateLoad),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','atLeastOneFieldrequired');
+					 $.messager.alert('Message','Booking Date range interval should be within six month','info');
+		    }
+	  }else{
+	   validFlag=false;
+	   $.messager.alert('Message','Only TMS user can able to search','info');
+	  }
+ return validFlag;
+
+}
+
+
+
+function urlParameterDetailsDO(moduleType){
+
+	console.log("---urlParameterDetailsDO : process");
+	
+	//bkCustomerTxt_load,truckTypeTxt_load,picLocTxt_load,delyLocTxt_load,bkFromDate_load,bkToDate_load, -- loadSearchDMSDiv,loadSearchDMSdg,noResultsMessagesDMSload
+	
+	//bkCustomerTxt_load,truckTypeTxt_load,picLocTxt_load,delyLocTxt_load,bkFromDate_load,bkToDate_load,
+	//P_BK_CUSTOMER,P_TRUCK_TYPE,P_PICKUPLOCATION,P_DELIVERY_LOC,P_BK_DATE_FROM,P_BK_DATE_TO
+	
+      if(moduleType=="TMS"){
+		  return {
+					P_BK_CUSTOMER : $('#bkCustomerTxt_load').val(),
+					P_TRUCK_TYPE : $('#truckTypeTxt_load').val(),
+					P_PICKUPLOCATION : $('#picLocTxt_load').val(),
+					P_DELIVERY_LOC : $('#delyLocTxt_load').val(),
+					P_BK_DATE_FROM : $('#bkFromDate_load').datebox('getValue'),
+					P_BK_DATE_TO : $('#bkToDate_load').datebox('getValue'),
+				 };
+	  }
+}	
+
+//searchloadOrBldg
+$('#loadSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid load search..");
+		 var load_No=rowdata.loadNo;
+		 $('#loadNoTxt').val(load_No); 
+		 closeLoadDMSSearchPopup();
+		}
+	});
+	
+function closeLoadDMSSearchPopup(){
+ $('#loadNoDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+
+	//-------Code for clear the load Number Popups Fiels---------------------------
+$('#loadClearDMSBtn').click(function(e){
+console.log("loadClearDMSBtn :............ ");
+	loadSearchClearDMS();
+}); 
+
+	
+</script>

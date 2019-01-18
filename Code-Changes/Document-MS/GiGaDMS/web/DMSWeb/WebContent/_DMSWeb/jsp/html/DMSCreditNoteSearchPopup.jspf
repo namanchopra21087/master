@@ -1,0 +1,233 @@
+<style type="text/css">
+
+#creditNoteSearchDMSDiv {
+	display: none;
+}
+
+</style>
+
+<!-- -----------------------------------Searching CreditNote Field Error Messages START--------------------------- -->
+  
+  <span id="FromDateValidate_msg" style="display: none"><font><B>creditNote To Date always greater than or equal to creditNote From Date </B></font></span>
+  <span id="ToDateNotFuture_msg" style="display: none"><font><B> creditNote To Date always less than or equals to current date </B></font></span>
+  <span id="FromDateNotFuture_msg" style="display: none"><font><B> creditNote From Date always less than or equals to current date </B></font></span>
+  <span id="DateRangeExceed_msg" style="display: none"><font><B> creditNote From Date and To Date range should not be exceed six month </B></font></span>
+  
+  <!-- -----------------------------------Searching CreditNote Field Error Messages END--------------------------- -->
+<div class="loader"></div>
+<div id="backgroundPopup"></div>
+<!-- Search criateria : creditNote No, Delivery Order number, Driver ID, creditNote Date From, creditNote Date --> 
+<div id="creditNoteDMSSearchPopup"> 
+ <!-- -----------------------------START---shows the Error Messages---------------------- -->
+	<div id="creditNoteErrorBoxDMS" title="Error Details" style="width: 800px; text-align: left; border-color: #95B8E7; display: none; border-style: solid; border-width: 1px;">
+	<div style="width: 800px; text-align: right;"></div>
+	<table class="easyui-panel"
+		style="width: 800px; background-color: #EFF5FF;">
+		<tr>
+			<td style="width: 90%; text-align: left;">
+				<b>Message</b>
+			</td>
+			<td style="width: 10%; text-align: right;"><img border="1" onclick="errorhideBox('creditNoteErrorBoxDMS');" src='<%=renderResponse.encodeURL(renderRequest.getContextPath() + "/images/close-icon.png") %>'
+						id="searchFieldErrorClose" width="17" height="17" class="deleteRow">
+				
+			</td>
+		</tr>
+	</table>
+	<div id="creditNoteErrorContentDMS" style="color: red"></div>
+</div>
+<!-- -----------------------------END---shows the Error Messages---------------------- -->
+<div style="margin: 5px 0;"></div>
+	<div align="center">
+		<div style="margin: 0px 0;"></div>
+		<div class="easyui-panel" title="Search Criteria"
+			style="width: 800px; background: linear-gradient(#F5F5F5, #F5F5F5)">
+			<div>
+				<div style="margin: 0px 0;"></div>
+				<table width="100%" border="0" align="center" style="margin-top:5px;">
+					<tr>
+						<td align="right" width="30%">CreditNote Number : </td>
+						<td width="20">
+								<input type="text" value="" id="creditNoteNoTxt_CN" name="creditNoteNoTxt_CN"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input>
+						</td>
+						<td align="right" width="25%"><span class="ofs_show">Shipment No. :</span> <span class="tms_show">Invoice No. :</span></td>
+						<td width="20">
+							<span class="ofs_show"><input type="text" value="" id="shipmentNoTxt_CN" name="shipmentNoTxt_CN"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input></span>
+							<span class="tms_show"><input type="text" value="" id="invoiceNoTxt_CN" name="invoiceNoTxt_CN"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="64"></input></span>
+						</td>
+						<td align="right" width="25%">Billing Customer : </td>
+						<td width="20%" style='padding-right:5px;'>
+							<input type="text" value="" id="billingCustomerTxt_CN" name="billingCustomerTxt_CN"class="alphaNumSpaceOnly" style="width: 150px;" maxlength="256"></input>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="4">
+						<fieldset style="position: relative; left: 20px; margin-bottom:10px;">
+						<legend align="center">Credit Note Date</legend>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						From Date:<span class="madantFld">*</span>
+						<span class="fromDate_creditNote">
+    					 <input type="text" value="" name="fromDate_creditNote" id="fromDate_creditNote" 
+    					 		class="easyui-datebox LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:150px;" />
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To Date:<span class="madantFld">*</span>
+						<span class="toDate_creditNote">
+    					 <input type="text" value="" name="toDate_creditNote" id="toDate_creditNote" 
+    					 		class="easyui-datebox  LoadTodaysDate"
+								data-options="formatter:myformatter,parser:myparser"
+								validType="validDate " style="width:120px;"/>
+						</span>
+						</fieldset>
+						</td><td colspan="2">
+						<div class="button-emil">
+								<a id="creditNoteSearchDMSBtn" href="#" class="button blue bigrounded creditNoteSearchDMSBtn">Search</a> 
+								<a id="creditNoteClearDMSBtn"href="#" class="button blue bigrounded creditNoteClearDMSBtn">Clear</a>
+								</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- 370px -->
+		<div style="margin: 5px 0;"></div>
+		<div id="creditNoteSearchDMSDiv" class="gridTbl">
+			<table class="easyui-datagrid" id="creditNoteSearchDMSdg"
+				style="width: 800px; height: 368px" title="Search Results"
+				data-options="method: 'get',
+						 fitColumns: true,
+						 singleSelect: true,
+						 rownumbers: true,
+						 multisort:true,
+						 pagination:true,
+						 pageSize:10">
+				<thead>   
+					<tr>
+						<th width="80" data-options="field:'creditNoteNo',width:15,align:'left'">Credit Note No</th>
+						<th width="80" data-options="field:'shipmentNo',width:15,align:'left'">Shipment No</th>
+						<th width="80" data-options="field:'invoiceNo',width:15,align:'left'">Invoice No</th>
+						<th width="180" data-options="field:'billingCustomer',width:15,align:'left'">Billing Customer</th>
+						<th width="60" data-options="field:'cnDateTo',width:15,align:'left'">Credit Note Date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="noResultsMessagesDMScreditNote" style="display: none;align : center"></div>
+	</div>
+</div>
+<script>
+//creditNoteDMSSearchPopup,creditNoteTxt,creditNoteSarchIconDMS,CreditNoteEreaser
+console.log("creditNote Search DMS  script...................................");
+$('.creditNoteSearchDMSBtn').click(function(e){
+  console.log("creditNoteSearchDMSBtn :............ ");
+  if(validateCreditNoteSearch(loginModuelType)){
+	   var urlParam=urlParameterDetailsCN(loginModuelType); 
+	   console.log("urlParam ::>>>>P_CN_NO : "+urlParam.P_CN_NO+"--P_SHIPMENT_NO : "+urlParam.P_SHIPMENT_NO+"--P_BILLING_CUSTOMER : "+urlParam.P_BILLING_CUSTOMER
+	   +"---P_CN_FROM_DATE :"+urlParam.P_CN_FROM_DATE+"--P_CN_FROM_DATE : "+urlParam.P_CN_FROM_DATE+"--P_CN_TO_DATE : "+urlParam.P_CN_TO_DATE);
+	   	$.ajax({
+                    beforeSend: function () { 
+				    },
+                    type : "POST",                    
+                    async : true,
+                    url : '<portlet:resourceURL id="SEARCH_CREDITNOTE" />', 
+                    data: urlParam,
+                    datatype : "json",                  
+                   success: function(results)
+                   {
+				   validateSession(results);  
+				   console.log("SEARCH_CREDITNOTE :: result :length :  "+results.length+"\n results::::"+results);
+                	   if(results.length==0){
+                		   console.log("No result return : length is : "+results.length);
+                		   enablingGridAndFilter('creditNoteSearchDMSdg');
+						   $('#creditNoteSearchDMSDiv').css('display' , 'none');
+                		   autoGeneratedSpanErrorMessages('noResultsMessagesDMScreditNote','noResultReturned');
+                	   
+                	   }else{
+                		   console.log("result return : length is : "+results.length);
+							$('#creditNoteSearchDMSDiv').css('display' ,'inline');
+							$('#noResultsMessagesDMScreditNote').css('display','none');
+             				reloadResultDataOnGrid('creditNoteSearchDMSdg',results);
+							if(loginModuelType == 'TMS'){
+								$("#creditNoteSearchDMSdg").datagrid("hideColumn","shipmentNo" );
+							}else
+							if(loginModuelType == 'OFS'){
+								$("#creditNoteSearchDMSdg").datagrid("hideColumn","invoiceNo" );
+							}
+						}
+					    
+                   }
+                }); 
+		}
+}); 
+
+
+
+function validateCreditNoteSearch(loginModuelType){
+console.log("validateDOSearch ..................");
+ var validFlag=true;
+   if(loginModuelType=='TMS'||loginModuelType == 'OFS'|| loginModuelType=='YMS'){
+			var fromDatecreditNote= $('#fromDate_creditNote').datebox('getValue');
+			var toDatecreditNote=$('#toDate_creditNote').datebox('getValue');
+		 if(!dateRangeCheck(stringParseToDate(fromDatecreditNote),stringParseToDate(toDatecreditNote),6)){
+					 validFlag=false;
+					 //autoGeneratedSpanErrorMessages('noResultsMessagesDMSinvoice','atLeastOneFieldrequired');
+					 $.messager.alert('Message','Credit Note Date range interval should be within six month','info');
+		    }
+	  }else{
+	   validFlag=false;
+		// $.messager.alert('Message','Only TMS user can able to search','info');
+	  }
+ return validFlag;
+}
+
+
+
+function urlParameterDetailsCN(moduleType){
+	console.log("---urlParameterDetailsCN : process");
+	  //creditNoteNoTxt_CN,shipmentNoTxt_CN,billingCustomerTxt_CN,fromDate_creditNote,toDate_creditNote,creditNoteSearchDMSDiv,creditNoteSearchDMSdg
+	 if(moduleType=='OFS'||moduleType=='YMS'){
+		  return {
+					P_CN_NO : $('#creditNoteNoTxt_CN').val(),
+					P_SHIPMENT_NO : $('#shipmentNoTxt_CN').val(),
+					P_BILLING_CUSTOMER : $('#billingCustomerTxt_CN').val(),
+					P_CN_FROM_DATE : $('#fromDate_creditNote').datebox('getValue'),
+					P_CN_TO_DATE : $('#toDate_creditNote').datebox('getValue'),
+				 };
+	  }else
+	  if(moduleType=="TMS")
+	  {
+	   return {
+					P_CN_NO : $('#creditNoteNoTxt_CN').val(),
+					P_INVOICE_NO : $('#invoiceNoTxt_CN').val(),
+					P_BILLING_CUSTOMER : $('#billingCustomerTxt_CN').val(),
+					P_CN_FROM_DATE : $('#fromDate_creditNote').datebox('getValue'),
+					P_CN_TO_DATE : $('#toDate_creditNote').datebox('getValue'),
+				 };
+	  }
+}	
+
+//searchcreditNoteOrBldg
+$('#creditNoteSearchDMSdg').datagrid({
+		onDblClickRow: function(index,rowdata){
+		  console.log("on dbl click on grid creditNote search..");
+				 var creditNote_No=rowdata.creditNoteNo;
+				 var shipment_No=rowdata.shipmentNo;
+				console.log("OnDBL :: CN ::::: creditNote_No "+creditNote_No+"---shipment_No : "+shipment_No);
+				 $('#creditNoteTxt').val(creditNote_No); 
+				 closeCreditNoteDMSSearchPopup();
+		}
+	});
+	
+function closeCreditNoteDMSSearchPopup(){
+ $('#creditNoteDMSSearchPopup').css("display","none");
+ $("#backgroundPopup").fadeOut("normal");
+}
+
+	//-------Code for clear the creditNote Number Popups Fiels---------------------------
+$('.creditNoteClearDMSBtn').click(function(e){
+	console.log("creditNoteClearDMSBtn :............ ");
+	creditNoteSearchClearDMS();
+}); 
+
+	
+</script>
