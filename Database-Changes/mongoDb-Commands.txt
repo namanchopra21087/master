@@ -1,4 +1,6 @@
-*show dbs command to see all the database.
+*show dbs;command to see all the database.
 *show collections; to see all tables in mongodb.
 *db.colelctionname.find();to see all the data inside collection.
-*db.PolicyDocument.deleteMany({})
+*db.PolicyDocument.deleteMany({});delete all the documents inside collection.
+*use database-name;to switch to the database.
+*db.PolicyDocument.count();returns all the records inside the collection.
