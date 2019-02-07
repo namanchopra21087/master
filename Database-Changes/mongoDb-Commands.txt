@@ -4,3 +4,8 @@
 *db.PolicyDocument.deleteMany({});delete all the documents inside collection.
 *use database-name;to switch to the database.
 *db.PolicyDocument.count();returns all the records inside the collection.
+*Drop database:-
+	1)use databaseName;
+	2)db.dropDatabase();
+*db.PolicyDocument.getIndexes();get all the indexes associated with the "PolicyDocument" collection.
+*db.PolicyValidationFailure.deleteMany({});delete all the documents inside collection.

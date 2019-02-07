@@ -23,3 +23,4 @@ Softwares to be installed for dev utilities:-
 	* now you are all set to use angular sytax. 
 	* For building the angular project and launching the project inside angular live development server use command "ng serve --open".
 14) Postman to run rest api environment end points.
+15) Use Robo-Mongo or Robo-3T as mongoDb client for querying the results of mongo db.

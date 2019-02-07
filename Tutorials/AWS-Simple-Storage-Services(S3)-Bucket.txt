@@ -1,0 +1,9 @@
+*Various S# bucket storage tiers:-
+	1) Standard storage: Use for storing data which is very frequently accessed and is required to be stored in multiple regions.
+	2) Standard-IA(Infrequent Access):Use for storing data which is infrequently accessed.
+	3) Glacier:- Use for storing archived data.
+	4) One-Zone(IA):Use for storing data that is required in one zone and accessed in-frequently.
+	5) RRS(Reduced redundancy services):Good for storing data that is non-critical and can be easily re-produced.
+* All of the above storage standards support:-
+	1) 11 9's durability:- That means 99.999999999% data is not lost once stored on S3 bucket.
+	2) Avalibility 99.99%:Data stored on S3 bucket is 99.99% available at any gioven time.
