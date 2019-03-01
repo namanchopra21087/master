@@ -24,3 +24,5 @@ Softwares to be installed for dev utilities:-
 	* For building the angular project and launching the project inside angular live development server use command "ng serve --open".
 14) Postman to run rest api environment end points.
 15) Use Robo-Mongo or Robo-3T as mongoDb client for querying the results of mongo db.
+16) Lombok api for removing boiler-plate code.
+17) Grafana should be used for monitoring of code.Its a analytical tool to simplify data in flow charts and diagram.
