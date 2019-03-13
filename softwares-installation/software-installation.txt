@@ -30,3 +30,6 @@ Softwares to be installed for dev utilities:-
 	*Then prometheus service pulls these logs and acts as a datasource to 
 		pass it to Grafana for making metrics charts.
 18) JHipster is a consolidated software which can build a base framework in 20 minutes.
+19) OAuth is used for authorization and authentication of the application.
+	*Authentication is the process of verifying who you are by giving ur username and paswrod.
+	*Authorization is the process of verifying what you have access to.DOne by checking ur roles.
