@@ -8,6 +8,7 @@
 *.orig
 *.metadata
 classes/
+.project
 
 ######################
 # Maven
