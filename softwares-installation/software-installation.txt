@@ -34,3 +34,10 @@ Softwares to be installed for dev utilities:-
 	*Authentication is the process of verifying who you are by giving ur username and paswrod.
 	*Authorization is the process of verifying what you have access to.DOne by checking ur roles.
 20) Open LDAP is used for authentication and authorization of user credentails. 
+	*Open LDAP can be installed on a dev server and can be accessd through its webclient.
+	*We create Users,Groups and Roles inside Open Ldap.
+21) Kubernetes
+    *Alike EC2 its another container for deployinga nd running applications. 
+	*Simply put, Kubernetes is a system for running many different containers for multiple different machines.
+	*It was originally created by Google and donated to the Cloud Native Computing Foundation (CNCF). 
+	*Kubernetes is generally  used when you require a large number of different containers with different images.  
