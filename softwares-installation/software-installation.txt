@@ -33,3 +33,4 @@ Softwares to be installed for dev utilities:-
 19) OAuth is used for authorization and authentication of the application.
 	*Authentication is the process of verifying who you are by giving ur username and paswrod.
 	*Authorization is the process of verifying what you have access to.DOne by checking ur roles.
+20) Open LDAP is used for authentication and authorization of user credentails. 
