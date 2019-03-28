@@ -36,6 +36,7 @@ Softwares to be installed for dev utilities:-
 20) Open LDAP is used for authentication and authorization of user credentails. 
 	*Open LDAP can be installed on a dev server and can be accessd through its webclient.
 	*We create Users,Groups and Roles inside Open Ldap.
+	*Use Apache Directory Studio to connect to LDAP Server.
 21) Kubernetes
     *Alike EC2 its another container for deployinga nd running applications. 
 	*Simply put, Kubernetes is a system for running many different containers for multiple different machines.
