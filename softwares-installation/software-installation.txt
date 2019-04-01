@@ -38,7 +38,14 @@ Softwares to be installed for dev utilities:-
 	*We create Users,Groups and Roles inside Open Ldap.
 	*Use Apache Directory Studio to connect to LDAP Server.
 21) Kubernetes
-    *Alike EC2 its another container for deployinga nd running applications. 
+    *Alike EC2 its another container for deploying and running applications. 
 	*Simply put, Kubernetes is a system for running many different containers for multiple different machines.
 	*It was originally created by Google and donated to the Cloud Native Computing Foundation (CNCF). 
-	*Kubernetes is generally  used when you require a large number of different containers with different images.  
+	*Kubernetes is generally used when you require a large number of different containers with different images. 
+22) CUBA framework
+	* Build on top of intellij.
+	* IDE for java platform.
+	* Provides the studio for designing java enterprise application.
+	* Its an abstraction to low level java code.
+	* Helps to create database entities with db scripts.
+	* Can create GUI for backend entities using default cuba templates.
