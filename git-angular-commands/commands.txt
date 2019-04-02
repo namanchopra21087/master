@@ -1,0 +1,32 @@
+Git rebase using Git bash:-
+1) git rebase -i [hash code of commit to which we wanna merge]
+2) On VIM screen use pick ,squash or fix to merge commits.
+3) Press Esc.
+4):wq
+5)Rebase will continue.
+---------------------------------------------------------------------------
+Create a patch example branch against master:
+git checkout <branch to create patch>
+git format-patch master --stdout > example.patch
+Above command create a patch file which has all commits which is present on example branch but not on master.
+---------------------------------------------------------------------------
+Apply patch on branch1:
+git checkout <branch1 to apply patch>
+git apply --reject --whitespace=fix example.patch
+---------------------------------------------------------------------------
+*Branch deletion command:-
+git checkout <anybranch> 
+git branch -D feature/SCRM-23-develop-claim-api
+git push origin --delete feature/SCRM-23-develop-claim-api 
+
+*history:shows git commands hostory.
+*git log -l5:shows the recent commits logs on branch.
+*git checkout -b [new branch][old branch]:creates new branch from existing branch.
+---------------------------------------------------------------------------
+Which process is using which port:-
+netstat -ano > output.txt
+----------------------------------------------------------------------------
+ng g module policy-routing --flat
+*above command puts the policy-routing inside the directory where its created.
+example:---flat doesn't create a directory of this module. just simply creates a file.
+----------------------------------------------------------------------------
