@@ -49,3 +49,5 @@ Softwares to be installed for dev utilities:-
 	* Its an abstraction to low level java code.
 	* Helps to create database entities with db scripts.
 	* Can create GUI for backend entities using default cuba templates.
+23) In maven dependency make sure to inherit the spring-boot-parent in ur own pom so that it can be generalized across the project.
+24) Spring profiles used to config different configuration in different environments.
