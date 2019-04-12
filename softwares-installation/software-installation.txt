@@ -45,9 +45,16 @@ Softwares to be installed for dev utilities:-
 22) CUBA framework
 	* Build on top of intellij.
 	* IDE for java platform.
-	* Provides the studio for designing java enterprise application.
+	* Provides the studio for designitslint -c ng java enterprise application.
 	* Its an abstraction to low level java code.
 	* Helps to create database entities with db scripts.
 	* Can create GUI for backend entities using default cuba templates.
 23) In maven dependency make sure to inherit the spring-boot-parent in ur own pom so that it can be generalized across the project.
 24) Spring profiles used to config different configuration in different environments.
+	* Spring profile can be enabled by using "spring.profiles.active=<profile name>" inside application.properties.
+	* Now make application-dev.properties or application-prod.properties to enable specific profile.
+	
+25) TSlint is used to find angular typescript bugs.
+	* use command npm install -g tslint.
+	* then type tslint.json 'src/**/*.ts' to get the list of all the issues.
+	* TsLint to be used is attached in gitrepo but normally each angular project has default tslint file.
