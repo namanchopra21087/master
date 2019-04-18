@@ -59,3 +59,5 @@ Softwares to be installed for dev utilities:-
 	* use command npm install -g tslint.
 	* then type tslint.json 'src/**/*.ts' to get the list of all the issues.
 	* TsLint to be used is attached in gitrepo but normally each angular project has default tslint file.
+26) Maven pom.xml shall always have base pom file that has major project dependencies that can be added 
+	as parent to all module level poms

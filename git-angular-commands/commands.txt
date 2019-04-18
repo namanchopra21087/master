@@ -16,8 +16,8 @@ git apply --reject --whitespace=fix example.patch
 ---------------------------------------------------------------------------
 *Branch deletion command:-
 git checkout <anybranch> 
-git branch -D feature/SCRM-23-develop-claim-api
-git push origin --delete feature/SCRM-23-develop-claim-api 
+git branch -D SCRM-169-incorporate-concurrent-policy-batch-upload
+git push origin --delete SCRM-169-incorporate-concurrent-policy-batch-upload 
 
 *history:shows git commands hostory.
 *git log -l5:shows the recent commits logs on branch.
@@ -29,4 +29,7 @@ netstat -ano > output.txt
 ng g module policy-routing --flat
 *above command puts the policy-routing inside the directory where its created.
 example:---flat doesn't create a directory of this module. just simply creates a file.
+----------------------------------------------------------------------------
+Change the documentation as per teh new design
+https://amtrust.atlassian.net/wiki/spaces/ENG/pages/215580673/Directory+Service+OAuth
 ----------------------------------------------------------------------------
