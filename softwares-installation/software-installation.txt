@@ -61,3 +61,6 @@ Softwares to be installed for dev utilities:-
 	* TsLint to be used is attached in gitrepo but normally each angular project has default tslint file.
 26) Maven pom.xml shall always have base pom file that has major project dependencies that can be added 
 	as parent to all module level poms
+27) Video editor:VSDC editor
+28) Make sure to have immutable objects as shared objects in multi-threading.
+	Global mutable objects can cause issues in concurrent processing.
