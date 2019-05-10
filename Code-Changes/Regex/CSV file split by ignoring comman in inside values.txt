@@ -1,0 +1,2 @@
+ String REGEX_COMMA = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
+ row.split(PolicyConstants.REGEX_COMMA,-1);
