@@ -16,8 +16,8 @@ git apply --reject --whitespace=fix example.patch
 ---------------------------------------------------------------------------
 *Branch deletion command:-
 git checkout <anybranch> 
-git branch -D SCRM-169-incorporate-concurrent-policy-batch-upload
-git push origin --delete SCRM-169-incorporate-concurrent-policy-batch-upload 
+git branch -D SCRM-335-ui-development
+git push origin --delete SCRM-335-ui-development
 
 *history:shows git commands hostory.
 *git log -l5:shows the recent commits logs on branch.

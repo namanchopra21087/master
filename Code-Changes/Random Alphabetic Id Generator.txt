@@ -1,0 +1,9 @@
+import org.apache.commons.lang3.RandomStringUtils;
+public class IdGenerator {
+    public IdGenerator() {
+    }
+
+    public static String generateTransactionId() {
+        return RandomStringUtils.randomAlphabetic(10).toUpperCase() + String.valueOf(System.currentTimeMillis()).substring(2, 12);
+    }
+}
