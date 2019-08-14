@@ -64,3 +64,7 @@ Softwares to be installed for dev utilities:-
 27) Video editor:VSDC editor
 28) Make sure to have immutable objects as shared objects in multi-threading.
 	Global mutable objects can cause issues in concurrent processing.
+29) Always use ELK to setUp logs for api:-
+E:ElasticSearch
+L:logstack
+K:Kibana
