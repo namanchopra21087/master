@@ -9,3 +9,9 @@
 	2)db.dropDatabase();
 *db.PolicyDocument.getIndexes();get all the indexes associated with the "PolicyDocument" collection.
 *db.PolicyValidationFailure.deleteMany({});delete all the documents inside collection.
+* Selectively delete records from mongoDB.
+db.PolicyDocument.find().limit(100).forEach(doc => 
+     { 
+       db.PolicyDocument.remove({_id:doc._id})
+     }
+    )
