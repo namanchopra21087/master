@@ -68,3 +68,4 @@ Softwares to be installed for dev utilities:-
 E:ElasticSearch
 L:logstack
 K:Kibana
+30) DevOps strategy:https://dev.to/mostlyjason/intro-to-deployment-strategies-blue-green-canary-and-more-3a3
