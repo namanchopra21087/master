@@ -15,3 +15,8 @@ db.PolicyDocument.find().limit(100).forEach(doc =>
        db.PolicyDocument.remove({_id:doc._id})
      }
     )
+* Update database with filter,convert it into double and save again.
+db.getCollection('claims').find({partnerId:"IDSAMSUOEMNA01"}).forEach( function (x) {   
+  x.excessFee = parseInt(x.excessFee,10); // convert field to double
+  db.getCollection('claims').save(x);
+});
