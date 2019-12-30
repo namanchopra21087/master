@@ -22,12 +22,12 @@ db.getCollection('claims').find({partnerId:"IDSAMSUOEMNA01"}).forEach( function 
 });
 
 * Filter data from mongoDb with dateRange lessThenEqual to and greaterThenEqualTO. Date in mongo saved in string format.
-db.getCollection('PolicyDocument').find({"$expr": { "$and": [
+db.getCollection('policyDocuments').find({"$expr": { "$and": [
     {"$lte": [{ $dateFromString: 
-        { dateString: "$policyStartDate",format: "%d/%m/%Y"}}, 
-        {$toDate: "11/12/2019"} ]},
+        { dateString: "$creationDate",format: "%d/%m/%Y"}}, 
+        {$toDate: "12/30/2019"} ]},<!--Remember this $toDate must be consider as mm/dd/yyyy -->
     {"$gte": [{ $dateFromString: 
-        { dateString: "$policyStartDate",format: "%d/%m/%Y"}}, 
-        {$toDate: "11/01/2019"} ]} <!--Remember this $toDate must be consider as mm/dd/yyyy -->
+        { dateString: "$creationDate",format: "%d/%m/%Y"}}, 
+        {$toDate: "12/26/2019"} ]} <!--Remember this $toDate must be consider as mm/dd/yyyy -->
     ]}
 	})
