@@ -31,3 +31,10 @@ db.getCollection('policyDocuments').find({"$expr": { "$and": [
         {$toDate: "12/26/2019"} ]} <!--Remember this $toDate must be consider as mm/dd/yyyy -->
     ]}
 	})
+*Find duplicate records in mongoDb:
+db.policyDocuments.aggregate(
+    {"$group" : { "_id": "$policyIMEINumber", "count": { "$sum": 1 } } },
+    {"$match": {"_id" :{ "$ne" : null } , "count" : {"$gt": 1} } },
+    {"$project": {"policyIMEINumber" : "$_id", "_id" : 0} }
+ );
+ where policyDocuments is teh collectionName and policyIMEINumber is the field name.
