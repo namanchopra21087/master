@@ -38,9 +38,31 @@ db.policyDocuments.aggregate(
     {"$project": {"policyIMEINumber" : "$_id", "_id" : 0} }
  );
  where policyDocuments is teh collectionName and policyIMEINumber is the field name.
- * Update fields in mongoDb
+* Update fields in mongoDb
  db.getCollection('policyDocuments').find({}).forEach(doc => 
      { 
        db.policyDocuments.update({_id: doc._id},{$set:{"balanceRRP": doc.deviceRRP}});
      }
     )
+* Writing javascript inside mongo shell:
+Step1: Create .js file in your local with commands like below:
+printjson("************Executing script********************");
+var mongo = new Mongo("uat.amtrust.asia:27017");
+var db =mongo.getDB("admin");
+db.auth("root" , "dbP@ssw0rd");
+var policyDb = mongo.getDB("policyDB");
+var collection = policyDb.getCollection('policyDocuments').find({});
+collection.forEach((policydoc) =>{
+	printjson("In the air");
+	if(policydoc.balanceRRP == null || policydoc.balanceRRP == ''){
+		printjson(policydoc.policyNumber);
+		printjson(policydoc.deviceRRP);
+		policydoc.balanceRRP = policydoc.deviceRRP;
+		policyDb.getCollection('policyDocuments').save(policydoc);
+	}
+});
+printjson("************Finshed script********************");
+
+Step2: Use command load("pathoffile.js")
+
+Refer:https://docs.mongodb.com/manual/reference/mongo-shell/
