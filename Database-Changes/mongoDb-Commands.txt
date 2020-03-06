@@ -66,3 +66,11 @@ printjson("************Finshed script********************");
 Step2: Use command load("pathoffile.js")
 
 Refer:https://docs.mongodb.com/manual/reference/mongo-shell/
+
+*Dynamic script to add a new field and increment by 1:
+var i=1001
+db.getCollection('claimLogs').find({}).forEach(doc => 
+     { 
+       db.claimLogs.update({_id: doc._id},{$set:{"claimId": NumberLong(i++)}});
+     }
+    )
