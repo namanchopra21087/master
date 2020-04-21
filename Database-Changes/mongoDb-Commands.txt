@@ -71,6 +71,6 @@ Refer:https://docs.mongodb.com/manual/reference/mongo-shell/
 var i=1001
 db.getCollection('claimLogs').find({}).forEach(doc => 
      { 
-       db.claimLogs.update({_id: doc._id},{$set:{"claimId": NumberLong(i++)}});
+       db.claimLogs.update({_id: doc._id},{$set:{"claimLogId": NumberLong(i++)}});
      }
     )
