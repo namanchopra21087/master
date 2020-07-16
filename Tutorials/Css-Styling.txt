@@ -1,0 +1,26 @@
+1) dot(.) is used for custom class names
+	Example:
+	.example{
+
+	}
+
+	<div class="example"></dv>
+
+2)Hash(#) 
+	#forgot{
+		color: #2EB5C7;
+		font-size: 14px;
+	}
+
+	<a id="forgot" (click)="openForgotPasswordModal()">Forgot Password?</a>
+ 
+3) For html/angular tags
+	*a{
+	cusrsor:pointer
+	}
+	<a (click)="fetchClaimDetails(row)" class="navMenu">
+
+	*<table><tr><td></td></tr></table>
+	table{
+	color:red;
+	}

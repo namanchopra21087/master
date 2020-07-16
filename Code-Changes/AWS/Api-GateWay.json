@@ -1,0 +1,58 @@
+#set($inputRoot = $input.path('$'))
+{
+  "timestamp" : "$context.requestTime",
+  "transactionId" : "$inputRoot.transactionId",
+  "status" : "$inputRoot.status",
+	#if($inputRoot.status == 'OK')
+	[
+		#foreach($elem in $inputRoot.obj.resultList)
+		"countryCode": $elem.countryCode,
+		"languageCode": null,
+		"contact": {
+			"countryCode": $elem.productsModel.countryCode,
+			"firstName": $elem.customerName,
+			"lastName": $elem.customerLastName,
+			"gender": null,
+			"optIns": [
+				null
+			],
+			"ids": [{
+				"number": $elem.custIdNumber,
+				"type": null
+			}],
+			"email": $elem.customerEmail,
+			"dateOfBirth": null,
+			"addresses": [{
+				"countryCode": $elem.custAddress.countryCode,
+				"type": "correspondence",
+				"flat": $elem.custAddress.address1,
+				"floor": $elem.custAddress.address2,
+				"building": "",
+				"street": "",
+				"number": "",
+				"district": null,
+				"region": null,	
+				"city": $elem.custAddress.city,
+				"provinceCode": $elem.custAddress.state,
+				"zipCode": $elem.custAddress.postalCode
+			}]
+		},
+		"company": {
+			"phoneNumber": null,
+			"name": null,
+			"payerCode": null
+		}
+
+	 #if($foreach.hasNext),#end
+	 #end
+	]
+	#else
+	
+    #set ($contentMessage = $input.path('$.message'))
+
+    "code" : "$inputRoot.code",
+    "error" : "$inputRoot.error",
+    "message" : "$contentMessage[0]"
+	
+    #end
+}

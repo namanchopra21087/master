@@ -1,0 +1,50 @@
+Backend:
+*Spring security using WebSecurityConfigurerAdapter.
+*Microservice---->Microservice interaction fro distributed env using kafka,SNS,SQS,RabbitMQ.
+*Saga design pattern for microservices via:
+	*Orchestration
+	*Choreography.
+*Code moniroting using 
+	*Actuator
+	*Prometheus
+	*Grafana
+*Spring cloud config server for centralized application properties which are decoupled from microservices.
+*Eureka as Discovery server.
+*MongoDb utility w.r.t Sql Db's.
+*AOP implementation inside sprinBoot for interceptors.
+*Collections:ConcurrentHaspMap,HashMap,Map,List,LinkedList,BlockingQueue.
+*Design patterns:
+	*Factory design pattern.
+	*Singelton design pattern.
+*Fault tolerance using Hyterix circuit-breaker.
+*JWT.
+*
+
+FrontEnd:
+*AuthGuard for protecting routes.
+*Angular pipe for decorating data from backend.
+*Call from angular to backend using HTTPClient.
+*Observable vs Promise.
+*Inject COmponent B inside Component A using selectors.
+*Angular two way data binding.
+*Make screen responsive using @media in css.
+*How to pass data from one screen to another in angular at runtime.
+*How to inject service at root level in angular.
+*How to make routes.
+*Authentication/Authorization using JWT.
+
+AWS:
+*SQS.
+*SNS.
+*Websockets.
+*S3.
+*Lake Formation.
+*Api Gateway.
+*AWS Lambda.
+*Application Load Balancer(ALB).
+*Classic Load Balancer vs ALB.
+*Target Gorups.
+*Security Groups.
+*Ec2.
+*Certification Manager.
+*CloudFront.
