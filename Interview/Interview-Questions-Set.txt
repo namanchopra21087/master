@@ -1,6 +1,6 @@
 Backend:
 *Spring security using WebSecurityConfigurerAdapter.
-*Microservice---->Microservice interaction fro distributed env using kafka,SNS,SQS,RabbitMQ.
+*Microservice---->Microservice interaction from distributed env using kafka,SNS,SQS,RabbitMQ.
 *Saga design pattern for microservices via:
 	*Orchestration
 	*Choreography.
@@ -32,6 +32,7 @@ FrontEnd:
 *How to inject service at root level in angular.
 *How to make routes.
 *Authentication/Authorization using JWT.
+*
 
 AWS:
 *SQS.
@@ -48,3 +49,4 @@ AWS:
 *Ec2.
 *Certification Manager.
 *CloudFront.
+*
