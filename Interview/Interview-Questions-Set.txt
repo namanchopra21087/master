@@ -39,7 +39,7 @@ AWS:
 *SNS.
 *Websockets.
 *S3.
-*Lake Formation.
+*Data Lake Formation.
 *Api Gateway.
 *AWS Lambda.
 *Application Load Balancer(ALB).
@@ -49,4 +49,4 @@ AWS:
 *Ec2.
 *Certification Manager.
 *CloudFront.
-*
+*Deploy code from bitbucket to Ec2 via Jenkins using Nodes/connector.
