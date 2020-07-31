@@ -1,0 +1,101 @@
+var mongo = new Mongo("54.251.149.31:27017");
+var db = mongo.getDB("admin");
+db.auth("root", "dbP@ssw0rd");
+var policydb = mongo.getDB("policyDB");
+var customerdb = mongo.getDB("customerDB");
+
+
+var seedCustSeq = customerdb.customerSequence.findOne({
+    "_id": "hosting"
+})
+var custIndex = seedCustSeq.seq
+
+policydb.policyDocuments.find({
+    "partnerId": "VNSAMSUOEMNA02"
+}).skip(0).limit(1700).forEach(function(doc) {
+
+        if (doc.customerId) {
+            print("Customer already present for Policy: " + doc.policyNumber)
+        } else {
+
+             var customerFound = customerdb.customer.findOne({
+                firstName: doc.customerName!=undefined?doc.customerName:"",
+                lastName: doc.customerLastName!=undefined?doc.customerLastName:"",
+                mobileNumber: doc.custMobileNumber!=undefined?doc.custMobileNumber:"",
+                email: doc.customerEmail!=undefined?doc.customerEmail:"",
+            })
+
+            if (customerFound != null && customerFound != undefined) {
+
+                print("Existing Customer Found with Data at Policy:" + doc.policyNumber + " , Customer idNumber: " + customerFound.idNumber)
+                policydb.policyDocuments.update({
+                    "_id": doc._id
+                }, {
+                    '$set': {
+                        "customerId": customerFound.idNumber,
+                    }
+                });
+
+            } else {
+
+                var custId = ("0000000" + custIndex).slice(-8)
+                custId = "CUST" + custId
+
+                print("Adding New customer for Policy: " + doc.policyNumber + ", idNumber: " + custId)
+
+                var add1, add2, city, state, countryCode, postalCode;
+                add1 = add2 = city = state = countryCode = postalCode = null;
+                if ((typeof doc.custAddress).toString() != "undefined") {
+                    add1 = doc.custAddress.address1 != undefined ? doc.custAddress.address1 : null;
+                    add2 = doc.custAddress.address2 != undefined ? doc.custAddress.address2 : null;
+                    city = doc.custAddress.city != undefined ? doc.custAddress.city : null;
+                    state = doc.custAddress.state != undefined ? doc.custAddress.state : null;
+                    countryCode = doc.custAddress.countryCode != undefined ? doc.custAddress.countryCode : null;
+                    postalCode = doc.custAddress.postalCode != undefined ? doc.custAddress.postalCode : null;
+                }
+
+
+                customerdb.customer.insert({
+                    firstName: doc.customerName != undefined ? doc.customerName : null,
+                    lastName: doc.customerLastName != undefined ? doc.customerLastName : null,
+                    mobileNumber: doc.custMobileNumber != undefined ? doc.custMobileNumber : null,
+                    email: doc.customerEmail != undefined ? doc.customerEmail : null,
+                    identificationNumber: doc.custIdNumber != undefined ? doc.custIdNumber : null,
+                    idNumber: custId,
+                    currentAddress: {
+                        address1: add1,
+                        address2: add2,
+                        city: city,
+                        state: state,
+                        countryCode: countryCode,
+                        postalCode: postalCode
+                    },
+                    _class: "com.ams.customer.domain.Customer"
+                });
+
+
+                policydb.policyDocuments.update({
+                    "_id": doc._id
+                }, {
+                    '$set': {
+                        "customerId": custId
+                    }
+                });
+
+                custIndex = custIndex + 1
+                customerdb.customerSequence.updateOne({
+                    _id: "hosting"
+                }, {
+                    '$set': {
+                        "seq": custIndex
+                    }
+                });
+
+            }
+
+        }
+
+
+    }
+
+)
