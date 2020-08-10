@@ -74,3 +74,5 @@ db.getCollection('claimLogs').find({}).forEach(doc =>
        db.claimLogs.update({_id: doc._id},{$set:{"claimLogId": NumberLong(i++)}});
      }
     )
+*Mongo dump restore.
+mongorestore --archive=20190319.archive.gz --gzip
