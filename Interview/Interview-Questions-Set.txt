@@ -4,7 +4,7 @@ Backend:
 *Saga design pattern for microservices via:
 	*Orchestration
 	*Choreography.
-*Code moniroting using 
+*Code monitoring using 
 	*Actuator
 	*Prometheus
 	*Grafana
@@ -39,6 +39,7 @@ AWS:
 *SNS.
 *Websockets.
 *S3.
+*Route53
 *Data Lake Formation.
 *Api Gateway.
 *AWS Lambda.
@@ -50,3 +51,5 @@ AWS:
 *Certification Manager.
 *CloudFront.
 *Deploy code from bitbucket to Ec2 via Jenkins using Nodes/connector.
+*CloudFormation: AWS IAAC(Infrastructure as a code) for provisioning services using configurations.
+*Terraform is an open source IAAC for infra provisioning for multiple providers like AWS/Azure/VMWare.
