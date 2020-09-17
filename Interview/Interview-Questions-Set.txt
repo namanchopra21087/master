@@ -53,3 +53,7 @@ AWS:
 *Deploy code from bitbucket to Ec2 via Jenkins using Nodes/connector.
 *CloudFormation: AWS IAAC(Infrastructure as a code) for provisioning services using configurations.
 *Terraform is an open source IAAC for infra provisioning for multiple providers like AWS/Azure/VMWare.
+*Aws Polly: Service to convert text to speech.
+*Aws Transcribe: Speech To Text.
+*Aws TextExtract: Extract text out of images and Pdf.
+*Aws Comprehend: Understand emotions out of the text like someone is sad or happy.
