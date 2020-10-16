@@ -76,3 +76,9 @@ db.getCollection('claimLogs').find({}).forEach(doc =>
     )
 *Mongo dump restore.
 mongorestore --archive=20190319.archive.gz --gzip
+
+*MongoDB group by:
+db.getCollection('policyDocuments').aggregate([
+{$group: { _id: "$policyNumber",count:{ $sum: 1}}},
+{$match:{count:{ $gt: 1 }}}
+])
