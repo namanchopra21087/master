@@ -82,3 +82,71 @@ db.getCollection('policyDocuments').aggregate([
 {$group: { _id: "$policyNumber",count:{ $sum: 1}}},
 {$match:{count:{ $gt: 1 }}}
 ])
+------------------------------------------------------------------------------------
+*Scripts to run directly on server for mongoDB. Its a two step process.
+Step1): Save the script on server system.js with unique id as:
+db.system.js.save({_id:"vietnamMigrateProcedure",
+   value:function(a) {
+  var conn = new Mongo();
+  var policydb = conn.getDB("policyDB");
+var op=""
+policydb.policyDocuments.find(
+    { 
+        "partnerId" : "PHHOMCRCFINA01", 
+        "countryCode" : "PH", 
+        "productsModel" : /Vietnam/,
+    }
+).forEach(function(e,i) {
+    e.productsModel=e.productsModel.replace("Vietnam","Philippines");
+    policydb.policyDocuments.save(e);
+})
+return op
+}})
+
+Step2): Execute the script with command:
+db.eval("return vietnamMigrateProcedure(1)");
+--------------------------------------------------------------------------------------
+Command to start mongo server on EC2 instance:
+sudo systemctl start mongod
+--------------------------------------------------------------------------------------
+db.system.js.save({
+    _id: "columnShiftFixing",
+    value: function(a) {
+        var conn = new Mongo();
+        var policyDb = conn.getDB("policyDB");
+
+        policyDb.policyDocuments.find({
+            "partnerId": "PHHOMCRCFINA01",
+            "columnShiftFixed": {
+                $exists: false
+            }
+        }).forEach(function(doc) {
+            doc.clientName = doc.retailerName
+            doc.retailerName = doc.keyAccountIndicator
+            doc.keyAccountIndicator = doc.legacyCustomerId
+            doc.legacyCustomerId = doc.legacyTransferPrice
+            doc.legacyTransferPrice = doc.legacyClaimCount
+            doc.legacyClaimCount = doc.legacyCertofInsurance
+            doc.legacyCertofInsurance = doc.legacyBalanceRRP
+            doc.legacyBalanceRRP = doc.legacyMasterPolicyNumber
+            doc.legacyMasterPolicyNumber = doc.legacyCurrentTotalClaimAmt
+            doc.legacyCurrentTotalClaimAmt = doc.legacyPolicyId
+            doc.legacyPolicyId = doc.legacyUnderWritingCost
+            doc.legacyUnderWritingCost = doc.legacyCompanyREGNumber
+            doc.legacyCompanyREGNumber = doc.legacyProductPartner
+            doc.legacyProductPartner = doc.legacyFinancePartner
+            doc.legacyFinancePartner = doc.legacyPolicyRRP
+            doc.legacyPolicyRRP = doc.legacyReInsurancefee
+            doc.legacyReInsurancefee = 0
+            doc.legacyRetailPartner = doc.legacyClientMargin
+            doc.legacyClientMargin = doc.legacyRetailMargin
+            doc.legacyRetailMargin = 0
+            doc.columnShiftFixed = true
+            policyDb.policyDocuments.save(doc)
+
+        })
+        return "Executed Successfully"
+    }
+})
+db.eval("return columnShiftFixing(1)");
+--------------------------------------------------------------------------------------
