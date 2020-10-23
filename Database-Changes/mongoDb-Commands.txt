@@ -77,7 +77,7 @@ db.getCollection('claimLogs').find({}).forEach(doc =>
 *Mongo dump restore.
 mongorestore --archive=20190319.archive.gz --gzip
 
-*MongoDB group by:
+*MongoDB group by policyNumber to find duplciates:
 db.getCollection('policyDocuments').aggregate([
 {$group: { _id: "$policyNumber",count:{ $sum: 1}}},
 {$match:{count:{ $gt: 1 }}}
