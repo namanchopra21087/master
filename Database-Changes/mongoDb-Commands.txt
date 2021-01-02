@@ -150,3 +150,16 @@ db.system.js.save({
 })
 db.eval("return columnShiftFixing(1)");
 --------------------------------------------------------------------------------------
+MongoDB mongodump/mongoRestore:
+*create mongoDump from a cluster on your local:
+mongodump --host mongo.db.staging.crmz.k8s.bolttech-devops.com --port 27017 -u root -p 8ZepKp1Hj9OVweTl --authenticationDatabase admin --archive=20190319.archive.gz --gzip
+--host: Is the source ip from where we need to create dump
+-u: userName of the source.
+-p: passwprd of the source.
+*mongorestore to restore the db:
+mongorestore --uri mongodb+srv://optimusStaging:optimusStaging@staging.vfau2.mongodb.net --archive=20190319.archive.gz --gzip
+--uri: url of teh destination where dump has to be restored.
+
+In case import has to be done for some collections:
+mongoimport --uri mongodb+srv://optimusStaging:optimusStaging@staging.vfau2.mongodb.net/productDB --collection clients --type JSON --file clients
+--------------------------------------------------------------------------------------
