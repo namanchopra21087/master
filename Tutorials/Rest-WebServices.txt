@@ -18,8 +18,27 @@
 *Definition of IDENPOTENT:- Its the property of certain operations in computer science that can be applied multiple times without changing the
  initial state of the record or application.
 *In GET,PUT and DELETE operatiosn after the first call when multiple repeated calls are made for same resource URL, it will end up in changing 
-nothing in teh application. So they fit the IDEMPOTENT definitions.
+nothing in the application. So they fit the IDEMPOTENT definitions.
 *POST is non-idempotant as repeated calls of it will result into duplicate records in system.
 *Restful webservices can be built using JAX-RX(java api for restful webservices).
 *One of the common implementation for JAX-RX is Jersey.
 (Its like JAX-RX is the guidelines or interfaces and jersey is the implementation or concrete classes)
+*Spring @Transactional has two main features:
+	1) Propagation:
+		* It means hot the transaction will propagate. Types are:
+			a) Required: Its default.It means if a trnsaction exist append the new transaction at end of it.
+			b) Nested: If a transaction exist then create a savePoitn and then create a nested trnsaction. In case nested transaction throws exception
+						rollBack to savePoint.
+			c) Never: In case transaction exist then throw exception.
+	2) Isolation: This is in line with ACID: Atomicity, Consistency, Isoltaion & Durability.
+		* There are three main problems which exist with a concurrent transaction:
+			a) Dirty Read: Read uncommited cahnges of other ytransactions.
+			b) NonRepetable read: Get different read on re-read of a row if concurrent transaction updates it.
+			c) Phantom read: get different rows on a range query as other concurrent transactions adds/remove rows.
+		* All above problem can be saved by using Serializable isolation.
+Example:
+@Transactional(propogation=Propogation.Nested,isolation=Propogation.Serializable)
+public void demoMethofTransactions(){
+
+}
+			
