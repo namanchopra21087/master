@@ -78,7 +78,7 @@ b) int f(int n) {
  } 
 	return f(n - 1) + f(n - 1); 
  }
-Time Complexity: O(2N)
+Time Complexity: O(2^N)
 c) int f(int n) { 
 
  if (n <= 1) { 
