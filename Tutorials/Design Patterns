@@ -1,0 +1,16 @@
+* There are three types of Design Patterns:
+1) Creational Design Patterns
+2) Structural Design Patterns
+3) Behaviour Design Patterns
+
+1) Creational Design Patterns:
+	a) Singelton Design Pattern
+	b) Builder Design Pattern
+	c) Factory Design Pattern
+2) Structural Design Patterns:
+	a) Decorator Design Patterns
+	b) Facade Design Patterns
+3) Behaviour Design Pattern
+	a) Strategy Design Pattern
+	b) Chain Of Responsibility
+	3) Iterator Design Pattern
