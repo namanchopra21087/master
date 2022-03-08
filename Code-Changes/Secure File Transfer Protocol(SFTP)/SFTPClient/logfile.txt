@@ -4,7 +4,7 @@ Batch Ended.@ Fri Jul 20 12:30:07 SGT 2018
 
 ===========================================================================================================
 Batch Started @ Fri Jul 20 15:44:39 SGT 2018
-Exception occured. java.net.UnknownHostException: corpsftp.ramco.com1
+Exception occured. java.net.UnknownHostException: 
 ===========================================================================================================
 Batch Started @ Sat Jul 21 12:30:00 SGT 2018
 File >> C:\FingerTec Worldwide\Micro ID Sdn. Bhd\FTP TCMS\NMC_180721_121500.TXT Copied Successfully.
