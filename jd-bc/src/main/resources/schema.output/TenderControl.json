@@ -1,0 +1,1464 @@
+{
+  "type": "object",
+  "properties": {
+    "transactionType": {
+      "type": "string"
+    },
+    "transactionId": {
+      "type": "string"
+    },
+    "messageFormat": {
+      "type": "string"
+    },
+    "publishTimestamp": {
+      "type": "string"
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "type": "object",
+          "properties": {
+            "organizationID": {
+              "type": "integer"
+            },
+            "retailStoreID": {
+              "type": "string"
+            },
+            "workstationID": {
+              "type": "string"
+            },
+            "tillID": {
+              "type": "string"
+            },
+            "sequenceNumber": {
+              "type": "string"
+            },
+            "businessDayDate": {
+              "type": "string"
+            },
+            "beginDateTime": {
+              "type": "string"
+            },
+            "endDateTime": {
+              "type": "string"
+            },
+            "operatorID": {
+              "type": "string"
+            },
+            "currencyCode": {
+              "type": "string"
+            },
+            "posTransactionProperties": {
+              "type": "array",
+              "items": {}
+            },
+            "tenderControlTransaction": {
+              "type": "object",
+              "properties": {
+                "operatorID": {
+                  "type": "string"
+                },
+                "assignTillTenderTransfer": {
+                  "type": "null"
+                },
+                "beginTillCount": {
+                  "type": "null"
+                },
+                "midDayTillDeposit": {
+                  "type": "null"
+                },
+                "tillClosingCount": {
+                  "type": "object",
+                  "properties": {
+                    "inboundTillID": {
+                      "type": "string"
+                    },
+                    "inboundTillEmployeePartyID": {
+                      "type": "integer"
+                    },
+                    "outboundTillID": {
+                      "type": "string"
+                    },
+                    "outboundTillEmployeePartyID": {
+                      "type": "integer"
+                    },
+                    "cashRemainedInTill": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        }
+                      ]
+                    },
+                    "safeBagTransactionLink": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "tenderTypeCount": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "tenderTypeTotal": {
+                              "type": "object",
+                              "properties": {
+                                "amount": {
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "number"
+                                    },
+                                    "action": {
+                                      "type": "null"
+                                    },
+                                    "currency": {
+                                      "type": "null"
+                                    },
+                                    "foreignAmount": {
+                                      "type": "null"
+                                    }
+                                  },
+                                  "required": [
+                                    "value",
+                                    "action",
+                                    "currency",
+                                    "foreignAmount"
+                                  ]
+                                },
+                                "localCurrencyAmount": {
+                                  "type": "null"
+                                },
+                                "differenceAmount": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "amount",
+                                "localCurrencyAmount",
+                                "differenceAmount"
+                              ]
+                            },
+                            "tenderCount": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "tenderTypeSerializedCount": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "tenderType": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "tenderTypeTotal",
+                            "tenderCount",
+                            "tenderTypeSerializedCount",
+                            "tenderType"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "tenderTypeTotal": {
+                              "type": "object",
+                              "properties": {
+                                "amount": {
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "number"
+                                    },
+                                    "action": {
+                                      "type": "null"
+                                    },
+                                    "currency": {
+                                      "type": "null"
+                                    },
+                                    "foreignAmount": {
+                                      "type": "null"
+                                    }
+                                  },
+                                  "required": [
+                                    "value",
+                                    "action",
+                                    "currency",
+                                    "foreignAmount"
+                                  ]
+                                },
+                                "localCurrencyAmount": {
+                                  "type": "null"
+                                },
+                                "differenceAmount": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "amount",
+                                "localCurrencyAmount",
+                                "differenceAmount"
+                              ]
+                            },
+                            "tenderCount": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "tenderTypeSerializedTotal": {
+                                      "type": "null"
+                                    },
+                                    "tenderTotal": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "value": {
+                                              "type": "number"
+                                            },
+                                            "action": {
+                                              "type": "null"
+                                            },
+                                            "currency": {
+                                              "type": "null"
+                                            },
+                                            "foreignAmount": {
+                                              "type": "null"
+                                            }
+                                          },
+                                          "required": [
+                                            "value",
+                                            "action",
+                                            "currency",
+                                            "foreignAmount"
+                                          ]
+                                        },
+                                        "localCurrencyAmount": {
+                                          "type": "number"
+                                        },
+                                        "differenceAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "amount",
+                                        "localCurrencyAmount",
+                                        "differenceAmount"
+                                      ]
+                                    },
+                                    "tenderDenominationCount": {
+                                      "type": "array",
+                                      "items": {}
+                                    },
+                                    "tenderId": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "tenderTypeSerializedTotal",
+                                    "tenderTotal",
+                                    "tenderDenominationCount",
+                                    "tenderId"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "tenderTypeSerializedTotal": {
+                                      "type": "null"
+                                    },
+                                    "tenderTotal": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "value": {
+                                              "type": "number"
+                                            },
+                                            "action": {
+                                              "type": "null"
+                                            },
+                                            "currency": {
+                                              "type": "null"
+                                            },
+                                            "foreignAmount": {
+                                              "type": "null"
+                                            }
+                                          },
+                                          "required": [
+                                            "value",
+                                            "action",
+                                            "currency",
+                                            "foreignAmount"
+                                          ]
+                                        },
+                                        "localCurrencyAmount": {
+                                          "type": "number"
+                                        },
+                                        "differenceAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "amount",
+                                        "localCurrencyAmount",
+                                        "differenceAmount"
+                                      ]
+                                    },
+                                    "tenderDenominationCount": {
+                                      "type": "array",
+                                      "items": {}
+                                    },
+                                    "tenderId": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "tenderTypeSerializedTotal",
+                                    "tenderTotal",
+                                    "tenderDenominationCount",
+                                    "tenderId"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "tenderTypeSerializedTotal": {
+                                      "type": "null"
+                                    },
+                                    "tenderTotal": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "value": {
+                                              "type": "number"
+                                            },
+                                            "action": {
+                                              "type": "null"
+                                            },
+                                            "currency": {
+                                              "type": "null"
+                                            },
+                                            "foreignAmount": {
+                                              "type": "null"
+                                            }
+                                          },
+                                          "required": [
+                                            "value",
+                                            "action",
+                                            "currency",
+                                            "foreignAmount"
+                                          ]
+                                        },
+                                        "localCurrencyAmount": {
+                                          "type": "number"
+                                        },
+                                        "differenceAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "amount",
+                                        "localCurrencyAmount",
+                                        "differenceAmount"
+                                      ]
+                                    },
+                                    "tenderDenominationCount": {
+                                      "type": "array",
+                                      "items": {}
+                                    },
+                                    "tenderId": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "tenderTypeSerializedTotal",
+                                    "tenderTotal",
+                                    "tenderDenominationCount",
+                                    "tenderId"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "tenderTypeSerializedTotal": {
+                                      "type": "null"
+                                    },
+                                    "tenderTotal": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "value": {
+                                              "type": "number"
+                                            },
+                                            "action": {
+                                              "type": "null"
+                                            },
+                                            "currency": {
+                                              "type": "null"
+                                            },
+                                            "foreignAmount": {
+                                              "type": "null"
+                                            }
+                                          },
+                                          "required": [
+                                            "value",
+                                            "action",
+                                            "currency",
+                                            "foreignAmount"
+                                          ]
+                                        },
+                                        "localCurrencyAmount": {
+                                          "type": "number"
+                                        },
+                                        "differenceAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "amount",
+                                        "localCurrencyAmount",
+                                        "differenceAmount"
+                                      ]
+                                    },
+                                    "tenderDenominationCount": {
+                                      "type": "array",
+                                      "items": {}
+                                    },
+                                    "tenderId": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "tenderTypeSerializedTotal",
+                                    "tenderTotal",
+                                    "tenderDenominationCount",
+                                    "tenderId"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "tenderTypeSerializedTotal": {
+                                      "type": "null"
+                                    },
+                                    "tenderTotal": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "value": {
+                                              "type": "number"
+                                            },
+                                            "action": {
+                                              "type": "null"
+                                            },
+                                            "currency": {
+                                              "type": "null"
+                                            },
+                                            "foreignAmount": {
+                                              "type": "null"
+                                            }
+                                          },
+                                          "required": [
+                                            "value",
+                                            "action",
+                                            "currency",
+                                            "foreignAmount"
+                                          ]
+                                        },
+                                        "localCurrencyAmount": {
+                                          "type": "number"
+                                        },
+                                        "differenceAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "amount",
+                                        "localCurrencyAmount",
+                                        "differenceAmount"
+                                      ]
+                                    },
+                                    "tenderDenominationCount": {
+                                      "type": "array",
+                                      "items": {}
+                                    },
+                                    "tenderId": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "tenderTypeSerializedTotal",
+                                    "tenderTotal",
+                                    "tenderDenominationCount",
+                                    "tenderId"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "tenderTypeSerializedTotal": {
+                                      "type": "null"
+                                    },
+                                    "tenderTotal": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "value": {
+                                              "type": "number"
+                                            },
+                                            "action": {
+                                              "type": "null"
+                                            },
+                                            "currency": {
+                                              "type": "null"
+                                            },
+                                            "foreignAmount": {
+                                              "type": "null"
+                                            }
+                                          },
+                                          "required": [
+                                            "value",
+                                            "action",
+                                            "currency",
+                                            "foreignAmount"
+                                          ]
+                                        },
+                                        "localCurrencyAmount": {
+                                          "type": "number"
+                                        },
+                                        "differenceAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "amount",
+                                        "localCurrencyAmount",
+                                        "differenceAmount"
+                                      ]
+                                    },
+                                    "tenderDenominationCount": {
+                                      "type": "array",
+                                      "items": {}
+                                    },
+                                    "tenderId": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "tenderTypeSerializedTotal",
+                                    "tenderTotal",
+                                    "tenderDenominationCount",
+                                    "tenderId"
+                                  ]
+                                }
+                              ]
+                            },
+                            "tenderTypeSerializedCount": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "tenderType": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "tenderTypeTotal",
+                            "tenderCount",
+                            "tenderTypeSerializedCount",
+                            "tenderType"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "tenderTypeTotal": {
+                              "type": "object",
+                              "properties": {
+                                "amount": {
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "number"
+                                    },
+                                    "action": {
+                                      "type": "null"
+                                    },
+                                    "currency": {
+                                      "type": "null"
+                                    },
+                                    "foreignAmount": {
+                                      "type": "null"
+                                    }
+                                  },
+                                  "required": [
+                                    "value",
+                                    "action",
+                                    "currency",
+                                    "foreignAmount"
+                                  ]
+                                },
+                                "localCurrencyAmount": {
+                                  "type": "null"
+                                },
+                                "differenceAmount": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "amount",
+                                "localCurrencyAmount",
+                                "differenceAmount"
+                              ]
+                            },
+                            "tenderCount": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "tenderTypeSerializedTotal": {
+                                      "type": "null"
+                                    },
+                                    "tenderTotal": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "value": {
+                                              "type": "number"
+                                            },
+                                            "action": {
+                                              "type": "null"
+                                            },
+                                            "currency": {
+                                              "type": "null"
+                                            },
+                                            "foreignAmount": {
+                                              "type": "null"
+                                            }
+                                          },
+                                          "required": [
+                                            "value",
+                                            "action",
+                                            "currency",
+                                            "foreignAmount"
+                                          ]
+                                        },
+                                        "localCurrencyAmount": {
+                                          "type": "number"
+                                        },
+                                        "differenceAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "amount",
+                                        "localCurrencyAmount",
+                                        "differenceAmount"
+                                      ]
+                                    },
+                                    "tenderDenominationCount": {
+                                      "type": "array",
+                                      "items": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "tenderDenominationTotal": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "value": {
+                                                      "type": "number"
+                                                    },
+                                                    "action": {
+                                                      "type": "null"
+                                                    },
+                                                    "currency": {
+                                                      "type": "null"
+                                                    },
+                                                    "foreignAmount": {
+                                                      "type": "null"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "value",
+                                                    "action",
+                                                    "currency",
+                                                    "foreignAmount"
+                                                  ]
+                                                },
+                                                "differenceAmount": {
+                                                  "type": "null"
+                                                }
+                                              },
+                                              "required": [
+                                                "amount",
+                                                "differenceAmount"
+                                              ]
+                                            },
+                                            "tenderDenominationId": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "tenderDenominationTotal",
+                                            "tenderDenominationId"
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    "tenderId": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "tenderTypeSerializedTotal",
+                                    "tenderTotal",
+                                    "tenderDenominationCount",
+                                    "tenderId"
+                                  ]
+                                }
+                              ]
+                            },
+                            "tenderTypeSerializedCount": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "tenderType": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "tenderTypeTotal",
+                            "tenderCount",
+                            "tenderTypeSerializedCount",
+                            "tenderType"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "inboundTillID",
+                    "inboundTillEmployeePartyID",
+                    "outboundTillID",
+                    "outboundTillEmployeePartyID",
+                    "cashRemainedInTill",
+                    "safeBagTransactionLink",
+                    "tenderTypeCount"
+                  ]
+                },
+                "tillReconcileCount": {
+                  "type": "null"
+                },
+                "bankDeposit": {
+                  "type": "null"
+                },
+                "localCurrencyPickup": {
+                  "type": "null"
+                },
+                "cashTransfer": {
+                  "type": "null"
+                },
+                "localCurrencyDeposit": {
+                  "type": "null"
+                },
+                "tillAudit": {
+                  "type": "null"
+                },
+                "storeBankAudit": {
+                  "type": "null"
+                },
+                "associateAdvance": {
+                  "type": "array",
+                  "items": {}
+                },
+                "paidIn": {
+                  "type": "null"
+                },
+                "paidOut": {
+                  "type": "null"
+                },
+                "comment": {
+                  "type": "null"
+                },
+                "glaccountNumber": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "operatorID",
+                "assignTillTenderTransfer",
+                "beginTillCount",
+                "midDayTillDeposit",
+                "tillClosingCount",
+                "tillReconcileCount",
+                "bankDeposit",
+                "localCurrencyPickup",
+                "cashTransfer",
+                "localCurrencyDeposit",
+                "tillAudit",
+                "storeBankAudit",
+                "associateAdvance",
+                "paidIn",
+                "paidOut",
+                "comment",
+                "glaccountNumber"
+              ]
+            },
+            "inventoryTransaction": {
+              "type": "array",
+              "items": {}
+            },
+            "cancelFlag": {
+              "type": "boolean"
+            },
+            "offlineFlag": {
+              "type": "boolean"
+            },
+            "transactionType": {
+              "type": "string"
+            },
+            "appVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "organizationID",
+            "retailStoreID",
+            "workstationID",
+            "tillID",
+            "sequenceNumber",
+            "businessDayDate",
+            "beginDateTime",
+            "endDateTime",
+            "operatorID",
+            "currencyCode",
+            "posTransactionProperties",
+            "tenderControlTransaction",
+            "inventoryTransaction",
+            "cancelFlag",
+            "offlineFlag",
+            "transactionType",
+            "appVersion"
+          ]
+        }
+      },
+      "required": [
+        "transaction"
+      ]
+    }
+  },
+  "required": [
+    "transactionType",
+    "transactionId",
+    "messageFormat",
+    "publishTimestamp",
+    "body"
+  ]
+}

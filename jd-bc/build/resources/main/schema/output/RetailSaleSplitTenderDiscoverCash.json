@@ -1,0 +1,3272 @@
+{
+  "type": "object",
+  "properties": {
+    "organizationID": {
+      "type": "integer"
+    },
+    "retailStoreID": {
+      "type": "string"
+    },
+    "workstationID": {
+      "type": "string"
+    },
+    "tillID": {
+      "type": "string"
+    },
+    "cashDrawerID": {
+      "type": "string"
+    },
+    "sequenceNumber": {
+      "type": "string"
+    },
+    "businessDayDate": {
+      "type": "string"
+    },
+    "beginDateTime": {
+      "type": "string"
+    },
+    "endDateTime": {
+      "type": "string"
+    },
+    "operatorID": {
+      "type": "string"
+    },
+    "currencyCode": {
+      "type": "string"
+    },
+    "posTransactionProperties": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "posTransactionPropertyCode": {
+              "type": "string"
+            },
+            "posTransactionPropertyValue": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "posTransactionPropertyCode",
+            "posTransactionPropertyValue"
+          ]
+        }
+      ]
+    },
+    "inventoryTransaction": {
+      "type": "array",
+      "items": {}
+    },
+    "retailTransaction": {
+      "type": "object",
+      "properties": {
+        "lineItem": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "string"
+                },
+                "beginDateTime": {
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "type": "string"
+                },
+                "layaway": {
+                  "type": "null"
+                },
+                "previousLayaway": {
+                  "type": "null"
+                },
+                "previousCustomerOrder": {
+                  "type": "null"
+                },
+                "customerOrderForDelivery": {
+                  "type": "null"
+                },
+                "customerOrderForPickup": {
+                  "type": "null"
+                },
+                "saleForDelivery": {
+                  "type": "null"
+                },
+                "sale": {
+                  "type": "object",
+                  "properties": {
+                    "itemID": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "fiscalItemID": {
+                      "type": "null"
+                    },
+                    "fiscalItemDescription": {
+                      "type": "null"
+                    },
+                    "unitCostPrice": {
+                      "type": "null"
+                    },
+                    "unitListPrice": {
+                      "type": "null"
+                    },
+                    "regularSalesUnitPrice": {
+                      "type": "number"
+                    },
+                    "actualSalesUnitPrice": {
+                      "type": "number"
+                    },
+                    "extendedAmount": {
+                      "type": "number"
+                    },
+                    "quantity": {
+                      "type": "integer"
+                    },
+                    "unitOfMeasureCode": {
+                      "type": "null"
+                    },
+                    "measurementRequired": {
+                      "type": "null"
+                    },
+                    "weightEntryMethodCode": {
+                      "type": "null"
+                    },
+                    "tareValue": {
+                      "type": "null"
+                    },
+                    "tareType": {
+                      "type": "null"
+                    },
+                    "tareUnitOfMeasureCode": {
+                      "type": "null"
+                    },
+                    "sellingLocation": {
+                      "type": "null"
+                    },
+                    "merchandiseHierarchy": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "level": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "level"
+                          ]
+                        }
+                      ]
+                    },
+                    "scannedItemID": {
+                      "type": "string"
+                    },
+                    "authorizationCode": {
+                      "type": "null"
+                    },
+                    "serialNumber": {
+                      "type": "null"
+                    },
+                    "giftReceiptFlag": {
+                      "type": "boolean"
+                    },
+                    "voidReason": {
+                      "type": "null"
+                    },
+                    "associate": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "associateID": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "associateID"
+                          ]
+                        }
+                      ]
+                    },
+                    "percentageOfItem": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "associateID": {
+                              "type": "string"
+                            },
+                            "percentage": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "associateID",
+                            "percentage"
+                          ]
+                        }
+                      ]
+                    },
+                    "retailPriceModifier": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "sequenceNumber": {
+                              "type": "string"
+                            },
+                            "amount": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "number"
+                                },
+                                "action": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "null"
+                                },
+                                "foreignAmount": {
+                                  "type": "null"
+                                }
+                              },
+                              "required": [
+                                "value",
+                                "action",
+                                "currency",
+                                "foreignAmount"
+                              ]
+                            },
+                            "promotionID": {
+                              "type": "string"
+                            },
+                            "reasonCode": {
+                              "type": "string"
+                            },
+                            "serialNumber": {
+                              "type": "null"
+                            },
+                            "discountReasonCode": {
+                              "type": "null"
+                            },
+                            "coupon": {
+                              "type": "null"
+                            },
+                            "previousPrice": {
+                              "type": "null"
+                            },
+                            "newPrice": {
+                              "type": "null"
+                            },
+                            "discountReasonCodeComment": {
+                              "type": "null"
+                            },
+                            "methodCode": {
+                              "type": "string"
+                            },
+                            "voidFlag": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "sequenceNumber",
+                            "amount",
+                            "promotionID",
+                            "reasonCode",
+                            "serialNumber",
+                            "discountReasonCode",
+                            "coupon",
+                            "previousPrice",
+                            "newPrice",
+                            "discountReasonCodeComment",
+                            "methodCode",
+                            "voidFlag"
+                          ]
+                        }
+                      ]
+                    },
+                    "tax": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "taxAuthority": {
+                              "type": "string"
+                            },
+                            "taxableAmount": {
+                              "type": "number"
+                            },
+                            "amount": {
+                              "type": "number"
+                            },
+                            "percent": {
+                              "type": "number"
+                            },
+                            "rawTaxPercentage": {
+                              "type": "number"
+                            },
+                            "taxExemption": {
+                              "type": "null"
+                            },
+                            "taxOverride": {
+                              "type": "null"
+                            },
+                            "taxLocationId": {
+                              "type": "string"
+                            },
+                            "taxGroupId": {
+                              "type": "string"
+                            },
+                            "taxType": {
+                              "type": "string"
+                            },
+                            "voidFlag": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "taxAuthority",
+                            "taxableAmount",
+                            "amount",
+                            "percent",
+                            "rawTaxPercentage",
+                            "taxExemption",
+                            "taxOverride",
+                            "taxLocationId",
+                            "taxGroupId",
+                            "taxType",
+                            "voidFlag"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "taxAuthority": {
+                              "type": "string"
+                            },
+                            "taxableAmount": {
+                              "type": "number"
+                            },
+                            "amount": {
+                              "type": "number"
+                            },
+                            "percent": {
+                              "type": "number"
+                            },
+                            "rawTaxPercentage": {
+                              "type": "number"
+                            },
+                            "taxExemption": {
+                              "type": "null"
+                            },
+                            "taxOverride": {
+                              "type": "null"
+                            },
+                            "taxLocationId": {
+                              "type": "string"
+                            },
+                            "taxGroupId": {
+                              "type": "string"
+                            },
+                            "taxType": {
+                              "type": "string"
+                            },
+                            "voidFlag": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "taxAuthority",
+                            "taxableAmount",
+                            "amount",
+                            "percent",
+                            "rawTaxPercentage",
+                            "taxExemption",
+                            "taxOverride",
+                            "taxLocationId",
+                            "taxGroupId",
+                            "taxType",
+                            "voidFlag"
+                          ]
+                        }
+                      ]
+                    },
+                    "kit": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "transactionLink": {
+                      "type": "null"
+                    },
+                    "lineItemProperty": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "lineItemAssociation": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "itemType": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "itemID",
+                    "description",
+                    "fiscalItemID",
+                    "fiscalItemDescription",
+                    "unitCostPrice",
+                    "unitListPrice",
+                    "regularSalesUnitPrice",
+                    "actualSalesUnitPrice",
+                    "extendedAmount",
+                    "quantity",
+                    "unitOfMeasureCode",
+                    "measurementRequired",
+                    "weightEntryMethodCode",
+                    "tareValue",
+                    "tareType",
+                    "tareUnitOfMeasureCode",
+                    "sellingLocation",
+                    "merchandiseHierarchy",
+                    "scannedItemID",
+                    "authorizationCode",
+                    "serialNumber",
+                    "giftReceiptFlag",
+                    "voidReason",
+                    "associate",
+                    "percentageOfItem",
+                    "retailPriceModifier",
+                    "tax",
+                    "kit",
+                    "transactionLink",
+                    "lineItemProperty",
+                    "lineItemAssociation",
+                    "itemType"
+                  ]
+                },
+                "exchange": {
+                  "type": "null"
+                },
+                "tender": {
+                  "type": "null"
+                },
+                "coupon": {
+                  "type": "null"
+                },
+                "transactionDeal": {
+                  "type": "null"
+                },
+                "documentType": {
+                  "type": "null"
+                },
+                "documentId": {
+                  "type": "null"
+                },
+                "seriesId": {
+                  "type": "null"
+                },
+                "activityCode": {
+                  "type": "null"
+                },
+                "lineNumber": {
+                  "type": "null"
+                },
+                "itemID": {
+                  "type": "null"
+                },
+                "quantityShipped": {
+                  "type": "null"
+                },
+                "serialNumbers": {
+                  "type": "null"
+                },
+                "enteredItemID": {
+                  "type": "null"
+                },
+                "typeCode": {
+                  "type": "null"
+                },
+                "actualCount": {
+                  "type": "null"
+                },
+                "expectedCount": {
+                  "type": "null"
+                },
+                "postedCount": {
+                  "type": "null"
+                },
+                "saleLineItem": {
+                  "type": "null"
+                },
+                "recordCreationType": {
+                  "type": "null"
+                },
+                "statusCode": {
+                  "type": "null"
+                },
+                "itemAccountModifier": {
+                  "type": "null"
+                },
+                "tax": {
+                  "type": "null"
+                },
+                "discount": {
+                  "type": "null"
+                },
+                "quantityOrdered": {
+                  "type": "null"
+                },
+                "quantityReceived": {
+                  "type": "null"
+                },
+                "cartonNumber": {
+                  "type": "null"
+                },
+                "lineItemNumber": {
+                  "type": "null"
+                },
+                "description": {
+                  "type": "null"
+                },
+                "paymentOnAccount": {
+                  "type": "null"
+                },
+                "entryMethod": {
+                  "type": "string"
+                },
+                "voidFlag": {
+                  "type": "boolean"
+                },
+                "return": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "sequenceNumber",
+                "beginDateTime",
+                "endDateTime",
+                "layaway",
+                "previousLayaway",
+                "previousCustomerOrder",
+                "customerOrderForDelivery",
+                "customerOrderForPickup",
+                "saleForDelivery",
+                "sale",
+                "exchange",
+                "tender",
+                "coupon",
+                "transactionDeal",
+                "documentType",
+                "documentId",
+                "seriesId",
+                "activityCode",
+                "lineNumber",
+                "itemID",
+                "quantityShipped",
+                "serialNumbers",
+                "enteredItemID",
+                "typeCode",
+                "actualCount",
+                "expectedCount",
+                "postedCount",
+                "saleLineItem",
+                "recordCreationType",
+                "statusCode",
+                "itemAccountModifier",
+                "tax",
+                "discount",
+                "quantityOrdered",
+                "quantityReceived",
+                "cartonNumber",
+                "lineItemNumber",
+                "description",
+                "paymentOnAccount",
+                "entryMethod",
+                "voidFlag",
+                "return"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "string"
+                },
+                "beginDateTime": {
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "type": "null"
+                },
+                "layaway": {
+                  "type": "null"
+                },
+                "previousLayaway": {
+                  "type": "null"
+                },
+                "previousCustomerOrder": {
+                  "type": "null"
+                },
+                "customerOrderForDelivery": {
+                  "type": "null"
+                },
+                "customerOrderForPickup": {
+                  "type": "null"
+                },
+                "saleForDelivery": {
+                  "type": "null"
+                },
+                "sale": {
+                  "type": "object",
+                  "properties": {
+                    "itemID": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "fiscalItemID": {
+                      "type": "null"
+                    },
+                    "fiscalItemDescription": {
+                      "type": "null"
+                    },
+                    "unitCostPrice": {
+                      "type": "number"
+                    },
+                    "unitListPrice": {
+                      "type": "null"
+                    },
+                    "regularSalesUnitPrice": {
+                      "type": "number"
+                    },
+                    "actualSalesUnitPrice": {
+                      "type": "number"
+                    },
+                    "extendedAmount": {
+                      "type": "number"
+                    },
+                    "quantity": {
+                      "type": "integer"
+                    },
+                    "unitOfMeasureCode": {
+                      "type": "null"
+                    },
+                    "measurementRequired": {
+                      "type": "null"
+                    },
+                    "weightEntryMethodCode": {
+                      "type": "null"
+                    },
+                    "tareValue": {
+                      "type": "null"
+                    },
+                    "tareType": {
+                      "type": "null"
+                    },
+                    "tareUnitOfMeasureCode": {
+                      "type": "null"
+                    },
+                    "sellingLocation": {
+                      "type": "null"
+                    },
+                    "merchandiseHierarchy": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "level": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "level"
+                          ]
+                        }
+                      ]
+                    },
+                    "scannedItemID": {
+                      "type": "string"
+                    },
+                    "authorizationCode": {
+                      "type": "null"
+                    },
+                    "serialNumber": {
+                      "type": "null"
+                    },
+                    "giftReceiptFlag": {
+                      "type": "boolean"
+                    },
+                    "voidReason": {
+                      "type": "null"
+                    },
+                    "associate": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "percentageOfItem": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "associateID": {
+                              "type": "string"
+                            },
+                            "percentage": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "associateID",
+                            "percentage"
+                          ]
+                        }
+                      ]
+                    },
+                    "retailPriceModifier": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "sequenceNumber": {
+                              "type": "string"
+                            },
+                            "amount": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "number"
+                                },
+                                "action": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "null"
+                                },
+                                "foreignAmount": {
+                                  "type": "null"
+                                }
+                              },
+                              "required": [
+                                "value",
+                                "action",
+                                "currency",
+                                "foreignAmount"
+                              ]
+                            },
+                            "promotionID": {
+                              "type": "null"
+                            },
+                            "reasonCode": {
+                              "type": "string"
+                            },
+                            "serialNumber": {
+                              "type": "null"
+                            },
+                            "discountReasonCode": {
+                              "type": "null"
+                            },
+                            "coupon": {
+                              "type": "null"
+                            },
+                            "previousPrice": {
+                              "type": "null"
+                            },
+                            "newPrice": {
+                              "type": "null"
+                            },
+                            "discountReasonCodeComment": {
+                              "type": "null"
+                            },
+                            "methodCode": {
+                              "type": "string"
+                            },
+                            "voidFlag": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "sequenceNumber",
+                            "amount",
+                            "promotionID",
+                            "reasonCode",
+                            "serialNumber",
+                            "discountReasonCode",
+                            "coupon",
+                            "previousPrice",
+                            "newPrice",
+                            "discountReasonCodeComment",
+                            "methodCode",
+                            "voidFlag"
+                          ]
+                        }
+                      ]
+                    },
+                    "tax": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "kit": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "transactionLink": {
+                      "type": "null"
+                    },
+                    "lineItemProperty": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "lineItemAssociation": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "itemType": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "itemID",
+                    "description",
+                    "fiscalItemID",
+                    "fiscalItemDescription",
+                    "unitCostPrice",
+                    "unitListPrice",
+                    "regularSalesUnitPrice",
+                    "actualSalesUnitPrice",
+                    "extendedAmount",
+                    "quantity",
+                    "unitOfMeasureCode",
+                    "measurementRequired",
+                    "weightEntryMethodCode",
+                    "tareValue",
+                    "tareType",
+                    "tareUnitOfMeasureCode",
+                    "sellingLocation",
+                    "merchandiseHierarchy",
+                    "scannedItemID",
+                    "authorizationCode",
+                    "serialNumber",
+                    "giftReceiptFlag",
+                    "voidReason",
+                    "associate",
+                    "percentageOfItem",
+                    "retailPriceModifier",
+                    "tax",
+                    "kit",
+                    "transactionLink",
+                    "lineItemProperty",
+                    "lineItemAssociation",
+                    "itemType"
+                  ]
+                },
+                "exchange": {
+                  "type": "null"
+                },
+                "tender": {
+                  "type": "null"
+                },
+                "coupon": {
+                  "type": "null"
+                },
+                "transactionDeal": {
+                  "type": "null"
+                },
+                "documentType": {
+                  "type": "null"
+                },
+                "documentId": {
+                  "type": "null"
+                },
+                "seriesId": {
+                  "type": "null"
+                },
+                "activityCode": {
+                  "type": "null"
+                },
+                "lineNumber": {
+                  "type": "null"
+                },
+                "itemID": {
+                  "type": "null"
+                },
+                "quantityShipped": {
+                  "type": "null"
+                },
+                "serialNumbers": {
+                  "type": "null"
+                },
+                "enteredItemID": {
+                  "type": "null"
+                },
+                "typeCode": {
+                  "type": "null"
+                },
+                "actualCount": {
+                  "type": "null"
+                },
+                "expectedCount": {
+                  "type": "null"
+                },
+                "postedCount": {
+                  "type": "null"
+                },
+                "saleLineItem": {
+                  "type": "null"
+                },
+                "recordCreationType": {
+                  "type": "null"
+                },
+                "statusCode": {
+                  "type": "null"
+                },
+                "itemAccountModifier": {
+                  "type": "null"
+                },
+                "tax": {
+                  "type": "null"
+                },
+                "discount": {
+                  "type": "null"
+                },
+                "quantityOrdered": {
+                  "type": "null"
+                },
+                "quantityReceived": {
+                  "type": "null"
+                },
+                "cartonNumber": {
+                  "type": "null"
+                },
+                "lineItemNumber": {
+                  "type": "null"
+                },
+                "description": {
+                  "type": "null"
+                },
+                "paymentOnAccount": {
+                  "type": "null"
+                },
+                "entryMethod": {
+                  "type": "string"
+                },
+                "voidFlag": {
+                  "type": "boolean"
+                },
+                "return": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "sequenceNumber",
+                "beginDateTime",
+                "endDateTime",
+                "layaway",
+                "previousLayaway",
+                "previousCustomerOrder",
+                "customerOrderForDelivery",
+                "customerOrderForPickup",
+                "saleForDelivery",
+                "sale",
+                "exchange",
+                "tender",
+                "coupon",
+                "transactionDeal",
+                "documentType",
+                "documentId",
+                "seriesId",
+                "activityCode",
+                "lineNumber",
+                "itemID",
+                "quantityShipped",
+                "serialNumbers",
+                "enteredItemID",
+                "typeCode",
+                "actualCount",
+                "expectedCount",
+                "postedCount",
+                "saleLineItem",
+                "recordCreationType",
+                "statusCode",
+                "itemAccountModifier",
+                "tax",
+                "discount",
+                "quantityOrdered",
+                "quantityReceived",
+                "cartonNumber",
+                "lineItemNumber",
+                "description",
+                "paymentOnAccount",
+                "entryMethod",
+                "voidFlag",
+                "return"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "string"
+                },
+                "beginDateTime": {
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "type": "string"
+                },
+                "layaway": {
+                  "type": "null"
+                },
+                "previousLayaway": {
+                  "type": "null"
+                },
+                "previousCustomerOrder": {
+                  "type": "null"
+                },
+                "customerOrderForDelivery": {
+                  "type": "null"
+                },
+                "customerOrderForPickup": {
+                  "type": "null"
+                },
+                "saleForDelivery": {
+                  "type": "null"
+                },
+                "sale": {
+                  "type": "null"
+                },
+                "exchange": {
+                  "type": "null"
+                },
+                "tender": {
+                  "type": "object",
+                  "properties": {
+                    "tenderID": {
+                      "type": "string"
+                    },
+                    "foreignCurrency": {
+                      "type": "null"
+                    },
+                    "amount": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "number"
+                        },
+                        "action": {
+                          "type": "null"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "foreignAmount": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "action",
+                        "currency",
+                        "foreignAmount"
+                      ]
+                    },
+                    "fiscalTenderID": {
+                      "type": "null"
+                    },
+                    "authorization": {
+                      "type": "object",
+                      "properties": {
+                        "requestedAmount": {
+                          "type": "number"
+                        },
+                        "authorizationCode": {
+                          "type": "string"
+                        },
+                        "referenceNumber": {
+                          "type": "string"
+                        },
+                        "authorizationDateTime": {
+                          "type": "string"
+                        },
+                        "ps2000": {
+                          "type": "null"
+                        },
+                        "tax": {
+                          "type": "number"
+                        },
+                        "discount": {
+                          "type": "number"
+                        },
+                        "freight": {
+                          "type": "number"
+                        },
+                        "duty": {
+                          "type": "number"
+                        },
+                        "cardLevelIndicator": {
+                          "type": "null"
+                        },
+                        "adjudicationCode": {
+                          "type": "string"
+                        },
+                        "responseCode": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "requestedAmount",
+                        "authorizationCode",
+                        "referenceNumber",
+                        "authorizationDateTime",
+                        "ps2000",
+                        "tax",
+                        "discount",
+                        "freight",
+                        "duty",
+                        "cardLevelIndicator",
+                        "adjudicationCode",
+                        "responseCode"
+                      ]
+                    },
+                    "customerVerification": {
+                      "type": "null"
+                    },
+                    "creditDebit": {
+                      "type": "object",
+                      "properties": {
+                        "issuerIdentificationNumber": {
+                          "type": "null"
+                        },
+                        "primaryAccountNumber": {
+                          "type": "null"
+                        },
+                        "walletRequestId": {
+                          "type": "null"
+                        },
+                        "walletProviderId": {
+                          "type": "null"
+                        },
+                        "reconciliationCode": {
+                          "type": "string"
+                        },
+                        "expirationDateEncrypted": {
+                          "type": "string"
+                        },
+                        "maskedCardNumber": {
+                          "type": "string"
+                        },
+                        "authorizationToken": {
+                          "type": "string"
+                        },
+                        "hashedCardNumber": {
+                          "type": "null"
+                        },
+                        "customerNotPresentReasonCode": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "issuerIdentificationNumber",
+                        "primaryAccountNumber",
+                        "walletRequestId",
+                        "walletProviderId",
+                        "reconciliationCode",
+                        "expirationDateEncrypted",
+                        "maskedCardNumber",
+                        "authorizationToken",
+                        "hashedCardNumber",
+                        "customerNotPresentReasonCode"
+                      ]
+                    },
+                    "giftCard": {
+                      "type": "null"
+                    },
+                    "voucher": {
+                      "type": "null"
+                    },
+                    "payDeduct": {
+                      "type": "null"
+                    },
+                    "check": {
+                      "type": "null"
+                    },
+                    "coupon": {
+                      "type": "null"
+                    },
+                    "accountCredit": {
+                      "type": "null"
+                    },
+                    "travelersCheck": {
+                      "type": "null"
+                    },
+                    "address": {
+                      "type": "null"
+                    },
+                    "sendCheck": {
+                      "type": "null"
+                    },
+                    "storeAccount": {
+                      "type": "null"
+                    },
+                    "userName": {
+                      "type": "null"
+                    },
+                    "lineItemProperty": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        }
+                      ]
+                    },
+                    "serialNumber": {
+                      "type": "null"
+                    },
+                    "tenderType": {
+                      "type": "string"
+                    },
+                    "typeCode": {
+                      "type": "string"
+                    },
+                    "changeFlag": {
+                      "type": "boolean"
+                    },
+                    "ponumber": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "tenderID",
+                    "foreignCurrency",
+                    "amount",
+                    "fiscalTenderID",
+                    "authorization",
+                    "customerVerification",
+                    "creditDebit",
+                    "giftCard",
+                    "voucher",
+                    "payDeduct",
+                    "check",
+                    "coupon",
+                    "accountCredit",
+                    "travelersCheck",
+                    "address",
+                    "sendCheck",
+                    "storeAccount",
+                    "userName",
+                    "lineItemProperty",
+                    "serialNumber",
+                    "tenderType",
+                    "typeCode",
+                    "changeFlag",
+                    "ponumber"
+                  ]
+                },
+                "coupon": {
+                  "type": "null"
+                },
+                "transactionDeal": {
+                  "type": "null"
+                },
+                "documentType": {
+                  "type": "null"
+                },
+                "documentId": {
+                  "type": "null"
+                },
+                "seriesId": {
+                  "type": "null"
+                },
+                "activityCode": {
+                  "type": "null"
+                },
+                "lineNumber": {
+                  "type": "null"
+                },
+                "itemID": {
+                  "type": "null"
+                },
+                "quantityShipped": {
+                  "type": "null"
+                },
+                "serialNumbers": {
+                  "type": "null"
+                },
+                "enteredItemID": {
+                  "type": "null"
+                },
+                "typeCode": {
+                  "type": "null"
+                },
+                "actualCount": {
+                  "type": "null"
+                },
+                "expectedCount": {
+                  "type": "null"
+                },
+                "postedCount": {
+                  "type": "null"
+                },
+                "saleLineItem": {
+                  "type": "null"
+                },
+                "recordCreationType": {
+                  "type": "null"
+                },
+                "statusCode": {
+                  "type": "null"
+                },
+                "itemAccountModifier": {
+                  "type": "null"
+                },
+                "tax": {
+                  "type": "null"
+                },
+                "discount": {
+                  "type": "null"
+                },
+                "quantityOrdered": {
+                  "type": "null"
+                },
+                "quantityReceived": {
+                  "type": "null"
+                },
+                "cartonNumber": {
+                  "type": "null"
+                },
+                "lineItemNumber": {
+                  "type": "null"
+                },
+                "description": {
+                  "type": "null"
+                },
+                "paymentOnAccount": {
+                  "type": "null"
+                },
+                "entryMethod": {
+                  "type": "string"
+                },
+                "voidFlag": {
+                  "type": "boolean"
+                },
+                "return": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "sequenceNumber",
+                "beginDateTime",
+                "endDateTime",
+                "layaway",
+                "previousLayaway",
+                "previousCustomerOrder",
+                "customerOrderForDelivery",
+                "customerOrderForPickup",
+                "saleForDelivery",
+                "sale",
+                "exchange",
+                "tender",
+                "coupon",
+                "transactionDeal",
+                "documentType",
+                "documentId",
+                "seriesId",
+                "activityCode",
+                "lineNumber",
+                "itemID",
+                "quantityShipped",
+                "serialNumbers",
+                "enteredItemID",
+                "typeCode",
+                "actualCount",
+                "expectedCount",
+                "postedCount",
+                "saleLineItem",
+                "recordCreationType",
+                "statusCode",
+                "itemAccountModifier",
+                "tax",
+                "discount",
+                "quantityOrdered",
+                "quantityReceived",
+                "cartonNumber",
+                "lineItemNumber",
+                "description",
+                "paymentOnAccount",
+                "entryMethod",
+                "voidFlag",
+                "return"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "string"
+                },
+                "beginDateTime": {
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "type": "string"
+                },
+                "layaway": {
+                  "type": "null"
+                },
+                "previousLayaway": {
+                  "type": "null"
+                },
+                "previousCustomerOrder": {
+                  "type": "null"
+                },
+                "customerOrderForDelivery": {
+                  "type": "null"
+                },
+                "customerOrderForPickup": {
+                  "type": "null"
+                },
+                "saleForDelivery": {
+                  "type": "null"
+                },
+                "sale": {
+                  "type": "null"
+                },
+                "exchange": {
+                  "type": "null"
+                },
+                "tender": {
+                  "type": "object",
+                  "properties": {
+                    "tenderID": {
+                      "type": "string"
+                    },
+                    "foreignCurrency": {
+                      "type": "null"
+                    },
+                    "amount": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "number"
+                        },
+                        "action": {
+                          "type": "null"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "foreignAmount": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "action",
+                        "currency",
+                        "foreignAmount"
+                      ]
+                    },
+                    "fiscalTenderID": {
+                      "type": "null"
+                    },
+                    "authorization": {
+                      "type": "null"
+                    },
+                    "customerVerification": {
+                      "type": "null"
+                    },
+                    "creditDebit": {
+                      "type": "null"
+                    },
+                    "giftCard": {
+                      "type": "null"
+                    },
+                    "voucher": {
+                      "type": "null"
+                    },
+                    "payDeduct": {
+                      "type": "null"
+                    },
+                    "check": {
+                      "type": "null"
+                    },
+                    "coupon": {
+                      "type": "null"
+                    },
+                    "accountCredit": {
+                      "type": "null"
+                    },
+                    "travelersCheck": {
+                      "type": "null"
+                    },
+                    "address": {
+                      "type": "null"
+                    },
+                    "sendCheck": {
+                      "type": "null"
+                    },
+                    "storeAccount": {
+                      "type": "null"
+                    },
+                    "userName": {
+                      "type": "null"
+                    },
+                    "lineItemProperty": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "serialNumber": {
+                      "type": "null"
+                    },
+                    "tenderType": {
+                      "type": "string"
+                    },
+                    "typeCode": {
+                      "type": "string"
+                    },
+                    "changeFlag": {
+                      "type": "boolean"
+                    },
+                    "ponumber": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "tenderID",
+                    "foreignCurrency",
+                    "amount",
+                    "fiscalTenderID",
+                    "authorization",
+                    "customerVerification",
+                    "creditDebit",
+                    "giftCard",
+                    "voucher",
+                    "payDeduct",
+                    "check",
+                    "coupon",
+                    "accountCredit",
+                    "travelersCheck",
+                    "address",
+                    "sendCheck",
+                    "storeAccount",
+                    "userName",
+                    "lineItemProperty",
+                    "serialNumber",
+                    "tenderType",
+                    "typeCode",
+                    "changeFlag",
+                    "ponumber"
+                  ]
+                },
+                "coupon": {
+                  "type": "null"
+                },
+                "transactionDeal": {
+                  "type": "null"
+                },
+                "documentType": {
+                  "type": "null"
+                },
+                "documentId": {
+                  "type": "null"
+                },
+                "seriesId": {
+                  "type": "null"
+                },
+                "activityCode": {
+                  "type": "null"
+                },
+                "lineNumber": {
+                  "type": "null"
+                },
+                "itemID": {
+                  "type": "null"
+                },
+                "quantityShipped": {
+                  "type": "null"
+                },
+                "serialNumbers": {
+                  "type": "null"
+                },
+                "enteredItemID": {
+                  "type": "null"
+                },
+                "typeCode": {
+                  "type": "null"
+                },
+                "actualCount": {
+                  "type": "null"
+                },
+                "expectedCount": {
+                  "type": "null"
+                },
+                "postedCount": {
+                  "type": "null"
+                },
+                "saleLineItem": {
+                  "type": "null"
+                },
+                "recordCreationType": {
+                  "type": "null"
+                },
+                "statusCode": {
+                  "type": "null"
+                },
+                "itemAccountModifier": {
+                  "type": "null"
+                },
+                "tax": {
+                  "type": "null"
+                },
+                "discount": {
+                  "type": "null"
+                },
+                "quantityOrdered": {
+                  "type": "null"
+                },
+                "quantityReceived": {
+                  "type": "null"
+                },
+                "cartonNumber": {
+                  "type": "null"
+                },
+                "lineItemNumber": {
+                  "type": "null"
+                },
+                "description": {
+                  "type": "null"
+                },
+                "paymentOnAccount": {
+                  "type": "null"
+                },
+                "entryMethod": {
+                  "type": "null"
+                },
+                "voidFlag": {
+                  "type": "boolean"
+                },
+                "return": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "sequenceNumber",
+                "beginDateTime",
+                "endDateTime",
+                "layaway",
+                "previousLayaway",
+                "previousCustomerOrder",
+                "customerOrderForDelivery",
+                "customerOrderForPickup",
+                "saleForDelivery",
+                "sale",
+                "exchange",
+                "tender",
+                "coupon",
+                "transactionDeal",
+                "documentType",
+                "documentId",
+                "seriesId",
+                "activityCode",
+                "lineNumber",
+                "itemID",
+                "quantityShipped",
+                "serialNumbers",
+                "enteredItemID",
+                "typeCode",
+                "actualCount",
+                "expectedCount",
+                "postedCount",
+                "saleLineItem",
+                "recordCreationType",
+                "statusCode",
+                "itemAccountModifier",
+                "tax",
+                "discount",
+                "quantityOrdered",
+                "quantityReceived",
+                "cartonNumber",
+                "lineItemNumber",
+                "description",
+                "paymentOnAccount",
+                "entryMethod",
+                "voidFlag",
+                "return"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "string"
+                },
+                "beginDateTime": {
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "type": "string"
+                },
+                "layaway": {
+                  "type": "null"
+                },
+                "previousLayaway": {
+                  "type": "null"
+                },
+                "previousCustomerOrder": {
+                  "type": "null"
+                },
+                "customerOrderForDelivery": {
+                  "type": "null"
+                },
+                "customerOrderForPickup": {
+                  "type": "null"
+                },
+                "saleForDelivery": {
+                  "type": "null"
+                },
+                "sale": {
+                  "type": "null"
+                },
+                "exchange": {
+                  "type": "null"
+                },
+                "tender": {
+                  "type": "object",
+                  "properties": {
+                    "tenderID": {
+                      "type": "string"
+                    },
+                    "foreignCurrency": {
+                      "type": "null"
+                    },
+                    "amount": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "number"
+                        },
+                        "action": {
+                          "type": "null"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "foreignAmount": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "action",
+                        "currency",
+                        "foreignAmount"
+                      ]
+                    },
+                    "fiscalTenderID": {
+                      "type": "null"
+                    },
+                    "authorization": {
+                      "type": "object",
+                      "properties": {
+                        "requestedAmount": {
+                          "type": "number"
+                        },
+                        "authorizationCode": {
+                          "type": "string"
+                        },
+                        "referenceNumber": {
+                          "type": "string"
+                        },
+                        "authorizationDateTime": {
+                          "type": "string"
+                        },
+                        "ps2000": {
+                          "type": "null"
+                        },
+                        "tax": {
+                          "type": "number"
+                        },
+                        "discount": {
+                          "type": "number"
+                        },
+                        "freight": {
+                          "type": "number"
+                        },
+                        "duty": {
+                          "type": "number"
+                        },
+                        "cardLevelIndicator": {
+                          "type": "null"
+                        },
+                        "adjudicationCode": {
+                          "type": "string"
+                        },
+                        "responseCode": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "requestedAmount",
+                        "authorizationCode",
+                        "referenceNumber",
+                        "authorizationDateTime",
+                        "ps2000",
+                        "tax",
+                        "discount",
+                        "freight",
+                        "duty",
+                        "cardLevelIndicator",
+                        "adjudicationCode",
+                        "responseCode"
+                      ]
+                    },
+                    "customerVerification": {
+                      "type": "null"
+                    },
+                    "creditDebit": {
+                      "type": "object",
+                      "properties": {
+                        "issuerIdentificationNumber": {
+                          "type": "null"
+                        },
+                        "primaryAccountNumber": {
+                          "type": "null"
+                        },
+                        "walletRequestId": {
+                          "type": "null"
+                        },
+                        "walletProviderId": {
+                          "type": "null"
+                        },
+                        "reconciliationCode": {
+                          "type": "string"
+                        },
+                        "expirationDateEncrypted": {
+                          "type": "string"
+                        },
+                        "maskedCardNumber": {
+                          "type": "string"
+                        },
+                        "authorizationToken": {
+                          "type": "string"
+                        },
+                        "hashedCardNumber": {
+                          "type": "null"
+                        },
+                        "customerNotPresentReasonCode": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "issuerIdentificationNumber",
+                        "primaryAccountNumber",
+                        "walletRequestId",
+                        "walletProviderId",
+                        "reconciliationCode",
+                        "expirationDateEncrypted",
+                        "maskedCardNumber",
+                        "authorizationToken",
+                        "hashedCardNumber",
+                        "customerNotPresentReasonCode"
+                      ]
+                    },
+                    "giftCard": {
+                      "type": "null"
+                    },
+                    "voucher": {
+                      "type": "null"
+                    },
+                    "payDeduct": {
+                      "type": "null"
+                    },
+                    "check": {
+                      "type": "null"
+                    },
+                    "coupon": {
+                      "type": "null"
+                    },
+                    "accountCredit": {
+                      "type": "null"
+                    },
+                    "travelersCheck": {
+                      "type": "null"
+                    },
+                    "address": {
+                      "type": "null"
+                    },
+                    "sendCheck": {
+                      "type": "null"
+                    },
+                    "storeAccount": {
+                      "type": "null"
+                    },
+                    "userName": {
+                      "type": "null"
+                    },
+                    "lineItemProperty": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lineItemPropertyCode": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyType": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyValue": {
+                              "type": "string"
+                            },
+                            "lineItemPropertyDate": {
+                              "type": "null"
+                            },
+                            "lineItemPropertyDecimal": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "lineItemPropertyCode",
+                            "lineItemPropertyType",
+                            "lineItemPropertyValue",
+                            "lineItemPropertyDate",
+                            "lineItemPropertyDecimal"
+                          ]
+                        }
+                      ]
+                    },
+                    "serialNumber": {
+                      "type": "null"
+                    },
+                    "tenderType": {
+                      "type": "string"
+                    },
+                    "typeCode": {
+                      "type": "string"
+                    },
+                    "changeFlag": {
+                      "type": "boolean"
+                    },
+                    "ponumber": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "tenderID",
+                    "foreignCurrency",
+                    "amount",
+                    "fiscalTenderID",
+                    "authorization",
+                    "customerVerification",
+                    "creditDebit",
+                    "giftCard",
+                    "voucher",
+                    "payDeduct",
+                    "check",
+                    "coupon",
+                    "accountCredit",
+                    "travelersCheck",
+                    "address",
+                    "sendCheck",
+                    "storeAccount",
+                    "userName",
+                    "lineItemProperty",
+                    "serialNumber",
+                    "tenderType",
+                    "typeCode",
+                    "changeFlag",
+                    "ponumber"
+                  ]
+                },
+                "coupon": {
+                  "type": "null"
+                },
+                "transactionDeal": {
+                  "type": "null"
+                },
+                "documentType": {
+                  "type": "null"
+                },
+                "documentId": {
+                  "type": "null"
+                },
+                "seriesId": {
+                  "type": "null"
+                },
+                "activityCode": {
+                  "type": "null"
+                },
+                "lineNumber": {
+                  "type": "null"
+                },
+                "itemID": {
+                  "type": "null"
+                },
+                "quantityShipped": {
+                  "type": "null"
+                },
+                "serialNumbers": {
+                  "type": "null"
+                },
+                "enteredItemID": {
+                  "type": "null"
+                },
+                "typeCode": {
+                  "type": "null"
+                },
+                "actualCount": {
+                  "type": "null"
+                },
+                "expectedCount": {
+                  "type": "null"
+                },
+                "postedCount": {
+                  "type": "null"
+                },
+                "saleLineItem": {
+                  "type": "null"
+                },
+                "recordCreationType": {
+                  "type": "null"
+                },
+                "statusCode": {
+                  "type": "null"
+                },
+                "itemAccountModifier": {
+                  "type": "null"
+                },
+                "tax": {
+                  "type": "null"
+                },
+                "discount": {
+                  "type": "null"
+                },
+                "quantityOrdered": {
+                  "type": "null"
+                },
+                "quantityReceived": {
+                  "type": "null"
+                },
+                "cartonNumber": {
+                  "type": "null"
+                },
+                "lineItemNumber": {
+                  "type": "null"
+                },
+                "description": {
+                  "type": "null"
+                },
+                "paymentOnAccount": {
+                  "type": "null"
+                },
+                "entryMethod": {
+                  "type": "string"
+                },
+                "voidFlag": {
+                  "type": "boolean"
+                },
+                "return": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "sequenceNumber",
+                "beginDateTime",
+                "endDateTime",
+                "layaway",
+                "previousLayaway",
+                "previousCustomerOrder",
+                "customerOrderForDelivery",
+                "customerOrderForPickup",
+                "saleForDelivery",
+                "sale",
+                "exchange",
+                "tender",
+                "coupon",
+                "transactionDeal",
+                "documentType",
+                "documentId",
+                "seriesId",
+                "activityCode",
+                "lineNumber",
+                "itemID",
+                "quantityShipped",
+                "serialNumbers",
+                "enteredItemID",
+                "typeCode",
+                "actualCount",
+                "expectedCount",
+                "postedCount",
+                "saleLineItem",
+                "recordCreationType",
+                "statusCode",
+                "itemAccountModifier",
+                "tax",
+                "discount",
+                "quantityOrdered",
+                "quantityReceived",
+                "cartonNumber",
+                "lineItemNumber",
+                "description",
+                "paymentOnAccount",
+                "entryMethod",
+                "voidFlag",
+                "return"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "string"
+                },
+                "beginDateTime": {
+                  "type": "null"
+                },
+                "endDateTime": {
+                  "type": "null"
+                },
+                "layaway": {
+                  "type": "null"
+                },
+                "previousLayaway": {
+                  "type": "null"
+                },
+                "previousCustomerOrder": {
+                  "type": "null"
+                },
+                "customerOrderForDelivery": {
+                  "type": "null"
+                },
+                "customerOrderForPickup": {
+                  "type": "null"
+                },
+                "saleForDelivery": {
+                  "type": "null"
+                },
+                "sale": {
+                  "type": "null"
+                },
+                "exchange": {
+                  "type": "null"
+                },
+                "tender": {
+                  "type": "null"
+                },
+                "coupon": {
+                  "type": "null"
+                },
+                "transactionDeal": {
+                  "type": "null"
+                },
+                "documentType": {
+                  "type": "string"
+                },
+                "documentId": {
+                  "type": "string"
+                },
+                "seriesId": {
+                  "type": "string"
+                },
+                "activityCode": {
+                  "type": "string"
+                },
+                "lineNumber": {
+                  "type": "null"
+                },
+                "itemID": {
+                  "type": "null"
+                },
+                "quantityShipped": {
+                  "type": "null"
+                },
+                "serialNumbers": {
+                  "type": "null"
+                },
+                "enteredItemID": {
+                  "type": "null"
+                },
+                "typeCode": {
+                  "type": "null"
+                },
+                "actualCount": {
+                  "type": "null"
+                },
+                "expectedCount": {
+                  "type": "null"
+                },
+                "postedCount": {
+                  "type": "null"
+                },
+                "saleLineItem": {
+                  "type": "null"
+                },
+                "recordCreationType": {
+                  "type": "null"
+                },
+                "statusCode": {
+                  "type": "null"
+                },
+                "itemAccountModifier": {
+                  "type": "null"
+                },
+                "tax": {
+                  "type": "null"
+                },
+                "discount": {
+                  "type": "null"
+                },
+                "quantityOrdered": {
+                  "type": "null"
+                },
+                "quantityReceived": {
+                  "type": "null"
+                },
+                "cartonNumber": {
+                  "type": "null"
+                },
+                "lineItemNumber": {
+                  "type": "null"
+                },
+                "description": {
+                  "type": "null"
+                },
+                "paymentOnAccount": {
+                  "type": "null"
+                },
+                "entryMethod": {
+                  "type": "null"
+                },
+                "voidFlag": {
+                  "type": "boolean"
+                },
+                "return": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "sequenceNumber",
+                "beginDateTime",
+                "endDateTime",
+                "layaway",
+                "previousLayaway",
+                "previousCustomerOrder",
+                "customerOrderForDelivery",
+                "customerOrderForPickup",
+                "saleForDelivery",
+                "sale",
+                "exchange",
+                "tender",
+                "coupon",
+                "transactionDeal",
+                "documentType",
+                "documentId",
+                "seriesId",
+                "activityCode",
+                "lineNumber",
+                "itemID",
+                "quantityShipped",
+                "serialNumbers",
+                "enteredItemID",
+                "typeCode",
+                "actualCount",
+                "expectedCount",
+                "postedCount",
+                "saleLineItem",
+                "recordCreationType",
+                "statusCode",
+                "itemAccountModifier",
+                "tax",
+                "discount",
+                "quantityOrdered",
+                "quantityReceived",
+                "cartonNumber",
+                "lineItemNumber",
+                "description",
+                "paymentOnAccount",
+                "entryMethod",
+                "voidFlag",
+                "return"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "string"
+                },
+                "beginDateTime": {
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "type": "string"
+                },
+                "layaway": {
+                  "type": "null"
+                },
+                "previousLayaway": {
+                  "type": "null"
+                },
+                "previousCustomerOrder": {
+                  "type": "null"
+                },
+                "customerOrderForDelivery": {
+                  "type": "null"
+                },
+                "customerOrderForPickup": {
+                  "type": "null"
+                },
+                "saleForDelivery": {
+                  "type": "null"
+                },
+                "sale": {
+                  "type": "null"
+                },
+                "exchange": {
+                  "type": "null"
+                },
+                "tender": {
+                  "type": "null"
+                },
+                "coupon": {
+                  "type": "null"
+                },
+                "transactionDeal": {
+                  "type": "null"
+                },
+                "documentType": {
+                  "type": "null"
+                },
+                "documentId": {
+                  "type": "null"
+                },
+                "seriesId": {
+                  "type": "null"
+                },
+                "activityCode": {
+                  "type": "null"
+                },
+                "lineNumber": {
+                  "type": "null"
+                },
+                "itemID": {
+                  "type": "null"
+                },
+                "quantityShipped": {
+                  "type": "null"
+                },
+                "serialNumbers": {
+                  "type": "null"
+                },
+                "enteredItemID": {
+                  "type": "null"
+                },
+                "typeCode": {
+                  "type": "null"
+                },
+                "actualCount": {
+                  "type": "null"
+                },
+                "expectedCount": {
+                  "type": "null"
+                },
+                "postedCount": {
+                  "type": "null"
+                },
+                "saleLineItem": {
+                  "type": "null"
+                },
+                "recordCreationType": {
+                  "type": "null"
+                },
+                "statusCode": {
+                  "type": "null"
+                },
+                "itemAccountModifier": {
+                  "type": "null"
+                },
+                "tax": {
+                  "type": "object",
+                  "properties": {
+                    "taxAuthority": {
+                      "type": "string"
+                    },
+                    "taxableAmount": {
+                      "type": "number"
+                    },
+                    "amount": {
+                      "type": "number"
+                    },
+                    "percent": {
+                      "type": "number"
+                    },
+                    "rawTaxPercentage": {
+                      "type": "null"
+                    },
+                    "taxExemption": {
+                      "type": "null"
+                    },
+                    "taxOverride": {
+                      "type": "null"
+                    },
+                    "taxLocationId": {
+                      "type": "string"
+                    },
+                    "taxGroupId": {
+                      "type": "string"
+                    },
+                    "taxType": {
+                      "type": "string"
+                    },
+                    "voidFlag": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "taxAuthority",
+                    "taxableAmount",
+                    "amount",
+                    "percent",
+                    "rawTaxPercentage",
+                    "taxExemption",
+                    "taxOverride",
+                    "taxLocationId",
+                    "taxGroupId",
+                    "taxType",
+                    "voidFlag"
+                  ]
+                },
+                "discount": {
+                  "type": "null"
+                },
+                "quantityOrdered": {
+                  "type": "null"
+                },
+                "quantityReceived": {
+                  "type": "null"
+                },
+                "cartonNumber": {
+                  "type": "null"
+                },
+                "lineItemNumber": {
+                  "type": "null"
+                },
+                "description": {
+                  "type": "null"
+                },
+                "paymentOnAccount": {
+                  "type": "null"
+                },
+                "entryMethod": {
+                  "type": "null"
+                },
+                "voidFlag": {
+                  "type": "boolean"
+                },
+                "return": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "sequenceNumber",
+                "beginDateTime",
+                "endDateTime",
+                "layaway",
+                "previousLayaway",
+                "previousCustomerOrder",
+                "customerOrderForDelivery",
+                "customerOrderForPickup",
+                "saleForDelivery",
+                "sale",
+                "exchange",
+                "tender",
+                "coupon",
+                "transactionDeal",
+                "documentType",
+                "documentId",
+                "seriesId",
+                "activityCode",
+                "lineNumber",
+                "itemID",
+                "quantityShipped",
+                "serialNumbers",
+                "enteredItemID",
+                "typeCode",
+                "actualCount",
+                "expectedCount",
+                "postedCount",
+                "saleLineItem",
+                "recordCreationType",
+                "statusCode",
+                "itemAccountModifier",
+                "tax",
+                "discount",
+                "quantityOrdered",
+                "quantityReceived",
+                "cartonNumber",
+                "lineItemNumber",
+                "description",
+                "paymentOnAccount",
+                "entryMethod",
+                "voidFlag",
+                "return"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "string"
+                },
+                "beginDateTime": {
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "type": "string"
+                },
+                "layaway": {
+                  "type": "null"
+                },
+                "previousLayaway": {
+                  "type": "null"
+                },
+                "previousCustomerOrder": {
+                  "type": "null"
+                },
+                "customerOrderForDelivery": {
+                  "type": "null"
+                },
+                "customerOrderForPickup": {
+                  "type": "null"
+                },
+                "saleForDelivery": {
+                  "type": "null"
+                },
+                "sale": {
+                  "type": "null"
+                },
+                "exchange": {
+                  "type": "null"
+                },
+                "tender": {
+                  "type": "null"
+                },
+                "coupon": {
+                  "type": "null"
+                },
+                "transactionDeal": {
+                  "type": "null"
+                },
+                "documentType": {
+                  "type": "null"
+                },
+                "documentId": {
+                  "type": "null"
+                },
+                "seriesId": {
+                  "type": "null"
+                },
+                "activityCode": {
+                  "type": "null"
+                },
+                "lineNumber": {
+                  "type": "null"
+                },
+                "itemID": {
+                  "type": "null"
+                },
+                "quantityShipped": {
+                  "type": "null"
+                },
+                "serialNumbers": {
+                  "type": "null"
+                },
+                "enteredItemID": {
+                  "type": "null"
+                },
+                "typeCode": {
+                  "type": "null"
+                },
+                "actualCount": {
+                  "type": "null"
+                },
+                "expectedCount": {
+                  "type": "null"
+                },
+                "postedCount": {
+                  "type": "null"
+                },
+                "saleLineItem": {
+                  "type": "null"
+                },
+                "recordCreationType": {
+                  "type": "null"
+                },
+                "statusCode": {
+                  "type": "null"
+                },
+                "itemAccountModifier": {
+                  "type": "null"
+                },
+                "tax": {
+                  "type": "object",
+                  "properties": {
+                    "taxAuthority": {
+                      "type": "string"
+                    },
+                    "taxableAmount": {
+                      "type": "number"
+                    },
+                    "amount": {
+                      "type": "number"
+                    },
+                    "percent": {
+                      "type": "number"
+                    },
+                    "rawTaxPercentage": {
+                      "type": "null"
+                    },
+                    "taxExemption": {
+                      "type": "null"
+                    },
+                    "taxOverride": {
+                      "type": "null"
+                    },
+                    "taxLocationId": {
+                      "type": "string"
+                    },
+                    "taxGroupId": {
+                      "type": "string"
+                    },
+                    "taxType": {
+                      "type": "string"
+                    },
+                    "voidFlag": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "taxAuthority",
+                    "taxableAmount",
+                    "amount",
+                    "percent",
+                    "rawTaxPercentage",
+                    "taxExemption",
+                    "taxOverride",
+                    "taxLocationId",
+                    "taxGroupId",
+                    "taxType",
+                    "voidFlag"
+                  ]
+                },
+                "discount": {
+                  "type": "null"
+                },
+                "quantityOrdered": {
+                  "type": "null"
+                },
+                "quantityReceived": {
+                  "type": "null"
+                },
+                "cartonNumber": {
+                  "type": "null"
+                },
+                "lineItemNumber": {
+                  "type": "null"
+                },
+                "description": {
+                  "type": "null"
+                },
+                "paymentOnAccount": {
+                  "type": "null"
+                },
+                "entryMethod": {
+                  "type": "null"
+                },
+                "voidFlag": {
+                  "type": "boolean"
+                },
+                "return": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "sequenceNumber",
+                "beginDateTime",
+                "endDateTime",
+                "layaway",
+                "previousLayaway",
+                "previousCustomerOrder",
+                "customerOrderForDelivery",
+                "customerOrderForPickup",
+                "saleForDelivery",
+                "sale",
+                "exchange",
+                "tender",
+                "coupon",
+                "transactionDeal",
+                "documentType",
+                "documentId",
+                "seriesId",
+                "activityCode",
+                "lineNumber",
+                "itemID",
+                "quantityShipped",
+                "serialNumbers",
+                "enteredItemID",
+                "typeCode",
+                "actualCount",
+                "expectedCount",
+                "postedCount",
+                "saleLineItem",
+                "recordCreationType",
+                "statusCode",
+                "itemAccountModifier",
+                "tax",
+                "discount",
+                "quantityOrdered",
+                "quantityReceived",
+                "cartonNumber",
+                "lineItemNumber",
+                "description",
+                "paymentOnAccount",
+                "entryMethod",
+                "voidFlag",
+                "return"
+              ]
+            }
+          ]
+        },
+        "total": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "totalType": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "totalType"
+              ]
+            }
+          ]
+        },
+        "roundedTotal": {
+          "type": "number"
+        },
+        "customer": {
+          "type": "null"
+        },
+        "customerAccount": {
+          "type": "null"
+        },
+        "employeeSaleId": {
+          "type": "null"
+        },
+        "transactionLink": {
+          "type": "null"
+        },
+        "postVoidReasonCode": {
+          "type": "null"
+        },
+        "transCancelReasonCode": {
+          "type": "null"
+        },
+        "postVoidComment": {
+          "type": "null"
+        },
+        "flightInformation": {
+          "type": "null"
+        },
+        "version": {
+          "type": "null"
+        },
+        "typeCode": {
+          "type": "string"
+        },
+        "transactionStatus": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lineItem",
+        "total",
+        "roundedTotal",
+        "customer",
+        "customerAccount",
+        "employeeSaleId",
+        "transactionLink",
+        "postVoidReasonCode",
+        "transCancelReasonCode",
+        "postVoidComment",
+        "flightInformation",
+        "version",
+        "typeCode",
+        "transactionStatus"
+      ]
+    },
+    "cancelFlag": {
+      "type": "boolean"
+    },
+    "offlineFlag": {
+      "type": "boolean"
+    },
+    "transactionType": {
+      "type": "string"
+    },
+    "appVersion": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organizationID",
+    "retailStoreID",
+    "workstationID",
+    "tillID",
+    "cashDrawerID",
+    "sequenceNumber",
+    "businessDayDate",
+    "beginDateTime",
+    "endDateTime",
+    "operatorID",
+    "currencyCode",
+    "posTransactionProperties",
+    "inventoryTransaction",
+    "retailTransaction",
+    "cancelFlag",
+    "offlineFlag",
+    "transactionType",
+    "appVersion"
+  ]
+}

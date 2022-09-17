@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+
+    <appender name="FILE-APPLICATION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGGING_PATH:-.}/store-orchestrator.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOGGING_PATH:-.}/store-orchestrator.%d{yyyy-MM-dd}-%i.gz</fileNamePattern>
+            <!-- rollover if file reaches 250MB -->
+            <maxFileSize>250MB</maxFileSize>
+            <!-- keep 15 rotated files at the most -->
+            <maxHistory>15</maxHistory>
+            <!-- Max size of all rotated files -->
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MMM-dd HH:mm:ss} store-orchestrator %p [%c:%L] [%thread] - %message%xException{150}%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE-PAYLOADS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGGING_PATH:-.}/store-orchestrator-payloads.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOGGING_PATH:-.}/store-orchestrator-payloads.%d{yyyy-MM-dd}-%i.gz</fileNamePattern>
+            <!-- rollover if file reaches 250MB -->
+            <maxFileSize>250MB</maxFileSize>
+            <!-- keep 15 rotated files at the most -->
+            <maxHistory>15</maxHistory>
+            <!-- Max size of all rotated files -->
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MMM-dd HH:mm:ss} store-orchestrator-payloads %p [%c:%L] [%thread] - %message%xException{150}%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MMM-dd HH:mm:ss} store-orchestrator %p [%c:%L] [%thread] - %message%xException{200}%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNCFILE-APPLICATION" class="ch.qos.logback.classic.AsyncAppender" additivity="false">
+        <appender-ref ref="FILE-APPLICATION" />
+    </appender>
+
+    <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </appender>
+
+    <appender name="APPLICATION_SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender" additivity="false">
+        <syslogHost>localhost</syslogHost>
+        <facility>local5</facility>
+        <suffixPattern>%d{yyyy-MMM-dd HH:mm:ss} store-orchestrator %-5level %p [%c:%L] [%thread] - %message%xException{150}%n</suffixPattern>
+    </appender>
+
+    <logger name="com.networknt.schema.JsonMetaSchema">
+        <!-- this supresses the JSON Validator from warning about fields like examples, etc. -->
+        <level value="error"/>
+    </logger>
+
+    <logger name="org.springframework.cloud.netflix.hystrix.dashboard.HystrixDashboardConfiguration" level="OFF"/>
+
+    <logger name="com.backcountry.store.orchestrator" level="info" additivity="false">
+        <appender-ref ref="FILE-APPLICATION" />
+        <appender-ref ref="APPLICATION_SYSLOG" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="INFO">
+        <springProfile name="default,ci,local,staging,develop">
+            <appender-ref ref="ASYNCSTDOUT" />
+        </springProfile>
+        <springProfile name="default,develop,production,staging">
+            <appender-ref ref="ASYNCFILE-APPLICATION" />
+        </springProfile>
+        <springProfile name="develop,production,staging">
+            <appender-ref ref="APPLICATION_SYSLOG" />
+        </springProfile>
+    </root>
+</configuration>

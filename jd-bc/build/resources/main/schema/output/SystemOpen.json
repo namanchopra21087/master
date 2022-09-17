@@ -1,0 +1,130 @@
+{
+  "type": "object",
+  "properties": {
+    "transactionType": {
+      "type": "string"
+    },
+    "transactionId": {
+      "type": "string"
+    },
+    "messageFormat": {
+      "type": "string"
+    },
+    "publishTimestamp": {
+      "type": "string"
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "type": "object",
+          "properties": {
+            "organizationID": {
+              "type": "integer"
+            },
+            "retailStoreID": {
+              "type": "string"
+            },
+            "workstationID": {
+              "type": "string"
+            },
+            "tillID": {
+              "type": "string"
+            },
+            "sequenceNumber": {
+              "type": "string"
+            },
+            "businessDayDate": {
+              "type": "string"
+            },
+            "beginDateTime": {
+              "type": "string"
+            },
+            "endDateTime": {
+              "type": "string"
+            },
+            "operatorID": {
+              "type": "string"
+            },
+            "currencyCode": {
+              "type": "string"
+            },
+            "posTransactionProperties": {
+              "type": "array",
+              "items": {}
+            },
+            "controlTransaction": {
+              "type": "object",
+              "properties": {
+                "reasonCode": {
+                  "type": "string"
+                },
+                "systemCycleType": {
+                  "type": "string"
+                },
+                "noSale": {
+                  "type": "null"
+                },
+                "receiptReprint": {
+                  "type": "array",
+                  "items": {}
+                }
+              },
+              "required": [
+                "reasonCode",
+                "systemCycleType",
+                "noSale",
+                "receiptReprint"
+              ]
+            },
+            "inventoryTransaction": {
+              "type": "array",
+              "items": {}
+            },
+            "cancelFlag": {
+              "type": "boolean"
+            },
+            "offlineFlag": {
+              "type": "boolean"
+            },
+            "transactionType": {
+              "type": "string"
+            },
+            "appVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "organizationID",
+            "retailStoreID",
+            "workstationID",
+            "tillID",
+            "sequenceNumber",
+            "businessDayDate",
+            "beginDateTime",
+            "endDateTime",
+            "operatorID",
+            "currencyCode",
+            "posTransactionProperties",
+            "controlTransaction",
+            "inventoryTransaction",
+            "cancelFlag",
+            "offlineFlag",
+            "transactionType",
+            "appVersion"
+          ]
+        }
+      },
+      "required": [
+        "transaction"
+      ]
+    }
+  },
+  "required": [
+    "transactionType",
+    "transactionId",
+    "messageFormat",
+    "publishTimestamp",
+    "body"
+  ]
+}

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       default-lazy-init="false"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- Import External Configuration -->
+
+    <!-- Logger Configuration -->
+    <bean id="logger" class="org.slf4j.LoggerFactory" factory-method="getLogger"
+          xmlns="http://www.springframework.org/schema/beans">
+        <constructor-arg value="com.backcountry.store.orchestrator"/>
+    </bean>
+
+    <bean id="google-pubsub" class="org.apache.camel.component.google.pubsub.GooglePubsubComponent" xmlns="http://www.springframework.org/schema/beans">
+        <property name="connectionFactory" ref="googlePubsubConnectionFactory" />
+    </bean>
+
+    <bean id="googlePubsubConnectionFactory" class="org.apache.camel.component.google.pubsub.GooglePubsubConnectionFactory" xmlns="http://www.springframework.org/schema/beans">
+        <property name="credentialsFileLocation" value="src/main/resources/config/${retailstore.credentialsFile}" />
+    </bean>
+
+    <bean id="errorDataProcessor" class="com.backcountry.store.orchestrator.processor.OutputErrorProcessor" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="dataValidationProcessor" class="com.backcountry.store.orchestrator.processor.DataValidationProcessor" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="inputDataDecodeProcessor" class="com.backcountry.store.orchestrator.processor.InputDataDecodeProcessor" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="outputJsonDataProcessor" class="com.backcountry.store.orchestrator.processor.OutputJsonDataProcessor" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="processorUtils" class="com.backcountry.store.orchestrator.processor.ProcessorUtils" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="transactionTypesHelper" class="com.backcountry.store.orchestrator.processor.TransactionTypesHelper" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="bridgePropertyPlaceholder" class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:config/application-#{systemProperties['ENV_NAME']}.properties"/>
+    </bean>
+
+    <!--suppress UnparsedCustomBeanInspection -->
+    <camelContext xmlns="http://camel.apache.org/schema/spring" id="store-orchestrator-context"
+                  allowUseOriginalMessage="true" streamCache="false">
+        <template id="producerTemplate" />
+        <!-- Data Formats -->
+        <dataFormats>
+            <json library="Jackson" id="jacksonDataFormat" jsonView="PosLogData.class"/>
+        </dataFormats>
+
+        <!-- In this scenario we dont have a valid JSON input, so no POJO were instantiated -->
+        <onException>
+            <exception>com.fasterxml.jackson.core.JsonParseException</exception>
+            <exception>com.fasterxml.jackson.databind.exc.MismatchedInputException</exception>
+            <handled><constant>true</constant></handled>
+            <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ERROR_REASON}">
+                <simple>${type:com.backcountry.store.orchestrator.constants.TransactionErrors.INPUT_TRANSFORM_ERROR}</simple>
+            </setHeader>
+            <!-- TODO String append error metadata to the string containted in exchange.in.body -->
+            <to uri="direct:publishToError"/>
+        </onException>
+
+        <onException>
+            <exception>com.backcountry.store.orchestrator.exception.OrchestratorDecoderException</exception>
+            <handled><constant>true</constant></handled>
+            <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ERROR_REASON}">
+                <simple>${type:com.backcountry.store.orchestrator.constants.TransactionErrors.INPUT_DECODE_ERROR}</simple>
+            </setHeader>
+            <process ref="errorDataProcessor" />
+            <to uri="direct:publishToError"/>
+        </onException>
+
+        <onException>
+            <exception>javax.xml.stream.XMLStreamException</exception>
+            <exception>org.xml.sax.SAXParseException</exception>
+            <handled><constant>true</constant></handled>
+            <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ERROR_REASON}">
+                <simple>${type:com.backcountry.store.orchestrator.constants.TransactionErrors.INPUT_BODY_TRANSFORM_ERROR}</simple>
+            </setHeader>
+            <process ref="errorDataProcessor" />
+            <to uri="direct:publishToError"/>
+        </onException>
+
+        <onException>
+            <exception>com.backcountry.store.orchestrator.exception.OrchestratorException</exception>
+            <handled><constant>true</constant></handled>
+            <!-- DataValidationProcessor had added the errorReason in header -->
+            <process ref="errorDataProcessor" />
+            <to uri="direct:publishToMisc"/>
+        </onException>
+
+        <onException>
+            <exception>com.backcountry.store.orchestrator.exception.OrchestratorOutputParserException</exception>
+            <handled><constant>true</constant></handled>
+            <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ERROR_REASON}">
+                <simple>${type:com.backcountry.store.orchestrator.constants.TransactionErrors.OUTPUT_TRANSFORM_ERROR}</simple>
+            </setHeader>
+            <process ref="errorDataProcessor" />
+            <to uri="direct:publishToMisc"/>
+        </onException>
+
+        <onException>
+            <exception>com.backcountry.store.orchestrator.exception.OrchestratorPublisherException</exception>
+            <handled><constant>true</constant></handled>
+            <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ERROR_REASON}">
+                <simple>${type:com.backcountry.store.orchestrator.constants.TransactionErrors.OUTPUT_PUBLISH_ERROR}</simple>
+            </setHeader>
+            <process ref="errorDataProcessor" />
+            <to uri="direct:publishToRetry"/>
+        </onException>
+
+        <!-- In this scenario we may not have a valid JSON input, so no POJO may not had been instantiated -->
+        <onException>
+            <exception>java.lang.Exception</exception>
+            <handled><constant>true</constant></handled>
+            <log message="${exception.stacktrace}" />
+            <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ERROR_REASON}">
+                <simple>${type:com.backcountry.store.orchestrator.constants.TransactionErrors.UNKNOWN_ERROR}</simple>
+            </setHeader>
+            <to uri="direct:publishToError"/>
+        </onException>
+
+        <!-- we need to find out what is the exception camel will throw if an error publishing to a topic -->
+
+        <!--Route:
+        1. consume from transaction subscriber
+        2. unmarshall from JSON
+        3. input data processor to extract body attribute
+        4. unmarshall from XML
+        5. apply filters
+        -->
+        <route id="store.retailpos.from.pubsub" autoStartup="true">
+            <from uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.transactionSubscriber}}" id="store.retailpos.from.pubsub.consume"/>
+            <log message="Transaction consumed from topic - Payload : ${body}" />
+            <setProperty propertyName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ORIGINAL_MESSAGE}">
+                <simple>${body}</simple>
+            </setProperty>
+            <unmarshal>
+                <json library="Jackson" unmarshalTypeName="com.backcountry.store.orchestrator.dto.POSLogInput" />
+            </unmarshal>
+            <setProperty propertyName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ORIGINAL_MESSAGE}">
+                <simple>${body}</simple>
+            </setProperty>
+            <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.TRANSACTION_ID}">
+                <simple>${body.transactionId}</simple>
+            </setHeader>
+            <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.TRANSACTION_TYPE}">
+                <simple>${body.transactionType}</simple>
+            </setHeader>
+            <log message="Transaction JSON parsed - Transaction ID : ${property.OriginalMessage.transactionId} - Payload : ${body}" />
+            <process ref="inputDataDecodeProcessor" />
+            <unmarshal>
+                <jaxb contextPath="com.backcountry.store.orchestrator.models"/>
+            </unmarshal>
+            <log message="Transaction XML Body parsed - Transaction ID : ${property.OriginalMessage.transactionId} - Payload Body : ${body}" />
+            <process ref="dataValidationProcessor" />
+            <log message="Transaction filtered - Transaction ID : ${property.OriginalMessage.transactionId}" />
+            <process ref="outputJsonDataProcessor" />
+        </route>
+
+        <!--Route:
+        1. publish to topic based on header or send to error process in case of unexpected transaction type
+        -->
+        <route id="store.retailpos.from.direct.trans" autoStartup="true">
+            <from uri="direct:publishToTopic" />
+            <doTry>
+                <log message="Publishing payload - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType} , Payload: ${body}" />
+                <choice>
+                    <when>
+                        <method ref="transactionTypesHelper" method="isRetailSaleTransaction(${headers.transactionType})" />
+                        <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.salesTopic}}" id="store.retailpos.from.pubsub.sales.produce"/>
+                        <log message="Transaction published - Topic : Sales  - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                    </when>
+                    <when>
+                        <method ref="transactionTypesHelper" method="isInventoryTransaction(${headers.transactionType})" />
+                        <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.inventoryTopic}}" id="store.retailpos.from.pubsub.inventory.produce"/>
+                        <log message="Transaction published - Topic : Inventory - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                    </when>
+                    <when>
+                        <method ref="transactionTypesHelper" method="isControlTransaction(${headers.transactionType})" />
+                        <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.controlTopic}}" id="store.retailpos.from.pubsub.control.produce"/>
+                        <log message="Transaction published - Topic : Control - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                    </when>
+                    <when>
+                        <method ref="transactionTypesHelper" method="isStoreOpsTransaction(${headers.transactionType})" />
+                        <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.storeOpsTopic}}" id="store.retailpos.from.pubsub.storeops.produce"/>
+                        <log message="Transaction published - Topic : storeops - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                    </when>
+                    <otherwise>
+                        <setHeader headerName="${type:com.backcountry.store.orchestrator.constants.TransactionAttributes.ERROR_REASON}">
+                            <simple>${type:com.backcountry.store.orchestrator.constants.TransactionErrors.UNEXPECTED_TYPE}</simple>
+                        </setHeader>
+                        <process ref="errorDataProcessor" />
+                        <to uri="direct:publishToError"/>
+                    </otherwise>
+                </choice>
+                <doCatch>
+                    <exception>java.lang.Exception</exception>
+                    <log loggingLevel="ERROR" message="Error publishing to topic - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType} Exception: ${exception.stacktrace}" />
+                    <throwException message="Error publishing to topic" exceptionType="com.backcountry.store.orchestrator.exception.OrchestratorPublisherException" />
+                </doCatch>
+            </doTry>
+        </route>
+
+        <!--Route:
+        1. publish to error topic
+        -->
+        <route id="store.retailpos.to.error" autoStartup="true">
+            <from uri="direct:publishToError" />
+            <doTry>
+                <log message="Errored due to : ${headers.errorReason} - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.errorTopic}}" id="store.retailpos.from.pubsub.err.produce"/>
+                <log message="Errored Transaction published - Topic : err - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                <doCatch>
+                    <exception>java.lang.Exception</exception>
+                    <log loggingLevel="ERROR" message="Error publishing to err topic - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType} Exception: ${exception.stacktrace}" />
+                </doCatch>
+            </doTry>
+        </route>
+
+        <!--Route:
+        1. publish to misc topic
+        -->
+        <route id="store.retailpos.to.misc" autoStartup="true">
+            <from uri="direct:publishToMisc" />
+            <doTry>
+                <log message="Filtered due to : ${headers.errorReason} - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.miscTopic}}" id="store.retailpos.from.pubsub.misc.produce"/>
+                <log message="Filtered Transaction published - Topic : misc - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                <doCatch>
+                    <exception>java.lang.Exception</exception>
+                    <log loggingLevel="ERROR" message="Error publishing to misc topic - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType} Exception: ${exception.stacktrace}" />
+                </doCatch>
+            </doTry>
+        </route>
+
+        <!--Route:
+        1. publish to retry topic
+        -->
+        <route id="store.retailpos.to.retry" autoStartup="true">
+            <from uri="direct:publishToRetry" />
+            <doTry>
+                <log message="Transaction published for retry due to : ${headers.errorReason} - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.retryTopic}}" id="store.retailpos.from.pubsub.retry.produce"/>
+                <log message="Transaction published - Topic : retry - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                <doCatch>
+                    <exception>java.lang.Exception</exception>
+                    <log loggingLevel="ERROR" message="Error publishing to retry topic - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType} Exception: ${exception.stacktrace}" />
+                </doCatch>
+            </doTry>
+        </route>
+    </camelContext>
+</beans>

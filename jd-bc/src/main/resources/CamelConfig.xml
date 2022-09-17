@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       default-lazy-init="false"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- Import External Configuration -->
+
+    <!-- Logger Configuration -->
+    <bean id="logger" class="org.slf4j.LoggerFactory" factory-method="getLogger"
+          xmlns="http://www.springframework.org/schema/beans">
+        <constructor-arg value="com.backcountry.store.orchestrator"/>
+    </bean>
+
+    <bean id="google-pubsub" class="org.apache.camel.component.google.pubsub.GooglePubsubComponent" xmlns="http://www.springframework.org/schema/beans">
+        <property name="connectionFactory" ref="googlePubsubConnectionFactory" />
+    </bean>
+
+    <bean id="googlePubsubConnectionFactory" class="org.apache.camel.component.google.pubsub.GooglePubsubConnectionFactory" xmlns="http://www.springframework.org/schema/beans">
+        <property name="credentialsFileLocation" value="src/main/resources/config/${retailstore.credentialsFile}" />
+    </bean>
+
+    <bean id="filterDataProcessor" class="com.backcountry.store.orchestrator.processor.FilterDataProcessor" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="inputDataProcessor" class="com.backcountry.store.orchestrator.processor.InputDataProcessor" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="outputDataProcessor" class="com.backcountry.store.orchestrator.processor.OutputDataProcessor" xmlns="http://www.springframework.org/schema/beans">
+    </bean>
+
+    <bean id="bridgePropertyPlaceholder" class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:config/application-#{systemProperties['ENV_NAME']}.properties"/>
+    </bean>
+
+    <!--suppress UnparsedCustomBeanInspection -->
+    <camelContext xmlns="http://camel.apache.org/schema/spring" id="store-orchestrator-context"
+                  allowUseOriginalMessage="true" streamCache="false">
+        <template id="producerTemplate" />
+        <!-- Data Formats -->
+        <dataFormats>
+            <json library="Jackson" id="jacksonDataFormat" jsonView="PosLogData.class"/>
+        </dataFormats>
+
+        <onException>
+            <exception>com.fasterxml.jackson.core.JsonParseException</exception>
+            <handled><constant>true</constant></handled>
+            <log message="Failed to transform input payload Exception : ${exception.message}}"/>
+            <to uri="file:/Users/vinayram/Documents/Json data/ErrorData?fileName=PosLog_${date:now:yyyy-MM-dd HH:mm:ss}.xml" id="store.retailpos.from.pubsub.produce.filexml"/>
+        </onException>
+
+        <route id="store.retailpos.from.pubsub" autoStartup="true">
+            <from uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.storeHubSubscriber}}" id="store.retailpos.from.pubsub.consume"/>
+            <log message="Consumed payload from Google Cloud - Topic : ${body}" />
+            <unmarshal>
+                <json library="Jackson" unmarshalTypeName="com.backcountry.store.orchestrator.dto.PosLogInput" />
+            </unmarshal>
+            <log message="Payload JSON parsed - Transaction ID : ${body.transactionId} , Payload :${body}" />
+            <process ref="inputDataProcessor" />
+            <log message="Body consumed - Transaction ID : ${property.OriginalMessage.transactionId}, Body: ${body}" />
+            <unmarshal>
+                <jaxb contextPath="com.backcountry.store.orchestrator.models"/>
+            </unmarshal>
+            <log message="Body XML parsed - Transaction ID : ${property.OriginalMessage.transactionId} , Payload: ${body}" />
+            <process ref="filterDataProcessor" />
+            <choice>
+                <when>
+                    <simple>${headers.ignoreReason} == null</simple>
+                    <process ref="outputDataProcessor" />
+                </when>
+                <otherwise>
+                    <log message="Ignoring due to : ${headers.ignoreReason} - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                </otherwise>
+            </choice>
+        </route>
+
+        <route id="store.retailpos.from.direct.trans" autoStartup="true">
+            <from uri="direct:publishToTopic" />
+            <log message="Publishing payload - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType} , Payload: ${body}" />
+            <choice>
+                <when>
+                    <simple>${headers.transactionType} == 'RETAIL_SALE'</simple>
+                    <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.salesTopic}}" id="store.retailpos.from.pubsub.sales.produce"/>
+                    <log message="Payload successfully pushed to Google Cloud - Topic : Sales  - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                </when>
+                <when>
+                    <simple>${headers.transactionType} == 'INVENTORY_CONTROL'</simple>
+                    <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.inventoryTopic}}" id="store.retailpos.from.pubsub.inventory.produce"/>
+                    <log message="Payload successfully pushed to Google Cloud - Topic : Inventory - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                </when>
+                <when>
+                    <simple>${headers.transactionType} == 'SESSION_CONTROL' or ${headers.transactionType} == 'TENDER_CONTROL'</simple>
+                    <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.controlTopic}}" id="store.retailpos.from.pubsub.control.produce"/>
+                    <log message="Payload successfully pushed to Google Cloud - Topic : Control - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                </when>
+                <when>
+                    <simple>${header.TransactionType} == 'SYSTEM_OPEN' or ${header.TransactionType} == 'SYSTEM_CLOSE' or ${header.TransactionType} == 'WORKSTATION_OPEN' or ${header.TransactionType} == 'WORKSTATION_CLOSE'</simple>
+                    <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.storeOpsTopic}}" id="store.retailpos.from.pubsub.storeops.produce"/>
+                    <log message="Payload successfully pushed to Google Cloud - Topic : storeops - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                </when>
+                <otherwise>
+                    <to uri="google-pubsub:{{googleCloud.projectName}}:{{googleCloud.errorTopic}}" id="store.retailpos.from.pubsub.err.produce"/>
+                    <log message="Unexpected transaction type : ${headers.transactionType} - Transaction ID : ${headers.transactionId}" />
+                    <log message="Payload successfully pushed to Google Cloud - Topic : err - Transaction ID : ${headers.transactionId}  - Transaction Type : ${headers.transactionType}" />
+                </otherwise>
+            </choice>
+        </route>
+    </camelContext>
+</beans>

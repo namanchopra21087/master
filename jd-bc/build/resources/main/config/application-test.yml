@@ -1,0 +1,44 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      domain: org.apache.camel.metrics
+      unique-names: true
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+
+spring:
+  security:
+    user:
+      name: admin
+      password: password
+  main:
+    allow-bean-definition-overriding: true
+  http:
+    encoding:
+      charset: UTF-8 # This is the default value, but will keep it here just to allow anyone that read this to easily see it :)
+      enabled: true
+      force-response: false
+      force-request: true
+server:
+  keep-alive-timeout: 10000 # 10 seconds
+  connection-timeout: 600s  # 10 mins, matching same timeout we have with the biggest REST call we accept (PO from Motoasis)
+  port: 8080
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: ${LOGGING_PATH:-.}
+      pattern: "%t %D %s %b %a %m %U %q \"%{Referer}i\" \"%{User-Agent}i\""
+      prefix: access
+      renameOnRotate: true
+
+info:
+  artifact: Store Orchestrator
+  name: Store Orchestrator
+  description: Store Orchestrator
+  version: 2.0.0
