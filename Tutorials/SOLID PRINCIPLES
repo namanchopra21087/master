@@ -1,0 +1,30 @@
+SOLID Principles:
+S----> Single Responsibility
+O----> Open to extension close to modification
+L---->Liskov substitution states that if Class B is a subtype of Class A, then if we replace all occurence of Class A with Class B app must still run smoothly.
+I---->Interface Segregation.Dont put too much abstract methods in one interface that the class trying to implement it is forced to define methods that are redundant to it.Keep each interface as small as possible.
+D---->Dependency inversion states that, 
+Class Windows98Computer{
+	private final StandardKeyboard keyboard;
+	private final StandardMonitor monitor;
+	Windows98Computer(){
+		keyboard=new StandardKeyboard();
+		monitor=new StandardMonitor();
+	}
+}
+
+In above class definition we have tightly coupled StabdardMonitor and StandardKeyboard inside Windows98Computer.
+If tommorow we want to replcae them with a new version we can't.
+
+Better Approach:
+Class Windows98Computer{
+	private final Keyboard keyboard;
+	private final Monitor monitor;
+	Windows98Computer(Keyboard keyboard,Monitor monitor){
+		this.keyboard=keyboard;
+		this.monitor=monitor;
+	}
+}
+
+Class StandardKeyboard implements Keyboard{}
+Class StandardMonitor implements Monitor{}
